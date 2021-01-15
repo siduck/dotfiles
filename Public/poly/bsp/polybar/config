@@ -1,0 +1,253 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+color0 = ${xrdb:color0}
+color1 = ${xrdb:color1}
+color2 = ${xrdb:color2}
+color3 = ${xrdb:color3}
+color4 = ${xrdb:color4}
+color5 = ${xrdb:color5}
+color6 = ${xrdb:color6}
+color7 = ${xrdb:color7}
+color8 = ${xrdb:color8}
+color9 = ${xrdb:color9}
+color10 = ${xrdb:color10}
+color11 = ${xrdb:color11}
+color12 = ${xrdb:color12}
+color13 = ${xrdb:color13}
+color14 = ${xrdb:color14}
+color15 = ${xrdb:color15}
+
+[bar/black]
+monitor = eDP1
+width = 112
+height = 21
+offset-x = 5
+offset-y = 5
+background = ${colors.background}
+foreground = ${colors.foreground}
+bottom = false
+
+line-size = 1
+
+font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=9;2
+font-1 = Material Design Icons:style=Regular:size=9;2
+wm-restack = bspwm
+tray-position = none
+modules-left = bspwm  repo
+
+[module/bspwm]
+type = internal/bspwm
+
+pin-workspaces = true
+inline-mode = true
+enable-click = true
+enable-scroll = true
+reverse-scroll = false
+
+format = <label-state>
+
+ws-icon-0 = I;%{F#ffcb8e}
+ws-icon-1 = II;%{F#BF616A}    
+ws-icon-2 = III;%{F#81A1C1}    
+ws-icon-3 = IV;%{F#A3BE8C}      
+ws-icon-4 = V;
+
+label-focused = %icon%
+label-focused-underline = ${colors.foreground}
+
+label-focused-padding = 1
+label-occupied = %icon%
+label-occupied-foreground =#ffffff
+label-occupied-padding = 1
+
+label-empty = %icon%
+label-empty-foreground =#ffffff
+label-empty-padding = 1
+
+label-urgent = %icon%
+xxlabel-urgent-foreground = #88C0D0
+label-urgent-padding = 1
+
+[bar/example]
+
+monitor = eDP1
+width = 1354
+height = 21
+offset-x = 5
+padding-left =1
+
+offset-y = 5
+background = ${colors.background}
+foreground = ${colors.foreground}
+bottom = false
+
+line-size = 2
+wm-restack = bspwm
+
+modules-left = bspwm 
+modules-center =  
+modules-right =  cpu updates wlan volume mem   xbacklight   battery time powermenu
+
+font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=9;2
+font-1 = Material Design Icons:style=Regular:size=9;2
+
+[module/time]
+type = internal/date
+interval = 60
+
+format = <label>
+format-background = #a3be8c
+format-padding = 1
+
+date = %{F#282A36}󰥔 %H:%M%{F-}
+time-alt = %{F#282A36}󰃭 %a, %b %d%{F-}
+
+label = %date%%time%
+
+[module/repo]
+type = custom/script
+exec = doas xbps-install -S
+format = 
+interval = 4600 
+label =  
+
+[module/mem]
+type = custom/script
+exec = free -m | sed -n 's/^Mem:\s\+[0-9]\+\s\+\([0-9]\+\)\s.\+/\1/p'
+format = <label>
+label =󰳡 %output% M
+label-padding = 1
+label-foreground = #88C0D0
+
+[module/updates]
+type = custom/script
+exec = xbps-updates
+format = <label>
+interval = 4600 
+label =  %output%  
+label-padding = 2
+label-foreground =  #81A1C1
+
+[module/powermenu]
+type = custom/text 
+content =" " 
+content-padding =0
+click-left = doas zzz &
+content-foreground =  #000
+content-background = #A3BE8C
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+format-connected =  <label-connected>
+label-connected = "󰤨 connected " 
+label-connected-foreground = #A3BE8C 
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = AC0
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+label-charging = %percentage%%
+format-charging-foreground = ${colors.color4}
+format-charging-background = ${colors.background}
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
+format-discharging-foreground = ${colors.foreground}
+format-discharging-background = ${colors.background}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.color4}
+format-foreground = ${colors.color4}
+format-background = ${colors.background}
+
+label-discharging-foreground = ${colors.foreground}
+label-charging-foreground = ${colors.color4}
+label-padding = 1
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.color4}
+animation-charging-framerate = 750
+
+format-charging-padding = 1
+format-discharging-padding = 1
+
+
+[module/volume]
+type = custom/script
+exec = amixer get Master | awk '$0~/%/{print $4}' | tr -d '[]'
+format = <label>
+internal = 5.0
+label = %output% 
+label-foreground = #BF616A
+label-padding = 1
+
+[module/xbacklight]
+type = internal/xbacklight
+format = <label>
+format-prefix = " "
+
+label = %percentage%%
+format-prefix-foreground = #B48EAD
+label-foreground =   #B48EAD
+#format-background = ${colors.foreground}
+format-padding = 1
+
+[module/cpu]
+type = internal/cpu
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 2.5
+
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+format =  <label> 
+
+
+label = CPU %percentage%%
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...
+
+
+
+

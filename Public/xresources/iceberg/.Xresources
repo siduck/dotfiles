@@ -1,0 +1,102 @@
+
+URxvt*geometry: 80x30
+URxvt*scrollBar: false
+
+
+!-- Xft settings -- !
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
+
+! -- Fonts -- !
+  URxvt.font:xft:Monospace-Bold:pixelsize=12.5
+  URxvt.boldfont:xft:Monospace-Bold:pixelsize=12.5
+! window padding
+st.borderpx:          15
+st.font:            FiraCode-Bold:pixelsize=14
+
+URxvt.letterSpace: -1
+
+URxvt.internalBorder:  10
+
+urxvt.foreground:       #aaaaaa
+
+*color12: #0D72CA
+*color4: #0D72CA
+
+URxvt*inheritPixmap: true
+URxvt*transparent: true
+! -- URxvt*shading: 0 to 99 darkens, 101 to 200 lightens -- !
+URxvt*shading:0
+
+! -- URxvt.perl-ext-common: ...,tabbed,...  -- !
+
+URxvt.tabbed.tabbar-fg: 4
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 2
+
+! -- xterm config -- !
+
+
+xterm*faceName: Monospace
+
+
+xterm*faceSize: 10
+xterm*renderFont: true
+xterm*BorderWidth: 15
+XTerm*selectToClipboard: true
+
+
+! special
+*.foreground:   #d2d4de
+*.background:   #161821
+*.cursorColor:  #d2d4de
+
+! black
+*.color0:       #161821
+*.color8:       #6b7089
+
+! red
+*.color1:       #e27878
+*.color9:       #e98989
+
+! green
+*.color2:       #b4be82
+*.color10:      #c0ca8e
+
+! yellow
+*.color3:       #e2a478
+*.color11:      #e9b189
+
+! blue
+*.color4:       #84a0c6
+*.color12:      #91acd1
+
+! magenta
+*.color5:       #a093c7
+*.color13:      #ada0d3
+
+! cyan
+*.color6:       #89b8c2
+*.color14:      #95c4ce
+
+! white
+*.color7:       #c6c8d1
+*.color15:      #d2d4de
+
+aterm*loginShell:true
+aterm*font:-Monospace
+aterm*transparent:true
+aterm*shading:10
+aterm*background:#161821
+aterm*foreground:#d2d4de
+aterm*scrollBar:false
+aterm*scrollBar_right:true
+aterm*transpscrollbar:true
+aterm*saveLines:12800
+aterm*color12:lightpink
+
+

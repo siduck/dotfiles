@@ -1,0 +1,141 @@
+URxvt*background: black
+URxvt*foreground: White
+URxvt*geometry: 80x30
+URxvt*scrollBar: false
+
+! Base16 Atelier Forest
+! Scheme: Bram de Haan (http://atelierbramdehaan.nl)
+
+#define base00 #1b1918
+#define base01 #2c2421
+#define base02 #68615e
+#define base03 #766e6b
+#define base04 #9c9491
+#define base05 #a8a19f
+#define base06 #e6e2e0
+#define base07 #f1efee
+#define base08 #f22c40
+#define base09 #df5320
+#define base0A #c38418
+#define base0B #7b9726
+#define base0C #3d97b8
+#define base0D #407ee7
+#define base0E #6666ea
+#define base0F #c33ff3
+
+*.foreground:   base05
+#ifdef background_opacity
+*.background:   [background_opacity]base00
+#else
+*.background:   base00
+#endif
+*.cursorColor:  base05
+
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+
+*.color8:       base03
+*.color9:       base09
+*.color10:      base01
+*.color11:      base02
+*.color12:      base04
+*.color13:      base06
+*.color14:      base0F
+*.color15:      base07
+
+
+
+
+! special
+*.foreground:   #4a4543
+*.background:   #ffffff
+*.cursorColor:  #4a4543
+
+! black
+*.color0:       #090300
+*.color8:       #5c5855
+
+! red
+*.color1:       #db2d20
+*.color9:       #db2d20
+
+! green
+*.color2:       #01a252
+*.color10:      #01a252
+
+! yellow
+*.color3:       #fded02
+*.color11:      #fded02
+
+! blue
+*.color4:       #01a0e4
+*.color12:      #01a0e4
+
+! magenta
+*.color5:       #a16a94
+*.color13:      #a16a94
+
+! cyan
+*.color6:       #b5e4f4
+*.color14:      #b5e4f4
+
+! white
+*.color7:       #a5a2a2
+*.color15:      #f7f7f7
+
+
+!-- Xft settings -- !
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
+
+! -- Fonts -- !
+  URxvt.font:xft:Monospace-Bold:pixelsize=12.5
+  URxvt.boldfont:xft:Monospace-Bold:pixelsize=12.5
+
+! window padding
+st.borderpx:          15
+st.font:              Monospace-bold:pixelsize=14:antialias=true:autohint=true;
+URxvt.letterSpace: -1
+
+URxvt.internalBorder:  10
+
+urxvt.foreground:       #aaaaaa
+
+*color12: #0D72CA
+*color4: #0D72CA
+
+URxvt*inheritPixmap: true
+URxvt*transparent: true
+! -- URxvt*shading: 0 to 99 darkens, 101 to 200 lightens -- !
+URxvt*shading:0
+
+! -- URxvt.perl-ext-common: ...,tabbed,...  -- !
+
+URxvt.tabbed.tabbar-fg: 4
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 2
+
+! -- xterm config -- !
+
+
+xterm*faceName: Monospace
+
+
+xterm*faceSize: 10
+xterm*renderFont: true
+xterm*BorderWidth: 15
+XTerm*selectToClipboard: true
+xterm*background : #ffffff
+xterm*foreground : #000000 
+
+ 

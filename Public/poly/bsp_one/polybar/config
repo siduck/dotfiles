@@ -1,0 +1,330 @@
+[colors]
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+black = ${xrdb:color0}
+black-light = ${xrdb:color18}
+red = #BF616A
+red-light = ${xrdb:color9} 
+green = ${xrdb:color2} 
+green-light = ${xrdb:color10}
+yellow = ${xrdb:color3}
+yellow-light = ${xrdb:color11}
+blue = #81A1C1
+blue-light = ${xrdb:color12}
+magenta = ${xrdb:color5}
+magenta-light = ${xrdb:color13}
+cyan = ${xrdb:color6}
+cyan-light = ${xrdb:color14}
+white = ${xrdb:color7}
+white-light = ${xrdb:color15}
+
+[bar/example]
+width = 100%
+height = 18
+fixed-center = true
+padding-left = 1
+padding-right = 1
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-top-size = 4
+border-bottom-size = 4
+border-top-color = ${colors.background}
+border-bottom-color = ${colors.background}
+module-margin-left = 1
+
+
+font-0 = JetBrainsMono Nerd Font:style=Bold:size=9;2
+font-1 = Material Design Icons:style=Regular:size=9;2
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;2
+
+
+modules-left = bspwm  
+modules-center =  alsa reposync  xkeyboard
+modules-right =      volume  updates  wlan xbacklight  mem time powermenu
+
+
+cursor-click = pointer
+
+tray-position = right
+tray-maxsize = 10
+tray-padding = 1
+
+
+
+
+wm-restack = bspwm
+
+;enable-ipc = true
+
+bottom =  false
+
+[module/xbacklight]
+type = internal/xbacklight
+format = <label>
+format-prefix = "  "
+
+label = %percentage%%
+format-prefix-foreground = #D8DEE9
+label-foreground =   #D8DEE9
+#format-background = ${colors.foreground}
+format-padding = 1
+
+
+[module/bspwm]
+type = internal/bspwm
+
+pin-workspaces = true
+inline-mode = true
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+
+format = <label-state>
+ws-icon-0 = Home;
+ws-icon-1 = Web;  
+ws-icon-2 = Work;    
+ws-icon-3 = Files;
+ws-icon-4 = Misc;
+
+label-focused = %name% %icon%
+label-focused-foreground = ${colors.background}
+label-focused-background = ${colors.blue}
+label-focused-padding = 2
+
+label-occupied = %name% %icon%
+label-occupied-foreground = ${colors.foreground}
+label-occupied-background = ${colors.black-light}
+label-occupied-padding = 2
+
+label-empty = %name% %icon%
+label-empty-foreground = ${colors.foreground}
+label-empty-background = ${colors.background}
+label-empty-padding = 2
+
+label-urgent = %name% %icon%
+label-urgent-foreground = ${colors.yellow-light}
+label-urgent-background = ${colors.black-light}
+label-urgent-padding = 2
+
+label-separator = " "
+
+
+
+[module/xwindow]
+type = internal/xwindow
+
+format-foreground = ${colors.foreground}
+
+label = %title%
+label-font = 1
+label-padding = 1
+
+label-empty = Desktop
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 1
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+
+format = <label-indicator>
+
+label-indicator-on-capslock = "CAPSLOCK"
+label-indicator-on-capslock-padding = 1
+label-indicator-on-capslock-font = 2
+label-indicator-on-capslock-background = ${colors.foreground}
+label-indicator-on-capslock-foreground = ${colors.background}
+
+[module/volume]
+
+type = custom/script
+exec = amixer get Master | awk '$0~/%/{print $4}' | tr -d '[]'
+format = <label>
+label =󰕾 %output% 
+label-padding = 1
+format-background =  ${colors.blue}
+format-foreground =  ${colors.background}
+
+
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = AC0
+full-at = 100
+
+format-charging = <ramp-capacity> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+
+label-charging-foreground = ${colors.background}
+label-discharging-foreground = ${colors.background}
+label-full-foreground = ${colors.background}
+
+format-charging-background =  ${colors.red}
+format-discharging-background = ${colors.red}
+format-full-background = ${colors.red}
+
+format-charging-padding = 1
+format-discharging-padding = 1
+format-full-padding = 1
+
+label-charging = ~%percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+
+ramp-capacity-0 = 󰁺 
+ramp-capacity-1 = 󰁾 
+ramp-capacity-2 = 󰂁 
+ramp-capacity-3 = 󰁹 
+ramp-capacity-foreground = ${colors.background}
+
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-background = ${colors.background}
+
+format-connected-padding = 0
+
+label-connected = "%essid%"
+label-connected-foreground =#D8DEE9
+
+;ramp-signal-0 = 󰤯
+;ramp-signal-1 = 󰤟
+;ramp-signal-2 = 󰤢
+;ramp-signal-3 = 󰤥
+ramp-signal-0 = 󰤨  
+ramp-signal-foreground = #D8DEE9 
+
+
+[module/mem]
+type = custom/script
+exec = free -m | sed -n 's/^Mem:\s\+[0-9]\+\s\+\([0-9]\+\)\s.\+/\1/p'
+format = <label>
+label =󰬬 %output% M
+label-padding = 1
+format-background = #bf616a   
+format-foreground =  ${colors.background}
+ 
+[module/updates]
+type = custom/script
+exec = xbps-updates
+format = <label>
+interval = 3600 
+label = %output% 
+label-padding = 1
+format-prefix = " 󰳡" 
+format-prefix-foreground = #DF8890
+format-foreground = #D8DEE9     
+
+
+[module/reposync]
+type = custom/script
+exec = doas xbps-install -S 
+format =
+interval = 3600 
+label = 
+
+
+[module/lock]
+type = custom/menu
+
+expand-right = false
+#format-spacing = 1
+
+label-open =󰌾
+label-open-foreground = ${colors.foreground}
+label-open-background =  ${colors.background} 
+label-open-padding = 0
+label-close = 
+label-close-foreground = ${colors.background}
+label-close-background = ${colors.foreground}
+
+label-close-padding = 0
+
+label-separator = " | "
+
+menu-0-0 = 
+menu-0-0-exec = doas poweroff
+menu-0-1 = 
+menu-0-1-exec = doas reboot
+menu-0-2 = 
+menu-0-2-exec = doas zzz
+menu-0-3 = 
+menu-0-3-exec = bspc quit
+menu-0-4 = 
+menu-0-4-exec = xset dpms force off
+
+
+
+
+
+[module/time]
+type = internal/date
+interval = 60
+
+format = <label>
+format-background = #a3be8c
+format-padding = 1
+
+date = %{F#282A36}󰥔 %H:%M%{F-}
+time-alt = %{F#282A36}󰃭 %a, %b %d%{F-}
+
+label = %date%%time%
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume>
+label-volume = " "  
+label-volume-foreground = ${colors.foreground}
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #61afef
+bar-volume-foreground-1 = #61afef
+bar-volume-foreground-2 = #61afef
+bar-volume-foreground-3 = #61afef
+bar-volume-foreground-4 = #61afef
+bar-volume-foreground-5 = #61afef
+bar-volume-foreground-6 = #61afef
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-foreground = #61afef
+bar-volume-indicator-font = 2
+bar-volume-fill = ━ 
+bar-volume-fill-foreground = #61afef
+bar-volume-fill-font = 2
+bar-volume-empty = ━
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground}
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
+[module/powermenu]
+type = custom/text 
+content = 
+content-padding =1
+click-left = doas zzz &
+content-foreground =  #D8DEE9
+

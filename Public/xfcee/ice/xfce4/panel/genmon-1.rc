@@ -1,0 +1,6 @@
+Command=iceclock
+UseLabel=0
+Text=(genmon)
+UpdatePeriod=6750
+Font=JetBrainsMonoMedium Nerd Font Medium 10
+

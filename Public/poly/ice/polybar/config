@@ -1,0 +1,280 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+
+[colors]
+
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+color0 = ${xrdb:color0}
+color1 = ${xrdb:color1}
+color2 = ${xrdb:color2}
+color3 = ${xrdb:color3}
+color4 = ${xrdb:color4}
+color5 = ${xrdb:color5}
+color6 = ${xrdb:color6}
+color7 = ${xrdb:color7}
+color8 = ${xrdb:color8}
+color9 = ${xrdb:color9}
+color10 = ${xrdb:color10}
+color11 = ${xrdb:color11}
+color12 = ${xrdb:color12}
+color13 = ${xrdb:color13}
+color14 = ${xrdb:color14}
+color15 = ${xrdb:color15}
+
+[bar/black]
+monitor = eDP1
+width = 55%
+height = 24 
+background = ${colors.background}
+foreground = ${colors.foreground}
+bottom = true
+offset-x = 614
+line-size = 2
+
+font-0 = Jetbrainsmono Nerd Font:style=medium:pixelsize=9;2
+font-1 = Material Design Icons:style=Regular:size=9;2
+font-2 = unifont:fontformat=truetype:size=9:antialias=true;2
+
+tray-position = right
+
+modules-left = 
+modules-center =  
+modules-right =  alsa xbacklight updates repo  wlan  mem     battery date  powermenu 
+
+[module/updates]
+type = custom/script
+exec = xbps-updates 
+format = <label>
+interval = 4600 
+label =  %output%  
+label-padding = 2
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format =   <bar> 
+format-prefix = "   "
+format-prefix-foreground = #D88986 
+
+bar-width = 8
+bar-indicator = |
+bar-indicator-foreground = #D88986  
+
+bar-indicator-font = 2
+bar-fill = ━
+bar-fill-font = 2
+bar-fill-foreground = #D88986
+bar-empty = ━
+bar-empty-font = 2
+bar-empty-foreground = #D8DEE9
+bar-width-background = #D88986
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume>
+label-volume =  " "  
+label-volume-foreground = #61afef 
+format-muted-prefix = "󰚙 "
+format-muted-foreground = #61afef 
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #61afef
+bar-volume-foreground-1 = #61afef
+bar-volume-foreground-2 = #61afef
+bar-volume-foreground-3 = #61afef
+bar-volume-foreground-4 = #61afef
+bar-volume-foreground-5 = #61afef
+bar-volume-foreground-6 = #61afef
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-foreground = #61afef
+bar-volume-indicator-font = 2
+bar-volume-fill = ━ 
+bar-volume-fill-foreground = #61afef
+bar-volume-fill-font = 2
+bar-volume-empty = ━
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground}
+
+
+
+
+[module/repo]
+type = custom/script
+exec = doas xbps-install -S
+format = 
+interval = 4600 
+label =  
+#label-padding = 2
+
+[module/apps]
+type = custom/text 
+content = "󰣘 Apps"  
+click-left = rofi -show drun &
+
+
+content-padding =1
+
+[module/mem]
+type = custom/script
+exec = free -m | sed -n 's/^Mem:\s\+[0-9]\+\s\+\([0-9]\+\)\s.\+/\1/p'
+format = <label>
+label =󰳡 %output% M
+label-padding = 1
+label-foreground = #88C0D0
+
+[module/volume]
+type = custom/script
+exec = amixer get Master | awk '$0~/%/{print $4}' | tr -d '[]'
+format = <label>
+internal = 5.0
+label = %output% 
+label-foreground = #BF616A
+label-padding = 1
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+label-maxlen = 30
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-padding = 1
+
+
+[module/powermenu]
+type = custom/text 
+content ="" 
+content-padding =1
+click-left = doas zzz &
+content-foreground =  #000
+content-background = #DFDFDF
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = AC0
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+label-charging = %percentage%%
+format-charging-foreground = ${colors.color4}
+format-charging-background = ${colors.background}
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
+format-discharging-foreground = ${colors.foreground}
+format-discharging-background = ${colors.background}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.color4}
+format-foreground = ${colors.color4}
+format-background = ${colors.background}
+
+label-discharging-foreground = ${colors.foreground}
+label-charging-foreground = ${colors.color4}
+label-padding = 1
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.color4}
+animation-charging-framerate = 750
+
+format-charging-padding = 1
+format-discharging-padding = 1
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+format-connected =  <label-connected>
+label-connected = "󰤨 connected " 
+label-connected-foreground = #A3BE8C 
+
+
+
+
+[module/ewmh]
+type = internal/xworkspaces
+
+pin-workspaces = false
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+
+;extra icons to choose from
+;http://fontawesome.io/cheatsheet/
+;       v     
+
+icon-0 = 1;%{F#ffe3ed}Home     
+icon-1 = 2;%{F#ff80b2}Work  
+icon-2 = 3;%{F#8FBCBB}Fun  
+icon-3 = 4;%{F#be79df}Misc
+
+
+
+format = <label-state>
+label-monitor = %name%
+
+label-active = %icon%
+label-active-foreground = ${colors.foreground}
+label-active-background = ${colors.background}
+label-active-underline= #6790eb
+label-active-padding = 1
+
+label-occupied = %icon%
+label-occupied-background = ${colors.background}
+label-occupied-padding = 1
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-underline = #DFDFDF 
+label-urgent-padding =  1
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding =  1
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+[module/date]
+type = internal/date
+interval = 5
+
+time  = %H:%M
+format-prefix = " "
+format-prefix-foreground = ${colors.color0}
+format-prefix-background = #81A1C1  
+format-foreground = ${colors.color0}
+format-background = #81A1C1  
+label = %time%
+format-padding = 1
+
