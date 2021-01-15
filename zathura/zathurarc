@@ -1,0 +1,8 @@
+
+set smooth-scroll true
+set window-title-home-tilde true
+set statusbar-basename true
+set selection-clipboard clipboard
+set show-scrollbars true
+set show-v-scrollbar true
+set show-h-scrollbar true

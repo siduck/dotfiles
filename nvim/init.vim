@@ -1,40 +1,39 @@
 call plug#begin('~/.local/share/nvim/site/plugged')
-"Plug 'sheerun/vim-polyglot'
-Plug 'chriskempson/base16-vim'
+"Plug 'mhartington/formatter.nvim'
+Plug 'ollykel/v-vim'
+Plug 'sbdchd/neoformat'
+Plug 'glepnir/galaxyline.nvim'
+"Plug 'tweekmonster/startuptime.vim'
+Plug 'akinsho/nvim-bufferline.lua'
+Plug '907th/vim-auto-save'
+Plug 'michalliu/jsruntime.vim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
-" Plug 'romgrk/barbar.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'arcticicestudio/nord-vim'
-Plug 'joshdick/onedark.vim'
-Plug 'morhetz/gruvbox'
+
+"Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
+"Plug 'romgrk/barbar.nvim'
+" Plug 'itchyny/lightline.vim'
+" Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'joshdick/onedark.vim'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'json', 'html'] }
-"Plug '907th/vim-auto-save'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
-Plug 'itchyny/lightline.vim'
 Plug 'bfrg/vim-cpp-modern'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'rhysd/vim-clang-format'
+"Plug 'rhysd/vim-clang-format'
 Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
-Plug 'preservim/nerdtree' |
-      \ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-surround'
-Plug 'chuling/ci_dark'
 call plug#end()
 
+
+
 let g:AutoPairsFlyMode = 1
-
-"let g:auto_save = 1
-
 let g:rainbow_active = 1
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
@@ -42,9 +41,6 @@ let g:cpp_class_decl_highlight = 1
 let g:cpp_posix_standard = 1
 let g:cpp_experimental_template_highlight = 1
 let g:cpp_no_function_highlight = 1
-
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
-
 
 let g:cpp_no_function_highlight = 1
 let g:cpp_simple_highlight = 1
@@ -63,6 +59,9 @@ function! OpenTerminal()
   resize 10
 endfunction
 nnoremap <c-x> :call OpenTerminal()<CR>
+nnoremap <c-b> :vnew term://bash<CR>
+
+
 " new tab and switching between em 
 
 nnoremap <c-e> : tabnew<CR>
@@ -71,32 +70,32 @@ nnoremap <c-u> : tabn <CR>
 
 " FZF settings with window splits 
 
-nnoremap <C-p> :FZF<CR>
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit'
-  \}
+"nnoremap <C-p> :FZF<CR>
+"let g:fzf_action = {
+"  \ 'ctrl-t': 'tab split',
+"  \ 'ctrl-s': 'split',
+"  \ 'ctrl-v': 'vsplit'
+"  \}
 
 set updatetime=100
 
-
-
-
 let g:indentLine_enabled = 1
 let g:indentLine_char_list = ['▏']
+
+
 set expandtab sw=2
+
 norm! gg=G
 highlight EndOfBuffer ctermfg=black ctermbg=black
 
 " format settings for clang 
 
-let g:clang_format#style_options = {
-      \ "AccessModifierOffset" : -4,
-      \ "AllowShortIfStatementsOnASingleLine" : "true",
-      \ "AlwaysBreakTemplateDeclarations" : "true",
-      \ "Standard" : "C++11",
-      \ "BreakBeforeBraces" : "Stroustrup"}
+"let g:clang_format#style_options = {
+"      \ "AccessModifierOffset" : -4,
+"      \ "AllowShortIfStatementsOnASingleLine" : "true",
+"      \ "AlwaysBreakTemplateDeclarations" : "true",
+"      \ "Standard" : "C++11",
+"      \ "BreakBeforeBraces" : "Stroustrup"}
 
 " line nums and its fg
 highlight VertSplit cterm=NONE
@@ -107,76 +106,24 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE gui
 
 let g:tagalong_verbose = 1
 
-nnoremap <silent> <C-m> :%!astyle<CR>
+"nnoremap <silent> <C-m> :%!astyle<CR>
 nnoremap <silent> <C-a> :%y+<CR>
 
-" nerdtree settings
-let g:NERDTreeLimitedSyntax = 1
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
-
-
-"highlight Directory ctermfg= red 
-
-let g:NERDTreeWinSize=25
 map <C-k> <C-w>k
 map <C-j> <C-w>j
 map <C-l> <C-w>l
 map <C-h> <C-w>h
 
-nnoremap <silent> <C-n> :NERDTreeToggle<CR>
-"nnoremap <silent> <C-n> :CHADopen<CR>
-
-let g:NERDTreeMinimalUI = 1
-
-" lightline settings
-
 syntax on
 syntax enable
 set termguicolors
-colorscheme  onedark 
+colorscheme base16-onedark 
 
 highlight! Normal guifg=NONE guibg=NONE
 
-
-let g:lightline = {
-      \   'colorscheme': 'deus',
-      \   'active': {
-      \     'left':[ [ 'mode', 'paste' ],
-      \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-      \     ]
-      \   },
-      \   'component': {
-      \     'lineinfo': ' %3l:%-2v 󰀘 󰮯 ',
-      \   },
-      \   'component_function': {
-      \     'gitbranch': 'fugitive#head',
-      \   }
-      \ }
-"let g:lightline.separator = {
-"      \   'left': '', 'right': ''
-"      \}
-"let g:lightline.subseparator = {
-"      \   'left': '', 'right': ''
-"      \}
-
-let g:lightline.tabline = {
-      \   'left': [ ['tabs'] ],
-      \   'right': [ ['close'] ]
-      \ }
-
-set showtabline=2  " Show tabline
+set showtabline=0  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
 set mouse=a
-
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-let NERDTreeDirArrowExpandable = ""
-let NERDTreeDirArrowCollapsible = ""
-
 
 " if hidden is not set, TextEdit might fail.
 set hidden
@@ -300,138 +247,63 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-
-
-
-
-let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
-let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
-
-
-" you can add these colors to your .vimrc to help customizing
-let s:brown = "905532"
-let s:aqua =  "3AFFDB"
-let s:blue = "61afef"
-let s:sidd = "51afef"
-let s:darkBlue = "44788E"
-let s:purple = "834F79"
-let s:lightPurple = "834F79"
-let s:red = "AE403F"
-let s:beige = "F5C06F"
-let s:yellow = "F09F17"
-let s:orange = "D4843E"
-let s:darkOrange = "F16529"
-let s:pink = "CB6F6F"
-let s:salmon = "EE6E73"
-let s:green = "8FAA54"
-let s:lightGreen = "31B53E"
-let s:white = "FFFFFF"
-let s:rspec_red = 'FE405F'
-let s:git_orange = 'F54D27'
-
-let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreeExtensionHighlightColor['png'] = s:blue " sets the color of css files to blue
-let g:NERDTreeExtensionHighlightColor['jpg'] = s:beige  
-let g:NERDTreeExtensionHighlightColor['cpp'] = s:sidd
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDDirectory = s:red   
-
 set clipboard+=unnamedplus  
-
 
 function! GetHighlightGroup()
    let l:s = synID(line('.'), col('.'), 1)                                       
    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
   endfunction
 
-hi Directory guifg=#75C3FF
-hi Number guifg=#75C3FF
-
-hi WebDevIconsDefaultFolderSymbol guifg=#61afef 
-
 nnoremap gA :call GetHighlightGroup()<CR>
 
+"nmap <Leader>py <Plug>(Prettier)
 
-
-"set splitright
-
-
-" #75C3FF
-nmap <Leader>py <Plug>(Prettier)
-
-
-
-" autocmd MGroup FileType nerdtree setlocal winhighlight=Normal:#ffffff
-
-" EndOfBuffer:NERDTreeEndOfBuffer,NonText:NERDTreeNonText
-
-
-  "  autocmd MGroup FileType nerdtree setlocal winhighlight=Normal:NERDTreeWinBackground,EndOfBuffer:NERDTreeEndOfBuffer,NonText:NERDTreeNonText
-
-"hi NERDTreeWinBackground guifg=#ffffff
 lua require'colorizer'.setup()
 
 set fillchars=eob:\ 
-
 
 lua <<EOF
 local ts_config = require("nvim-treesitter.configs")
 
 ts_config.setup {
   ensure_installed = {
-    "javascript","html","css","bash","cpp"
+    "javascript","html","css","bash","cpp","rust"
   },
 
   highlight = {
     enable = true,
     use_languagetree = true,
-  },
+  }
 
-  indent = {
-    enable = true
-  },
 }
 EOF
+
+"  --indent = {
+"    enable = true
+"  },
 
 hi LineNr guibg=NONE
 hi SignColumn guibg=NONE
 hi VertSplit guibg=NONE
 
 
-"hi CustomExplorerBg guibg=#181818
+nnoremap ,<space> :Neoformat <CR>
+nnoremap .<space> :w <CR>
 
-"augroup NerdTreeBG
-"  au!
-"  au FileType nerdtree setlocal winhighlight=Normal:CustomExplorerBg
-"augroup END
-
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_first_char='▏'
-
-
-
-nnoremap <silent> <C-s> :w<CR>
-
-
-let g:lua_tree_side =  'left' "left by default
-let g:lua_tree_width = 40 "30 by default
-let g:lua_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default
-let g:lua_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
-let g:lua_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
-let g:lua_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
-let g:lua_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
-let g:lua_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
-let g:lua_tree_hide_dotfiles = 1 "0 by default, this option hides files and folders starting with a dot `.`
-let g:lua_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
-let g:lua_tree_root_folder_modifier = ':~' "This is the default. See :help filename-modifiers for more options
-let g:lua_tree_tab_open = 1 "0 by default, will open the tree when entering a new tab and the tree was previously open
-let g:lua_tree_allow_resize = 1 "0 by default, will not resize the tree when opening a file
-let g:lua_tree_show_icons = {
+let g:nvim_tree_side =  'left' "left by default
+let g:nvim_tree_width = 24 "30 by default
+let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default
+let g:nvim_tree_auto_open = 0 "0 by default, opens the tree when typing `vim $DIR` or `vim`
+let g:nvim_tree_auto_close = 0 "0 by default, closes the tree when it's the last window
+let g:nvim_tree_quit_on_open = 0 "0 by default, closes the tree when you open a file
+let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
+let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
+let g:nvim_tree_hide_dotfiles = 1 "0 by default, this option hides files and folders starting with a dot `.`
+let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
+let g:nvim_tree_root_folder_modifier = ':~' "This is the default. See :help filename-modifiers for more options
+let g:nvim_tree_tab_open = 1 "0 by default, will open the tree when entering a new tab and the tree was previously open
+let g:nvim_tree_allow_resize = 1 "0 by default, will not resize the tree when opening a file
+let g:nvim_tree_show_icons = {
     \ 'git': 1,
     \ 'folders': 1,
     \ 'files': 1,
@@ -443,7 +315,7 @@ let g:lua_tree_show_icons = {
 " You can edit keybindings be defining this variable
 " You don't have to define all keys.
 " NOTE: the 'edit' key will wrap/unwrap a folder and open a file
-let g:lua_tree_bindings = {
+let g:nvim_tree_bindings = {
     \ 'edit':            ['<CR>', 'o'],
     \ 'edit_vsplit':     '<C-v>',
     \ 'edit_split':      '<C-x>',
@@ -466,11 +338,11 @@ let g:lua_tree_bindings = {
 
 " Disable default mappings by plugin
 " Bindings are enable by default, disabled on any non-zero value
-" let lua_tree_disable_keybindings=1
+" let nvim_tree_disable_keybindings=1
 
 " default will show icon by default if no icon is provided
 " default shows no icon by default
-let g:lua_tree_icons = {
+let g:nvim_tree_icons = {
     \ 'default': '',
     \ 'symlink': '',
     \ 'git': {
@@ -486,13 +358,418 @@ let g:lua_tree_icons = {
     \   'symlink': "",
     \   }
     \ }
-
-nnoremap <C-n> :LuaTreeToggle<CR>
+"hi LuaTreeIndentMarker guifg=#C8CCD4
+nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :LuaTreeRefresh<CR>
 nnoremap <leader>n :LuaTreeFindFile<CR>
 " LuaTreeOpen and LuaTreeClose are also available if you need them
 
 set termguicolors " this variable must be enabled for colors to be applied properly
 
-" a list of groups can be found at `:help lua_tree_highlight`
-highlight LuaTreeFolderIcon guifg= #61afef
+" a list of groups can be found at `:help nvim_tree_highlight`
+highlight NvimTreeFolderIcon guifg= #61afef 
+highlight NvimTreeFolderName guifg = #61afef
+
+
+lua << EOF
+require'nvim-web-devicons'.setup {
+ -- your personnal icons can go here (to override)
+ -- DevIcon will be appended to `name`
+ override = {
+  html = {
+    icon = "",
+    color = "#DE8C92",
+    name = "html"
+  },
+  css = {
+    icon = "",
+    color = "#61afef",
+    name = "css"
+  },
+   js = {
+    icon = "",
+    color = "#EBCB8B",
+    name = "js"
+  },
+   png = {
+    icon = " ",
+    color = "#BD77DC",
+    name = "png"
+  },
+   jpg = {
+    icon = " ",
+    color = "#BD77DC",
+    name = "jpg"
+  },
+   jpeg = {
+    icon = " ",
+    color = "#BD77DC",
+    name = "jpeg"
+  },  
+  mp3 = {
+    icon = "",
+    color = "#C8CCD4",
+    name = "mp3"
+  },
+   mp4 = {
+    icon = "",
+    color = "#C8CCD4",
+    name = "mp4"
+  }, 
+    out = {
+    icon = "",
+    color = "#C8CCD4",
+    name = "out"
+  },
+    toml = {
+    icon = "",
+    color = "#61afef",
+    name = "toml"
+  },
+  lock = {
+    icon = "",
+    color = "#DE6B74",
+    name = "lock"
+  }
+ };
+ -- globally enable default icons (default to false)
+ -- will get overriden by `get_icons` option
+ default = true;
+}
+
+
+EOF
+
+"  ------------------------ rust config ----------------------
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+
+" ----- cool tabline ! ----------
+" Magic buffer-picking mode
+nnoremap <silent> <C-s> :BufferPick<CR>
+" Sort automatically by...
+nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
+nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
+" Move to previous/next
+nnoremap <silent>    <A-,> :BufferPrevious<CR>
+nnoremap <silent>    <A-.> :BufferNext<CR>
+" Re-order to previous/next
+nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
+nnoremap <silent>    <A->> :BufferMoveNext<CR>
+" Goto buffer in position...
+nnoremap <silent>    <A-1> :BufferGoto 1<CR>
+nnoremap <silent>    <A-2> :BufferGoto 2<CR>
+nnoremap <silent>    <A-3> :BufferGoto 3<CR>
+nnoremap <silent>    <A-4> :BufferGoto 4<CR>
+nnoremap <silent>    <A-5> :BufferGoto 5<CR>
+nnoremap <silent>    <A-6> :BufferGoto 6<CR>
+nnoremap <silent>    <A-7> :BufferGoto 7<CR>
+nnoremap <silent>    <A-8> :BufferGoto 8<CR>
+nnoremap <silent>    <A-9> :BufferLast<CR>
+" Close buffer
+nnoremap <silent>    <A-c> :BufferClose<CR>
+" Wipeout buffer
+"                          :BufferWipeout<CR>
+" Close commands
+"                          :BufferCloseAllButCurrent<CR>
+"                          :BufferCloseBuffersRight<CR>
+
+" Other:
+" :BarbarEnable - enables barbar (enabled by default)
+" :BarbarDisable - very bad command, should never be used
+
+
+"let g:lightline = {
+"      \ 'enable': {
+"      \   'tabline': 0
+"      \ },
+"      \   'colorscheme': 'deus',
+"      \   'active': {
+"      \     'left':[ [ 'mode', 'paste' ],
+"      \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+"      \     ]
+"      \   },
+"      \   'component': {
+"      \     'lineinfo': ' %3l:%-2v 󰀘 ',
+"      \   },
+"      \   'component_function': {
+"      \     'gitbranch': 'fugitive#head',
+"      \   }
+"      \ }
+
+"let g:lightline.separator = {
+"      \   'left': '', 'right': ''
+      \}
+"let g:lightline.subseparator = {
+"      \   'left': '', 'right': ''
+"      \}
+
+"let g:lightline.tabline = {
+"      \   'left': [ ['tabs'] ],
+"      \   'right': [ ['close'] ]
+"      \ }
+
+
+lua << EOF 
+  local gl = require('galaxyline')
+local gls = gl.section
+gl.short_line_list = {'LuaTree','vista','dbui'}
+
+local colors = {
+  bg = '#282c34',
+  line_bg = '#282c34',
+  fg = '#D8DEE9',
+  fg_green = '#65a380',
+  yellow = '#A3BE8C',
+  cyan = '#22262C',
+  darkblue = '#61afef',
+  green = '#afd700',
+  orange = '#FF8800',
+  purple = '#252930',
+  magenta = '#c678dd',
+  blue = '#22262C';
+  red = '#ec5f67',
+  firored = '#DF8890',
+  lightbg = '#3C4048',
+  nord = '#81A1C1'
+}
+
+
+
+gls.left[2] = {
+  ViMode = {
+    provider = function()
+      return '  󰀘  '
+    end,
+    highlight = {colors.bg,colors.nord},
+     separator = ' ',
+  separator_highlight = {colors.lightbg,colors.lightbg},
+  },
+}
+
+gls.left[3] ={
+  FileIcon = {
+    provider = 'FileIcon',
+    condition = buffer_not_empty,
+    highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.lightbg},
+  },
+}
+
+gls.left[4] = {
+  FileName = {
+    provider = {'FileName','FileSize'},
+  separator = ' ',
+  separator_highlight = {colors.line_bg,colors.lightbg},
+    condition = buffer_not_empty,
+    highlight = {colors.fg,colors.lightbg}
+  }
+}
+
+gls.left[5] = {
+  GitIcon = {
+    provider = function() return '    ' end,
+    condition = require('galaxyline.provider_vcs').check_git_workspace,
+    highlight = {colors.fg,colors.line_bg},
+  }
+}
+gls.left[6] = {
+  GitBranch = {
+    provider = 'GitBranch',
+    condition = require('galaxyline.provider_vcs').check_git_workspace,
+    highlight = {'#8FBCBB',colors.line_bg,'bold'},
+  }
+}
+
+local checkwidth = function()
+  local squeeze_width  = vim.fn.winwidth(0) / 2
+  if squeeze_width > 40 then
+    return true
+  end
+  return false
+end
+
+gls.left[7] = {
+  DiffAdd = {
+    provider = 'DiffAdd',
+    condition = checkwidth,
+    icon = ' ',
+    highlight = {colors.green,colors.line_bg},
+  }
+}
+gls.left[8] = {
+  DiffModified = {
+    provider = 'DiffModified',
+    condition = checkwidth,
+    icon = ' ',
+    highlight = {colors.orange,colors.line_bg},
+  }
+}
+gls.left[9] = {
+  DiffRemove = {
+    provider = 'DiffRemove',
+    condition = checkwidth,
+    icon = ' ',
+    highlight = {colors.red,colors.line_bg},
+  }
+}
+gls.left[10] = {
+  LeftEnd = {
+    provider = function() return ' ' end,
+    separator = ' ',
+    separator_highlight = {colors.line_bg,colors.line_bg},
+    highlight = {colors.line_bg,colors.line_bg}
+  }
+}
+gls.left[11] = {
+  DiagnosticError = {
+    provider = 'DiagnosticError',
+    icon = '  ',
+    highlight = {colors.red,colors.bg}
+  }
+}
+gls.left[12] = {
+  Space = {
+    provider = function () return ' ' end,
+     highlight = {colors.line_bg,colors.line_bg}
+  }
+}
+gls.left[13] = {
+  DiagnosticWarn = {
+    provider = 'DiagnosticWarn',
+    icon = '  ',
+    highlight = {colors.blue,colors.bg},
+  }
+}
+gls.right[1]= {
+  FileFormat = {
+    provider = 'FileFormat',
+    separator = ' ',
+    separator_highlight = {colors.firored,colors.firored},
+    highlight = {colors.bg,colors.firored},
+  }
+}
+
+gls.right[3] = {
+  PerCent = {
+    provider = 'LinePercent',
+    separator = ' ',
+    separator_highlight = {colors.firored,colors.firored},
+    highlight = {colors.bg,colors.fg},
+  }
+}
+gls.short_line_left[1] = {
+  BufferType = {
+    provider = 'FileTypeName',
+    separator = ' ',
+    separator_highlight = {colors.purple,colors.bg},
+    highlight = {colors.fg,colors.purple}
+  }
+}
+
+
+gls.short_line_right[1] = {
+  BufferIcon = {
+    provider= 'BufferIcon',
+    separator = ' ',
+    separator_highlight = {colors.purple,colors.bg},
+    highlight = {colors.fg,colors.purple}
+  }
+}
+
+
+
+require'bufferline'.setup{
+  options = {
+    buffer_close_icon= '',
+    modified_icon = '●',
+    close_icon = '',
+    left_trunc_marker = '',
+    right_trunc_marker = '',
+    max_name_length = 18,
+    max_prefix_length = 15, 
+    tab_size = 22,
+    enforce_regular_tabs = true ,
+   view = "multiwindow" ,
+    show_buffer_close_icons = true ,
+    separator_style = "thin" 
+    },
+
+      highlights = {
+        background = {
+        guifg = comment_fg,
+        guibg = '#282c34'
+     },
+      fill = {
+        guifg = comment_fg,
+        guibg = '#282c34' 
+      },
+        buffer_selected = {
+        guifg = normal_fg,
+        guibg =  '#3A3E44',
+        gui = "bold"
+      }, 
+       separator_visible = {
+        guifg = '#282c34' ,
+        guibg = '#282c34'
+        },
+        separator_selected = {
+        guifg = '#282c34'  ,
+        guibg = '#282c34'
+      },
+      separator = {
+        guifg = '#282c34' ,
+        guibg = '#282c34' 
+      },
+      indicator_selected = {
+         guifg = '#282c34' ,
+        guibg = '#282c34'  
+      },
+      
+        modified_selected = {
+        guifg = string_fg,
+        guibg = '#3A3E44'
+      }
+
+     };  
+     
+}
+
+
+
+EOF 
+
+"nnoremap mymap :lua require"bufferline".go_to_buffer(num)<CR>
+
+
+nnoremap <silent>[b :BufferLineCycleNext<CR>
+nnoremap <silent>b] :BufferLineCyclePrev<CR>
+
+nnoremap <silent>[n :BufferLineMoveNext<CR>
+nnoremap <silent>n] :BufferLineMovePrev<CR>
+
+
+"hi CustomExplorerBg guibg=#22262C
+
+"augroup NvimTree 
+"  au!
+"  au FileType NvimTree setlocal winhighlight=Normal:CustomExplorerBg
+"augroup END
+
+let g:auto_save = 1
+

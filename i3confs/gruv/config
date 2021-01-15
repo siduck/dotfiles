@@ -7,6 +7,7 @@
 gaps inner 11 
 gaps outer 0
 hide_edge_borders smart
+gaps bottom 25
 
 #smart_gaps inverse_outer
 
@@ -22,7 +23,7 @@ client.background #1c1f25
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 1
 new_window 1pixel
 set $mod Mod4
 
@@ -30,12 +31,12 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:JetBrainsMono Nerd Font 9
 
-exec --no-startup-id  xrdb merge ~/Public/xresources/base/.Xresources
-exec --no-startup-id  cp -r ~/Public/poly/gruv/polybar ~/.config/
+exec --no-startup-id  xrdb merge ~/Public/xresources/gruvbox/.Xresources
 exec --no-startup-id   feh --bg-fill ~/Pictures/wall/base.jpg
 exec --no-startup-id  cp -r ~/Public/rofi/gruv/rofi/ ~/.config/
 exec --no-startup-id  cp -r ~/Public/theme\ and\ icons/gruv/.gtkrc-2.0 ~/
 exec --no-startup-id  cp -r ~/Public/theme\ and\ icons/gruv/settings.ini  ~/.config/gtk-3.0/
+exec --no-startup-id cp -r ~/Public/poly/polybar/ ~/.config/
 exec --no-startup-id $HOME/.config/polybar/launch.sh &
 exec --no-startup-id picom &
 exec --no-startup-id cp -r ~/Public/i3confs/gruv/config ~/.config/i3/

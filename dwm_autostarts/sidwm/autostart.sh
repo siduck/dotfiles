@@ -16,7 +16,6 @@ cp -r ~/Public/theme\ and\ icons/dwm/settings.ini  ~/.config/gtk-3.0/ &
 
 feh --bg-fill ~/Pictures/wall/ninja.png &
 
-cp -r ~/Desktop/nvim_confs/base/init.vim ~/.config/nvim &
 ~/Public/dwm_autostarts/sidwm/bar &
 
 siduck

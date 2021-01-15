@@ -154,7 +154,7 @@ static Key keys[] = {
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_i,      incrigaps,      {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask  ,  XK_u,      incrigaps,      {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_0,      togglegaps,     {0} },
-	{ MODKEY,                      XK_q,      defaultgaps,    {0} },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
 	{ MODKEY,                       XK_y,      incrihgaps,     {.i = +1 } },
 	{ MODKEY,                       XK_o,      incrihgaps,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_n,      incrivgaps,     {.i = +1 } },

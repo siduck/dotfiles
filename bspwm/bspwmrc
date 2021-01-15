@@ -1,0 +1,39 @@
+#! /bin/sh
+
+sxhkd &
+
+killall -q bar &
+
+picom &
+
+#wall 
+feh --bg-fill ~/Pictures/wall/voidfi.png &
+
+# rofi , gtk and icons 
+cp -r ~/Public/rofi/bspwm\ /rofi/ ~/.config/ &
+cp -r ~/Public/theme\ and\ icons/bsp/.gtkrc-2.0 ~/ &
+cp -r ~/Public/theme\ and\ icons/bsp/settings.ini  ~/.config/gtk-3.0/ &
+
+#for terminal  
+xrdb merge ~/Public/xresources/dracula/.Xresources
+
+# polybar theme 
+cp -r ~/Public/poly/bsp/polybar/ ~/.config/ &
+~/.config/polybar/launch.sh &
+
+
+bspc monitor -d I II III IV V VI VII
+
+bspc config border_width         0
+bspc config window_gap          6
+bsp config presel_feedback_color "#ffffff" 
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc config top_padding 27
+

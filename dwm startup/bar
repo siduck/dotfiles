@@ -1,0 +1,6 @@
+#!/bin/sh
+
+while :
+ do
+	 sleep 1 && xsetroot -name "$(battery)$(backlight)$(memory) $(wlan) $(clock) "
+done

@@ -6,27 +6,28 @@
     <value type="int" value="1"/>
     <property name="panel-1" type="empty">
       <property name="position" type="string" value="p=8;x=683;y=754"/>
-      <property name="length" type="uint" value="50"/>
+      <property name="length" type="uint" value="100"/>
       <property name="position-locked" type="bool" value="true"/>
-      <property name="icon-size" type="uint" value="21"/>
-      <property name="size" type="uint" value="23"/>
+      <property name="icon-size" type="uint" value="20"/>
+      <property name="size" type="uint" value="24"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="9"/>
         <value type="int" value="8"/>
-        <value type="int" value="1"/>
+        <value type="int" value="12"/>
         <value type="int" value="5"/>
         <value type="int" value="11"/>
         <value type="int" value="4"/>
         <value type="int" value="13"/>
         <value type="int" value="2"/>
+        <value type="int" value="3"/>
         <value type="int" value="6"/>
       </property>
       <property name="mode" type="uint" value="0"/>
       <property name="background-style" type="uint" value="1"/>
       <property name="background-rgba" type="array">
-        <value type="double" value="0.113725"/>
-        <value type="double" value="0.125490"/>
-        <value type="double" value="0.129412"/>
+        <value type="double" value="0.094118"/>
+        <value type="double" value="0.094118"/>
+        <value type="double" value="0.094118"/>
         <value type="double" value="1.000000"/>
       </property>
     </property>
@@ -53,6 +54,8 @@
       <property name="expand" type="bool" value="false"/>
       <property name="style" type="uint" value="1"/>
     </property>
+    <property name="plugin-12" type="string" value="docklike"/>
+    <property name="plugin-3" type="string" value="clock"/>
     <property name="plugin-6" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
@@ -61,6 +64,5 @@
         <value type="string" value="16078246391.desktop"/>
       </property>
     </property>
-    <property name="plugin-1" type="string" value="docklike"/>
   </property>
 </channel>

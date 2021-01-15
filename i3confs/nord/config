@@ -37,14 +37,14 @@ set $mod Mod4
 font pango:JetBrainsMono Nerd Font 9
 
 exec --no-startup-id  xrdb merge ~/Public/xresources/sidnord/siflux  &
-exec --no-startup-id   feh --bg-fill ~/Pictures/wall/n14.png & 
+exec --no-startup-id   feh --bg-fill ~/Pictures/wall/benord.png & 
 exec --no-startup-id  cp -r ~/Public/rofi/awesome/rofi/ ~/.config/ &
 exec --no-startup-id  cp -r ~/Public/theme\ and\ icons/flux/.gtkrc-2.0 ~/ & 
 exec --no-startup-id  cp -r ~/Public/theme\ and\ icons/flux/settings.ini  ~/.config/gtk-3.0/ &
 exec --no-startup-id cp -r ~/Public/poly/polybar ~/.config/ &
 exec --no-startup-id cp -r ~/Public/i3confs/nord/config ~/.config/i3/ &
-#exec --no-startup-id ~/.config/polybar/launch.sh &
-exec --no-startup-id  polybar middle 
+exec --no-startup-id ~/.config/polybar/launch.sh &
+
 exec --no-startup-id picom &
 exec --no-startup-id cp -r ~/Public/i3confs/nord/config ~/.config/i3/ 
 #exec --no-startup-ida cp -r ~/Public/i3confs/gruv/config ~/.config/i3/  

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+
+<menu id="apps-menu" label="Applications">
+  <item label="PCManFM">
+    <action name="Execute">
+    <startupnotify><enabled>yes</enabled><icon>pcmanfm</icon></startupnotify>
+    <command>pcmanfm</command></action>
+  </item>
+  <item label="Terminal">
+    <action name="Execute"><command>lxterminal</command></action>
+  </item>
+  <item label="Web Browser">
+    <action name="Execute"><command>midori</command></action>
+  </item>
+</menu>
+
+<menu id="root-menu" label="LXDE">
+  <separator label="LXDE" />
+  <menu id="apps-menu" />
+  <separator />
+  <menu id="client-list-menu" />
+  <separator />
+  <item label="Desktop Settings">
+    <action name="Execute">
+      <startupnotify><enabled>yes</enabled></startupnotify>
+      <command>pcmanfm --desktop-pref</command>
+    </action>
+  </item>
+  <item label="Window Management Settings">
+    <action name="Execute">
+      <startupnotify><enabled>yes</enabled><icon>openbox</icon></startupnotify>
+      <command>obconf</command>
+    </action>
+  </item>
+  <item label="Reload Config Files">
+    <action name="Reconfigure" />
+  </item>
+  <separator />
+  <item label="Exit">
+    <action name="Execute"><command>lxde-logout</command></action>
+  </item>
+</menu>
+
+</openbox_menu>

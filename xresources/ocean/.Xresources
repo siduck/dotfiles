@@ -9,7 +9,7 @@ Xft.hintstyle:  hintfull
 ! window padding
 st.font:         JetBrainsMono Nerd Font:style:medium:pixelsize=15
 st.opacity: 255
-st.borderpx: 14
+st.borderpx: 13
 ! Base16 OneDark
 ! Scheme: Lalit Magant (http://github.com/tilal6991)
 
@@ -64,6 +64,3 @@ st.borderpx: 14
 *color19:      base02
 *color20:      base04
 *color21:      base06
-
-Xcursor.theme: Volantes Cursors
-

@@ -3,7 +3,7 @@ call plug#begin('~/.local/share/nvim/site/plugged')
 Plug 'ollykel/v-vim'
 Plug 'sbdchd/neoformat'
 Plug 'glepnir/galaxyline.nvim'
-"Plug 'tweekmonster/startuptime.vim'
+Plug 'tweekmonster/startuptime.vim'
 Plug 'akinsho/nvim-bufferline.lua'
 Plug '907th/vim-auto-save'
 Plug 'michalliu/jsruntime.vim'
@@ -747,22 +747,11 @@ require'bufferline'.setup{
       }
 
      };  
-     
 }
 
 
 
 EOF 
-
-"nnoremap mymap :lua require"bufferline".go_to_buffer(num)<CR>
-
-
-nnoremap <silent>[b :BufferLineCycleNext<CR>
-nnoremap <silent>b] :BufferLineCyclePrev<CR>
-
-nnoremap <silent>[n :BufferLineMoveNext<CR>
-nnoremap <silent>n] :BufferLineMovePrev<CR>
-
 
 "hi CustomExplorerBg guibg=#22262C
 

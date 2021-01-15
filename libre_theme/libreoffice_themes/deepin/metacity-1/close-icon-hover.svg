@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="23px" viewBox="0 0 27 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>close_hover</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="最大化最小化" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="浅色-无阴影" transform="translate(-215.000000, -117.000000)">
+            <g id="close_hover" transform="translate(215.000000, 117.000000)">
+                <rect id="Rectangle-14" fill-opacity="0.288836051" fill="#000000" fill-rule="evenodd" opacity="0" x="0" y="0" width="27" height="23"></rect>
+                <rect id="Rectangle-62" fill-opacity="0.1" fill="#636381" fill-rule="evenodd" x="0" y="0" width="27" height="23" rx="2"></rect>
+                <polygon id="Combined-Shape" fill="#FF8500" fill-rule="nonzero" points="13.4426405 11.9497475 10.26066 15.131728 9.90710659 15.4852814 9.19999981 14.7781746 9.5535532 14.4246212 12.7355337 11.2426407 9.5535532 8.06066017 9.19999981 7.70710678 9.90710659 7 10.26066 7.35355339 13.4426405 10.5355339 16.624621 7.35355339 16.9781744 7 17.6852812 7.70710678 17.3317278 8.06066017 14.1497473 11.2426407 17.3317278 14.4246212 17.6852812 14.7781746 16.9781744 15.4852814 16.624621 15.131728"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
