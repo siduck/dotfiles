@@ -17,6 +17,7 @@ cyan = ${xrdb:color6}
 cyan-light = ${xrdb:color14}
 white = ${xrdb:color7}
 white-light = ${xrdb:color15}
+dark-light = #444950 
 
 [bar/example]
 width = 100%
@@ -40,8 +41,8 @@ font-2 = unifont:fontformat=truetype:size=8:antialias=false;2
 
 
 modules-left = bspwm  
-modules-center =  alsa reposync  xkeyboard
-modules-right =      volume  updates  wlan xbacklight  mem time powermenu
+modules-center = network  updates alsa  reposync  xkeyboard
+modules-right =    cpu      wlan xbacklight  mem time powermenu
 
 
 cursor-click = pointer
@@ -81,31 +82,32 @@ enable-scroll = true
 reverse-scroll = true
 
 format = <label-state>
-ws-icon-0 = Home;
-ws-icon-1 = Web;  
-ws-icon-2 = Work;    
-ws-icon-3 = Files;
-ws-icon-4 = Misc;
+ws-icon-0 = Home;%{F#D8DEE9} 
+ws-icon-1 = Web;%{F#f0c38e}   
+ws-icon-2 = Work;%{F#BF616A}    
+ws-icon-3 = Files;%{F#81A1C1}
+ws-icon-4 = Mails;%{F#A3BE8C} 
+ws-icon-5 = Misc;%{F#D8DEE9} 
 
-label-focused = %name% %icon%
+label-focused =  %icon%
 label-focused-foreground = ${colors.background}
-label-focused-background = ${colors.blue}
-label-focused-padding = 2
+label-focused-background =${colors.dark-light}
+label-focused-padding = 1
 
-label-occupied = %name% %icon%
-label-occupied-foreground = ${colors.foreground}
+label-occupied = %icon%
+label-occupied-foreground = ${colors.blue}
 label-occupied-background = ${colors.black-light}
-label-occupied-padding = 2
+label-occupied-padding = 1
 
-label-empty = %name% %icon%
+label-empty = %icon%
 label-empty-foreground = ${colors.foreground}
 label-empty-background = ${colors.background}
-label-empty-padding = 2
+label-empty-padding = 1
 
-label-urgent = %name% %icon%
+label-urgent =  %icon%
 label-urgent-foreground = ${colors.yellow-light}
 label-urgent-background = ${colors.black-light}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 label-separator = " "
 
@@ -138,16 +140,16 @@ label-indicator-on-capslock-font = 2
 label-indicator-on-capslock-background = ${colors.foreground}
 label-indicator-on-capslock-foreground = ${colors.background}
 
-[module/volume]
 
-type = custom/script
-exec = amixer get Master | awk '$0~/%/{print $4}' | tr -d '[]'
-format = <label>
-label =󰕾 %output% 
-label-padding = 1
-format-background =  ${colors.blue}
-format-foreground =  ${colors.background}
+[module/cpu]
+type = internal/cpu
+interval = 2.5
 
+format =  <label> 
+format-padding = 1
+label = CPU %percentage%%
+format-background = #81A1C1
+format-foreground =${colors.background}
 
 
 [module/battery]
@@ -182,7 +184,6 @@ ramp-capacity-2 = 󰂁
 ramp-capacity-3 = 󰁹 
 ramp-capacity-foreground = ${colors.background}
 
-
 [module/wlan]
 type = internal/network
 interface = wlp2s0
@@ -191,7 +192,7 @@ interval = 3.0
 format-connected = <ramp-signal> <label-connected>
 format-connected-background = ${colors.background}
 
-format-connected-padding = 0
+format-connected-padding = 1
 
 label-connected = "%essid%"
 label-connected-foreground =#D8DEE9
@@ -223,7 +224,7 @@ label-padding = 1
 format-prefix = " 󰳡" 
 format-prefix-foreground = #DF8890
 format-foreground = #D8DEE9     
-
+format-background = ${colors.black-light}
 
 [module/reposync]
 type = custom/script
@@ -278,6 +279,18 @@ date = %{F#282A36}󰥔 %H:%M%{F-}
 time-alt = %{F#282A36}󰃭 %a, %b %d%{F-}
 
 label = %date%%time%
+
+[module/network]
+type = internal/network
+interface = wlp2s0
+interval = 1.0
+label-connected = "  %downspeed%   %upspeed% "
+label-disconnected = disconnected
+label-padding = 1
+label-connected-background = ${colors.foreground}
+label-connected-foreground = ${colors.background}
+
+
 
 [module/alsa]
 type = internal/alsa

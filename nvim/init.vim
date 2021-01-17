@@ -1,6 +1,7 @@
 call plug#begin('~/.local/share/nvim/site/plugged')
-"Plug 'mhartington/formatter.nvim'
 Plug 'ollykel/v-vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'sbdchd/neoformat'
 Plug 'glepnir/galaxyline.nvim'
 "Plug 'tweekmonster/startuptime.vim'
@@ -10,28 +11,16 @@ Plug 'michalliu/jsruntime.vim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-"Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
-"Plug 'romgrk/barbar.nvim'
-" Plug 'itchyny/lightline.vim'
-" Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'joshdick/onedark.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'bfrg/vim-cpp-modern'
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-"Plug 'rhysd/vim-clang-format'
 Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
 call plug#end()
-
-
 
 let g:AutoPairsFlyMode = 1
 let g:rainbow_active = 1
@@ -77,7 +66,7 @@ nnoremap <c-u> : tabn <CR>
 "  \ 'ctrl-v': 'vsplit'
 "  \}
 
-set updatetime=100
+set updatetime=250
 
 let g:indentLine_enabled = 1
 let g:indentLine_char_list = ['▏']
@@ -99,7 +88,7 @@ highlight EndOfBuffer ctermfg=black ctermbg=black
 
 " line nums and its fg
 highlight VertSplit cterm=NONE
-set numberwidth =5
+set numberwidth =1
 set number
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
@@ -142,7 +131,7 @@ set updatetime=300
 set shortmess+=c
 
 " always show signcolumns
-set signcolumn=no
+set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -490,41 +479,6 @@ nnoremap <silent>    <A-c> :BufferClose<CR>
 "                          :BufferCloseAllButCurrent<CR>
 "                          :BufferCloseBuffersRight<CR>
 
-" Other:
-" :BarbarEnable - enables barbar (enabled by default)
-" :BarbarDisable - very bad command, should never be used
-
-
-"let g:lightline = {
-"      \ 'enable': {
-"      \   'tabline': 0
-"      \ },
-"      \   'colorscheme': 'deus',
-"      \   'active': {
-"      \     'left':[ [ 'mode', 'paste' ],
-"      \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-"      \     ]
-"      \   },
-"      \   'component': {
-"      \     'lineinfo': ' %3l:%-2v 󰀘 ',
-"      \   },
-"      \   'component_function': {
-"      \     'gitbranch': 'fugitive#head',
-"      \   }
-"      \ }
-
-"let g:lightline.separator = {
-"      \   'left': '', 'right': ''
-      \}
-"let g:lightline.subseparator = {
-"      \   'left': '', 'right': ''
-"      \}
-
-"let g:lightline.tabline = {
-"      \   'left': [ ['tabs'] ],
-"      \   'right': [ ['close'] ]
-"      \ }
-
 
 lua << EOF 
   local gl = require('galaxyline')
@@ -547,7 +501,8 @@ local colors = {
   red = '#ec5f67',
   firored = '#DF8890',
   lightbg = '#3C4048',
-  nord = '#81A1C1'
+  nord = '#81A1C1',
+  nordYel = '#EBCB8B'
 }
 
 
@@ -583,7 +538,7 @@ gls.left[4] = {
 
 gls.left[5] = {
   GitIcon = {
-    provider = function() return '    ' end,
+    provider = function() return '   ' end,
     condition = require('galaxyline.provider_vcs').check_git_workspace,
     highlight = {colors.fg,colors.line_bg},
   }
@@ -608,8 +563,8 @@ gls.left[7] = {
   DiffAdd = {
     provider = 'DiffAdd',
     condition = checkwidth,
-    icon = ' ',
-    highlight = {colors.green,colors.line_bg},
+    icon = '   ',
+    highlight = {colors.nordYel,colors.line_bg},
   }
 }
 gls.left[8] = {
@@ -696,7 +651,7 @@ gls.short_line_right[1] = {
 
 require'bufferline'.setup{
   options = {
-    buffer_close_icon= '',
+    buffer_close_icon= '',
     modified_icon = '●',
     close_icon = '',
     left_trunc_marker = '',
@@ -751,6 +706,36 @@ require'bufferline'.setup{
 }
 
 
+require('gitsigns').setup {
+  signs = {
+    add          = {hl = 'DiffAdd'   , text = '▌', numhl='GitSignsAddNr'},
+    change       = {hl = 'DiffChange', text = '▌', numhl='GitSignsChangeNr'},
+    delete       = {hl = 'DiffDelete', text = '_', numhl='GitSignsDeleteNr'},
+    topdelete    = {hl = 'DiffDelete', text = '‾', numhl='GitSignsDeleteNr'},
+    changedelete = {hl = 'DiffChange', text = '~', numhl='GitSignsChangeNr'},
+  },
+  numhl = false,
+  keymaps = {
+    -- Default keymap options
+    noremap = true,
+    buffer = true,
+
+    ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'"},
+    ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'"},
+
+    ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+    ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+    ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+    ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+    ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line()<CR>',
+  },
+  watch_index = {
+    interval = 100
+  },
+  sign_priority = 5,
+  status_formatter = nil, -- Use default
+}
+
 
 EOF 
 
@@ -772,4 +757,9 @@ nnoremap <silent>n] :BufferLineMovePrev<CR>
 "augroup END
 
 let g:auto_save = 1
+
+highlight DiffAdd guifg=#81A1C1 guibg = none
+highlight DiffChange guifg =#3A3E44 guibg = none
+highlight DiffModified guifg = #81A1C1 guibg = none
+ 
 
