@@ -41,7 +41,7 @@ font-2 = unifont:fontformat=truetype:size=8:antialias=false;2
 
 
 modules-left = bspwm  
-modules-center = network  updates alsa  reposync  xkeyboard
+modules-center =   updates alsa  reposync  xkeyboard
 modules-right =    cpu      wlan xbacklight  mem time powermenu
 
 
