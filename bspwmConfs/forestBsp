@@ -1,6 +1,6 @@
 #! /bin/sh
 
-xmo & 
+xmodmap ~/.xmodmap-sid &
 
 xrdb merge ~/Public/xresources/forest/.Xresources &
 cp -r ~/Public/poly/bsp/polybar/ ~/.config/ &
@@ -16,7 +16,8 @@ feh --bg-fill ~/Pictures/wall/gruv_waifu.jpg &
 cp -r ~/Public/rofi/forest/rofi/ ~/.config/
 
 
-bspc monitor -d I II III IV V VI VII
+bspc monitor -d Home Web Work Files Mails Misc
+#bspc monitor -d I II III IV V VI VII
 
 bspc config border_width         1
 bspc config window_gap          10
@@ -36,6 +37,5 @@ bspc config normal_border_color "#454849"
 
 ~/.config/polybar/launch.sh 
 bspc config gapless_monocle false 
-
 sxhkd 
 
