@@ -37,7 +37,7 @@ font-0 = JetBrainsMono Nerd Font:style=Bold:size=9;2
 font-1 = Material Design Icons:style=Regular:size=9;2
 font-2 = unifont:fontformat=truetype:size=8:antialias=false;2
 
-modules-left =  apps  battery cpu updates  
+modules-left = workspaces apps  battery cpu updates  
 modules-center =      xkeyboard
 modules-right =    alsa   mem  wlan xbacklight time powermenu
 
@@ -56,6 +56,36 @@ wm-restack = bspwm
 ;enable-ipc = true
 
 bottom =  false
+
+[module/workspaces]
+type = internal/xworkspaces
+pin-workspaces = true
+enable-click = true
+enable-scroll = true
+format-padding = 0
+
+icon-0 = Home;󰌣
+icon-1 = Web; 󰅣
+icon-2 = Work; 󰅴
+icon-3 = Chat; 󰔁
+icon-4 = Music; 󰗃
+icon-default = 
+
+format = <label-state>
+label-active = %name%
+label-occupied = %name%
+label-urgent = %icon%
+label-empty = %name%
+
+label-occupied-padding = 1
+label-empty-padding = 1
+label-urgent-padding = 1
+label-active-padding = 1
+
+label-active-foreground = ${color.blue}
+label-active-underline = ${color.blue}
+label-occupied-foreground = ${color.blue}
+
 
   
 [module/cpu]

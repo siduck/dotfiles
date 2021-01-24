@@ -2,7 +2,7 @@
 background = ${xrdb:background}
 foreground = ${xrdb:foreground}
 black = ${xrdb:color0}
-black-light = ${xrdb:color18}
+black-light = #303C42 
 red = #BF616A
 red-light = ${xrdb:color9} 
 green = ${xrdb:color2} 
@@ -37,7 +37,7 @@ module-margin-left = 1
 
 font-0 = JetBrainsMono Nerd Font:style=Bold:size=9;2
 font-1 = Material Design Icons:style=Regular:size=9;2
-font-2 = unifont:fontformat=truetype:size=8:antialias=false;2
+font-2 = unifont:fontformat=truetype:size=9:antialias=true;2
 
 
 modules-left = bspwm  
@@ -82,19 +82,19 @@ enable-scroll = true
 reverse-scroll = true
 
 format = <label-state>
-ws-icon-0 = Home;%{F#D8DEE9} 
+ws-icon-0 = Home;%{F#D8DEE9}  
 ws-icon-1 = Web;%{F#f0c38e}   
 ws-icon-2 = Work;%{F#BF616A}    
 ws-icon-3 = Files;%{F#81A1C1}
 ws-icon-4 = Mails;%{F#A3BE8C} 
 ws-icon-5 = Misc;%{F#D8DEE9} 
 
-label-focused =  %icon%
+label-focused =  %icon%  %name%
 label-focused-foreground = ${colors.background}
 label-focused-background =${colors.dark-light}
 label-focused-padding = 1
 
-label-occupied = %icon%
+label-occupied = %icon%  %name%
 label-occupied-foreground = ${colors.blue}
 label-occupied-background = ${colors.black-light}
 label-occupied-padding = 1
@@ -298,7 +298,7 @@ type = internal/alsa
 format-volume = <label-volume> <bar-volume>
 label-volume = " "  
 label-volume-foreground = ${colors.foreground}
-format-muted-prefix = " "
+format-muted-prefix = "󰚙 "
 format-muted-foreground = ${colors.foreground}
 label-muted = sound muted
 
