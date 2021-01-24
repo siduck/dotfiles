@@ -1,0 +1,2 @@
+#!/bin/bash
+xrdb -query | grep $1 | head -n1 | cut -d':' -f2 | sed 's/    //g'

@@ -15,7 +15,7 @@ cp -r ~/Public/nvim_confs/gruv/init.vim  ~/.config/nvim/ &
 bspc monitor -d Home Web Work Files Mails Misc
 #bspc monitor -d I II III IV V VI VII
 
-bspc config border_width         1
+bspc config border_width         2
 bspc config window_gap          10
 bsp config presel_feedback_color "#ffffff" 
 bspc config split_ratio          0.50
@@ -29,8 +29,8 @@ bspc rule -a Screenkey manage=off
 bspc config top_padding 20
 
 bspc config focused_border_color "#83a598"
-bspc config normal_border_color "#454849"
+bspc config normal_border_color "#272A2B"
 bspc config gapless_monocle false 
-
+2bspwm &
 sxhkd 
 
