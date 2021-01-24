@@ -1,6 +1,6 @@
 #! /bin/sh
 
-sxhkd &
+xmo & 
 
 xrdb merge ~/Public/xresources/forest/.Xresources &
 cp -r ~/Public/poly/bsp/polybar/ ~/.config/ &
@@ -36,4 +36,6 @@ bspc config normal_border_color "#454849"
 
 ~/.config/polybar/launch.sh 
 bspc config gapless_monocle false 
+
+sxhkd 
 
