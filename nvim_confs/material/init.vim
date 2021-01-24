@@ -11,7 +11,7 @@ Plug 'michalliu/jsruntime.vim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'chriskempson/base16-vim'
+"Plug 'chriskempson/base16-vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
@@ -20,6 +20,8 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+
 call plug#end()
 
 let g:AutoPairsFlyMode = 1
@@ -106,7 +108,7 @@ map <C-h> <C-w>h
 syntax on
 syntax enable
 set termguicolors
-colorscheme base16-onedark 
+colorscheme material 
 
 highlight! Normal guifg=NONE guibg=NONE
 
@@ -486,8 +488,8 @@ local gls = gl.section
 gl.short_line_list = {'LuaTree','vista','dbui'}
 
 local colors = {
-  bg = '#282c34',
-  line_bg = '#282c34',
+  bg = '#303C42',
+  line_bg = '#303C42',
   fg = '#D8DEE9',
   fg_green = '#65a380',
   yellow = '#A3BE8C',
@@ -668,37 +670,37 @@ require'bufferline'.setup{
       highlights = {
         background = {
         guifg = comment_fg,
-        guibg = '#282c34'
+        guibg = '#263238'
      },
       fill = {
         guifg = comment_fg,
-        guibg = '#282c34' 
+        guibg = '#263238' 
       },
         buffer_selected = {
         guifg = normal_fg,
-        guibg =  '#3A3E44',
+        guibg =  '#3A464C',
         gui = "bold"
       }, 
        separator_visible = {
-        guifg = '#282c34' ,
-        guibg = '#282c34'
+        guifg = '#263238' ,
+        guibg = '#263238'
         },
         separator_selected = {
-        guifg = '#282c34'  ,
-        guibg = '#282c34'
+        guifg = '#263238'  ,
+        guibg = '#263238'
       },
       separator = {
-        guifg = '#282c34' ,
-        guibg = '#282c34' 
+        guifg = '#263238' ,
+        guibg = '#263238' 
       },
       indicator_selected = {
-         guifg = '#282c34' ,
-        guibg = '#282c34'  
+         guifg = '#263238' ,
+        guibg = '#263238'  
       },
       
         modified_selected = {
         guifg = string_fg,
-        guibg = '#3A3E44'
+        guibg = '#3A464C'
       }
 
      };  
@@ -759,7 +761,7 @@ nnoremap <silent>n] :BufferLineMovePrev<CR>
 let g:auto_save = 1
 
 highlight DiffAdd guifg=#81A1C1 guibg = none
-highlight DiffChange guifg =#3A3E44 guibg = none
+highlight DiffChange guifg =#343434 guibg = none
 highlight DiffModified guifg = #81A1C1 guibg = none
  
 

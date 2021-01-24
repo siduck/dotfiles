@@ -8,8 +8,8 @@
       <property name="position" type="string" value="p=8;x=683;y=754"/>
       <property name="length" type="uint" value="100"/>
       <property name="position-locked" type="bool" value="true"/>
-      <property name="icon-size" type="uint" value="22"/>
-      <property name="size" type="uint" value="23"/>
+      <property name="icon-size" type="uint" value="25"/>
+      <property name="size" type="uint" value="29"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="9"/>
         <value type="int" value="8"/>
@@ -23,7 +23,7 @@
         <value type="int" value="6"/>
         <value type="int" value="1"/>
       </property>
-      <property name="mode" type="uint" value="0"/>
+      <property name="mode" type="uint" value="1"/>
       <property name="background-style" type="uint" value="1"/>
       <property name="background-rgba" type="array">
         <value type="double" value="0.156863"/>

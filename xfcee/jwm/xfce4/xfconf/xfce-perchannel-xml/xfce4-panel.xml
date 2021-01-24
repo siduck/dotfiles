@@ -25,9 +25,9 @@
       <property name="mode" type="uint" value="0"/>
       <property name="background-style" type="uint" value="1"/>
       <property name="background-rgba" type="array">
-        <value type="double" value="0.086275"/>
-        <value type="double" value="0.086275"/>
-        <value type="double" value="0.086275"/>
+        <value type="double" value="0.156863"/>
+        <value type="double" value="0.172549"/>
+        <value type="double" value="0.203922"/>
         <value type="double" value="1.000000"/>
       </property>
     </property>
