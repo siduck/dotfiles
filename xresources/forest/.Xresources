@@ -1,36 +1,40 @@
 
 !-- Xft settings -- !
-Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
-Xft.hinting:    true
-Xft.hintstyle:  hintfull
 
-!-- transparency ( any value under 255 ) --!
+Xft.antialias:	1
+Xft.hinting:	1
+Xft.autohint:	0
+Xft.hintstyle:	hintslight
+Xft.rgba:	rgb
+Xft.lcdfilter:	lcddefault
+
+!-- transparen5y ( any value under 255 ) --!
 st.opacity:        255
 
-st.borderpx: 13
+st.borderpx: 15
 !-- inner border -- ! 
 
-st.font:          JetBrainsMono Nerd Font:style:medium :pixelsize=15 
+st.font:         JetBrainsMono Nerd Font:style:medium:pixelsize=15
 
 
-! Base16 Gruvbox dark, hard
-! Scheme: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
+
+! Mix of Base16 Gruvbox dark hard , nord and onedark
+! Scheme: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox) 
 
 #define base00 #1d2021
 #define base01 #3c3836
 #define base02 #504945
 #define base03 #665c54
-#define base04 #bdae93
-#define base05 #d5c4a1
+#define base04 #61afef
+#define base05 #c8ccd4
 #define base06 #ebdbb2
 #define base07 #fbf1c7
-#define base08 #fb4934
-#define base09 #fe8019
-#define base0A #fabd2f
-#define base0B #b8bb26
-#define base0C #8ec07c
+#define base08 #BF616A
+#define base09 #D08770
+#define base0A #EBCB8B 
+#define base0B #A3BE8C
+
+#define base0C #81A1C1
 #define base0D #83a598
 #define base0E #d3869b
 #define base0F #d65d0e
@@ -60,3 +64,13 @@ st.font:          JetBrainsMono Nerd Font:style:medium :pixelsize=15
 *color13:      base06
 *color14:      base0F
 *color15:      base07
+*color16: #272A2B
+
+
+tabbed.selbgcolor:   #1d2021
+tabbed.selfgcolor:   #d6d8eb
+
+tabbed.normfgcolor:  #9294a8
+tabbed.normbgcolor:  #272A2B
+
+

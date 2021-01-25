@@ -1,15 +1,15 @@
-
 !-- Xft settings -- !
-Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
-Xft.hinting:    true
-Xft.hintstyle:  hintfull
+
+Xft.antialias:	1
+Xft.hinting:	1
+Xft.autohint:	0
+Xft.hintstyle:	hintslight
+Xft.rgba:	rgb
+Xft.lcdfilter:	lcddefault
 
 ! window padding
-st.font:         JetBrainsMono Nerd Font:style:medium:pixelsize=15
 st.opacity: 255
-st.borderpx: 13
+st.borderpx: 15
 ! Base16 OneDark
 ! Scheme: Lalit Magant (http://github.com/tilal6991)
 
@@ -64,3 +64,10 @@ st.borderpx: 13
 *color19:      base02
 *color20:      base04
 *color21:      base06
+
+
+tabbed.selbgcolor:   #282c34
+tabbed.selfgcolor:   #d6d8eb
+
+tabbed.normfgcolor:  #9294a8
+tabbed.normbgcolor:  #353b45

@@ -7,7 +7,7 @@ Xft.hintstyle:  hintfull
 
 ! window padding
 st.borderpx:          15
-st.font:           JetBrainsMono Nerd Font:style:Regular:pixelsize=15
+st.font:           JetBrainsMono Nerd Font:style:medium:pixelsize=15
 st.opacity:      255
 
 ! Dracula Xresources palette

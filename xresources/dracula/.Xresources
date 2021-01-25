@@ -1,38 +1,32 @@
-
 !-- Xft settings -- !
-Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
-Xft.hinting:    true
-Xft.hintstyle:  hintfull
+
+Xft.antialias:	1
+Xft.hinting:	1
+Xft.autohint:	0
+Xft.hintstyle:	hintslight
+Xft.rgba:	rgb
+Xft.lcdfilter:	lcddefault
 
 ! window padding
 st.borderpx:          15
-st.font:           JetBrainsMono Nerd Font  :pixelsize=15 , Material Design Icons :pixelsize =15
+st.font:         JetBrainsMono Nerd Font:style:medium:pixelsize=15
 
-*background:        #1e2132
-*foreground: #c6c8d1
-! black
-*color0: #2a3158
-*color8: #444b71
-! red
-*color1: #e27878
-*color9: #e2a478
-! green
-*color2: #89b8c2
-*color10: #b4be82
-! yellow
-*color3: #e4aa80
-*color11: #d8e599
-! blue
-*color4: #84a0c6
-*color12: #3e445e
-! magenta
-*color5: #d1a8ad
-*color13: #673e43
-! cyan
-*color6: #adc1cb
-*color14: #686f9a
-! white
-*color7: #c6c8d1
-*color15: #d4d5db
+!! Dracula Xresources palette
+*.foreground: #F8F8F2
+*.background: #282A36
+*.color0:     #000000
+*.color8:     #4D4D4D
+*.color1:     #FF5555
+*.color9:     #FF6E67
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+*.color4:     #BD93F9
+*.color12:    #CAA9FA
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6

@@ -1,9 +1,15 @@
-q                     illa
-bukl
+!-- Xft settings -- !
 
-q! window padding
+Xft.antialias:	1
+Xft.hinting:	1
+Xft.autohint:	0
+Xft.hintstyle:	hintslight
+Xft.rgba:	rgb
+Xft.lcdfilter:	lcddefault
+
 st.font:           JetBrainsMono Nerd Font:style:medium:pixelsize=15 , Material Design Icons :pixelsize =15
 
+st.borderpx: 15
 st.opacity: 255
 #define base00 #181818
 #define base01 #282828
@@ -56,36 +62,3 @@ st.opacity: 255
 *color19:      base02
 *color20:      base04
 *color21:      base06
-
-URxvt*geometry: 80x30
-URxvt*scrollBar: false
-URxvt.letterSpace: -1
-URxvt*inheritPixmap: true
-URxvt*transparent: true
-! -- URxvt*shading: 0 to 99 darkens, 101 to 200 lightens -- !
-URxvt*shading:10
-URxvt.internalBorder:  15
-Urxvt*background: black;
-Urxvt*foreground: white;
-! -- Fonts -- !
-URxvt*font: xft:mononoki-Bold:pixelsize=13 
-!-- Xft settings -- !
-Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
-Xft.hinting:    true
-Xft.hintstyle:  hintfull
-
-
-! -- xterm config -- !
-
-
-xterm*faceName: mononoki-Bold
-
-
-xterm*faceSize: 11
-xterm*renderFont: true
-xterm*BorderWidth: 15
-
-
-XTerm*selectToClipboard: true
