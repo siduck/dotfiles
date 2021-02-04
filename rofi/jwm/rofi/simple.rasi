@@ -1,5 +1,5 @@
 * {
-    background-color: #21252A     ;
+    background-color: #282c34     ;
     border-color: #b6bdca  ;
     text-color: #D8DEE9;
     separator-color: @border-color;
@@ -8,24 +8,25 @@
 }
 
 window {
-    border: 2px;
+    border: 0px;
     padding: 5px;
     height: 300px;
    // fullscreen: true;
 }
 
 mainbox {
-    padding: 5px;
+    padding: 10px;
 }
 
 inputbar {
-    border: 2px;
+    border: 0px;
+    padding: 5px;
     children: [prompt,entry];
 }
 
 prompt {
     background-color: @border-color;
-    padding: 5px 5px 0px;
+    padding: 5px 12px 0px;
     text-color: @background-color;
 }
 
@@ -42,7 +43,7 @@ entry {
 listview {
     border: 0px 0px 0px;
     padding: 6px 0px 0px;
-      columns: 2;
+      columns: 1;
 
 }
 

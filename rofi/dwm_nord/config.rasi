@@ -17,8 +17,7 @@ configuration{
 }
 
 * {
-    background-color:  #263238
-      ;
+    background-color:  #282E3A   ;
     border-color: #D8DEE9  ;
     text-color: #D8DEE9;
     separator-color: @border-color;
@@ -30,11 +29,14 @@ window {
     padding: 20px;
     height: 310px;
    // fullscreen: true;
+
+
 }
 
 mainbox {
     padding: 5px;
-     border-radius: 13px;
+            border-radius: 13px;
+
 }
 
 inputbar {
@@ -62,6 +64,7 @@ listview {
     border: 0px 0px 0px;
     padding: 6px 0px 0px;
       columns: 2;
+
 }
 
 element {
@@ -70,10 +73,11 @@ element {
 
 element-icon {
 size: 25px;
+
 }
 
 element selected {
-    background-color: #37474f  ;
+    background-color: #3e4451  ;
     text-color: #fff ;
         border-radius: 13px;
 }
