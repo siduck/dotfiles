@@ -40,7 +40,7 @@ font-1 = Material Design Icons:style=Regular:size=9;2
 font-2 = unifont:fontformat=truetype:size=9:antialias=true;2
 
 
-modules-left = bspwm  
+modules-left =   workspaces  
 modules-center =   updates alsa  reposync  xkeyboard
 modules-right =    cpu      wlan xbacklight  mem time powermenu
 
@@ -51,12 +51,6 @@ tray-position = right
 tray-maxsize = 10
 tray-padding = 1
 
-
-
-
-wm-restack = bspwm
-
-;enable-ipc = true
 
 bottom =  false
 
@@ -72,45 +66,35 @@ label-foreground =   #D8DEE9
 format-padding = 1
 
 
-[module/bspwm]
-type = internal/bspwm
 
+[module/workspaces]
+type = internal/xworkspaces
 pin-workspaces = true
-inline-mode = true
 enable-click = true
 enable-scroll = true
-reverse-scroll = true
+format-padding = 0
+
+icon-0 = Home;󰌣
+icon-1 = Web; 󰅣
+icon-2 = Work; 󰅴
+icon-3 = Files; 󰔁
+icon-4 = Misc; 󰗃
+icon-default = 
 
 format = <label-state>
-ws-icon-0 = 1;%{F#D8DEE9}  
-ws-icon-1 = 2;%{F#D8DEE9}   
-ws-icon-2 = 3;%{F#BF616A}    
-ws-icon-3 = 4;%{F#81A1C1}
-ws-icon-4 = 5;%{F#A3BE8C} 
-ws-icon-5 = 6;%{F#D8DEE9} 
+label-active = %name%
+label-occupied = %name%
+label-urgent = %icon%
+label-empty = %name%
 
-label-focused =  %icon%  %name%
-label-focused-foreground = ${colors.background}
-label-focused-background =${colors.dark-light}
-label-focused-padding = 1
-
-label-occupied = %icon%  %name%
-label-occupied-foreground = ${colors.blue}
-label-occupied-background = ${colors.black-light}
 label-occupied-padding = 1
-
-label-empty = %icon%
-label-empty-foreground = ${colors.foreground}
-label-empty-background = ${colors.background}
 label-empty-padding = 1
-
-label-urgent =  %icon%
-label-urgent-foreground = ${colors.yellow-light}
-label-urgent-background = ${colors.black-light}
 label-urgent-padding = 1
+label-active-padding = 1
 
-label-separator = " "
-
+label-active-foreground = ${colors.black}
+label-active-background = ${colors.blue}
+label-occupied-background = ${colors.dark-light}
 
 
 [module/xwindow]
@@ -209,10 +193,10 @@ ramp-signal-foreground = #D8DEE9
 type = custom/script
 exec = free -m | sed -n 's/^Mem:\s\+[0-9]\+\s\+\([0-9]\+\)\s.\+/\1/p'
 format = <label>
-label =󰬬 %output% MB / 4GB
+label =󰬬 %output% M
 label-padding = 1
-format-foreground = #81A1C1   
-format-background =  ${colors.background}
+format-background = #bf616a   
+format-foreground =  ${colors.background}
  
 [module/updates]
 type = custom/script

@@ -35,9 +35,26 @@ color12 = ${xrdb:color12}
 color13 = ${xrdb:color13}
 color14 = ${xrdb:color14}
 color15 = ${xrdb:color15}
-dark-light = #272A2B 
-active-light = #313435
 
+[bar/black]
+monitor = eDP1
+width = 112
+height = 21
+offset-x = 5
+offset-y = 5
+background = ${colors.background}
+foreground = ${colors.foreground}
+bottom = true
+
+line-size = 1
+
+font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=9;2
+font-1 = Material Design Icons:style=Regular:size=9;2
+wm-restack = i3
+override-redirect = true 
+
+tray-position = none
+modules-left = i3  repo
 
 [module/bspwm]
 type = internal/bspwm
@@ -46,112 +63,54 @@ pin-workspaces = true
 inline-mode = true
 enable-click = true
 enable-scroll = true
-reverse-scroll = false
+reverse-scroll = true
 
 format = <label-state>
 
+ws-icon-0 = I;%{F#ffcb8e}
+ws-icon-1 = II;%{F#BF616A}    
+ws-icon-2 = III;%{F#81A1C1}    
+ws-icon-3 = IV;%{F#A3BE8C}      
+ws-icon-4 = V; 
+label-focused = %icon%
+label-focused-underline = ${colors.foreground}
 
-ws-icon-0 = Home;%{F#D8DEE9}  
-ws-icon-1 = Web;%{F#BF616A}   
-ws-icon-2 = Work;%{F#EBCB8B}    
-ws-icon-3 = Files;%{F#81A1C1}
-ws-icon-4 = Mails;%{F#A3BE8C} 
-ws-icon-5 = Misc;%{F#D8DEE9} 
-
-
-
-
-
-label-focused =  %icon%  %name%
-label-focused-foreground = ${colors.background}
-label-focused-background =${colors.active-light}
-label-focused-padding = 2
-
-
-label-occupied = %icon%  %name% 
+label-focused-padding = 1
+label-occupied = %icon%
 label-occupied-foreground =#ffffff
-label-occupied-background =${colors.dark-light}
-
-label-occupied-padding = 2
+label-occupied-padding = 1
 
 label-empty = %icon%
 label-empty-foreground =#ffffff
-label-empty-padding = 2
+label-empty-padding = 1
 
 label-urgent = %icon%
 xxlabel-urgent-foreground = #88C0D0
-label-urgent-padding = 2
+label-urgent-padding = 1
 
-[bar/example]
+[bar/middle]
 
-tray-position = right
 monitor = eDP1
-width =  100%
-height = 18
-padding-left =1
-padding-right =1
+width = 1344
+height = 21
+ offset-x = 11
+padding-left =0
 
+offset-y = 5
 background = ${colors.background}
 foreground = ${colors.foreground}
-bottom = false
+bottom = true
 
-border-top-size = 6
-border-bottom-size = 6
-border-top-color = ${colors.background}
-border-bottom-color = ${colors.background}
+line-size = 2
+wm-restack = i3
+override-redirect = true 
 
-line-size = 0
-wm-restack = bspwm
-
-modules-left = bspwm 
-modules-center =  alsa  
-modules-right =  cpu updates wlan mem xbacklight time powermenu
+modules-left = i3
+modules-center =  
+modules-right = cpu updates wlan volume mem   xbacklight   battery time powermenu
 
 font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=9;2
 font-1 = Material Design Icons:style=Regular:size=9;2
-font-2 = unifont:fontformat=truetype:size=9:antialias=true;
-[module/alsa]
-type = internal/alsa
-
-format-volume = <label-volume> <bar-volume>
-label-volume = " "  
-label-volume-foreground = ${colors.foreground}
-format-muted-prefix = "󰚙 "
-format-muted-foreground = ${colors.foreground}
-label-muted = sound muted
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #61afef
-bar-volume-foreground-1 = #61afef
-bar-volume-foreground-2 = #61afef
-bar-volume-foreground-3 = #61afef
-bar-volume-foreground-4 = #61afef
-bar-volume-foreground-5 = #61afef
-bar-volume-foreground-6 = #61afef
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-foreground = #61afef
-bar-volume-indicator-font = 2
-bar-volume-fill = ━ 
-bar-volume-fill-foreground = #61afef
-bar-volume-fill-font = 2
-bar-volume-empty = ━
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground}
-
-
-[module/time]
-type = internal/date
-interval = 60
-
-format = <label>
-format-background = #a3be8c
-format-padding = 1
-
-date = %{F#282A36}󰥔 %H:%M%{F-}
-time-alt = %{F#282A36}󰃭 %a, %b %d%{F-}
-
-label = %date%%time%
 
 [module/repo]
 type = custom/script
@@ -175,12 +134,12 @@ format = <label>
 interval = 4600 
 label =  %output%  
 label-padding = 2
-label-foreground =  #BF616A
+label-foreground =  #81A1C1
 
 [module/powermenu]
 type = custom/text 
-content =" " 
-content-padding =0
+content = 
+content-padding =1
 click-left = doas zzz &
 content-foreground =  #000
 content-background = #A3BE8C
@@ -249,31 +208,95 @@ label-padding = 1
 [module/xbacklight]
 type = internal/xbacklight
 format = <label>
-format-prefix = "  "
+format-prefix = " "
 
 label = %percentage%%
-format-prefix-foreground = #D8DEE9
-label-foreground =   #D8DEE9
+format-prefix-foreground = #B48EAD
+label-foreground =   #B48EAD
 #format-background = ${colors.foreground}
 format-padding = 1
 
-
-
 [module/cpu]
 type = internal/cpu
+
+; Seconds to sleep between updates
+; Default: 1
 interval = 2.5
 
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
 format =  <label> 
-format-padding = 1
+
+
 label = CPU %percentage%%
-format-background = #81A1C1
-format-foreground =${colors.background}
+
 
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...
+label = %title%
+label-maxlen = 30
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-padding = 1
 
 
 
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = false
+
+ws-icon-0 = 1;%{F#fabea7}     
+ws-icon-1 = 2;%{F#88e1f2}    
+ws-icon-2 = 3;%{F#e36387}亂
+ws-icon-3 = 4;%{F#cceabb}  
+ws-icon-4 = 5;%{F#cceabb}  
+
+label-mode-padding = 0
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = #282e3a 
+label-focused-foreground = #D8DEE9
+label-focused-underline= #D8DEE9
+label-focused-padding = 1 
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-padding = 1
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+; Separator in between workspaces
+; label-separator = |
+
+[module/time]
+type = internal/date
+interval = 60
+
+format = <label>
+format-background = #a3be8c
+format-padding = 1
+
+date = %{F#282A36}󰥔 %H:%M%{F-}
+time-alt = %{F#282A36}󰃭 %a, %b %d%{F-}
+
+label = %date%%time%
 

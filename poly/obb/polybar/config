@@ -217,9 +217,6 @@ enable-click = true
 enable-scroll = true
 reverse-scroll = true
 
-;extra icons to choose from
-;http://fontawesome.io/cheatsheet/
-;       v     
 
 icon-0 = 1;%{F#ffe3ed}Home     
 icon-1 = 2;%{F#ff80b2}Work  

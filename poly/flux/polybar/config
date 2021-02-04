@@ -17,12 +17,15 @@ cyan = ${xrdb:color6}
 cyan-light = ${xrdb:color14}
 white = ${xrdb:color7}
 white-light = ${xrdb:color15}
+faint-dark = #3C4048
 
 [bar/example]
 width = 100%
 height = 18
 fixed-center = true
 padding-right = 1
+padding-left = 6
+
 background = ${colors.background}
 foreground = ${colors.foreground}
 
@@ -35,11 +38,11 @@ module-margin-left = 1
 
 font-0 = JetBrainsMono Nerd Font:style=Bold:size=9;2
 font-1 = Material Design Icons:style=Regular:size=9;2
-font-2 = unifont:fontformat=truetype:size=8:antialias=false;2
+font-2 = unifont:fontformat=truetype:size=9:antialias=false;2
 
-modules-left = workspaces apps  battery cpu updates  
+modules-left = workspaces   updates  
 modules-center =      xkeyboard
-modules-right =    alsa   mem  wlan xbacklight time powermenu
+modules-right =    alsa   mem  battery cpu wlan xbacklight time powermenu
 
 
 cursor-click = pointer
@@ -47,8 +50,6 @@ cursor-click = pointer
 tray-position = none
 tray-maxsize = 10
 tray-padding = 1
-
-
 
 
 wm-restack = bspwm
@@ -67,8 +68,8 @@ format-padding = 0
 icon-0 = Home;󰌣
 icon-1 = Web; 󰅣
 icon-2 = Work; 󰅴
-icon-3 = Chat; 󰔁
-icon-4 = Music; 󰗃
+icon-3 = Files; 󰔁
+icon-4 = Misc; 󰗃
 icon-default = 
 
 format = <label-state>
@@ -82,9 +83,10 @@ label-empty-padding = 1
 label-urgent-padding = 1
 label-active-padding = 1
 
-label-active-foreground = ${color.blue}
-label-active-underline = ${color.blue}
-label-occupied-foreground = ${color.blue}
+label-active-foreground = ${colors.black}
+label-active-background = ${colors.blue}
+
+label-occupied-background = ${colors.faint-dark}
 
 
   
@@ -103,8 +105,8 @@ interval = 2.5
 format =  <label> 
 format-padding = 1
 label = CPU %percentage%%
-format-background = #98C379
-format-foreground = #282A36
+format-background = ${colors.faint-dark}
+format-foreground = ${colors.foreground}
 
 [module/apps]
 type = custom/text 
@@ -147,23 +149,15 @@ bar-volume-empty-foreground = ${colors.foreground}
 
 [module/xbacklight]
 type = internal/xbacklight
-
-format =   <bar> 
+format = <label>
 format-prefix = "  "
- 
 
-bar-width = 8
-bar-indicator = |
-bar-indicator-foreground = #61afef
+label = %percentage%%
+format-prefix-foreground = #D8DEE9
+label-foreground =   #D8DEE9
+#format-background = ${colors.foreground}
+format-padding = 1
 
-bar-indicator-font = 2
-bar-fill = ━
-bar-fill-font = 2
-bar-fill-foreground = #61afef
-bar-empty = ━
-bar-empty-font = 2
-bar-empty-foreground = #D8DEE9
-bar-width-background = #61afef
 
 [module/bspwm]
 type = internal/bspwm
@@ -287,18 +281,18 @@ interface = wlp2s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-background = #81A1C1
+
 format-connected-padding = 1
 
 label-connected = "%essid%"
-label-connected-foreground = ${colors.background}
+label-connected-foreground = ${colors.foreground}
 
 ;ramp-signal-0 = 󰤯
 ;ramp-signal-1 = 󰤟
 ;ramp-signal-2 = 󰤢
 ;ramp-signal-3 = 󰤥
 ramp-signal-0 = 󰤨  
-ramp-signal-foreground = ${colors.background}
+ramp-signal-foreground = ${colors.foreground}
 
 [module/mem]
 type = custom/script
