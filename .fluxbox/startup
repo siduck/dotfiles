@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# fluxbox startup-script:
+#
+
+xmodmap ~/.xmodmap-sid & 
+picom & 
+xrdb merge ~/Public/xresources/ocean/.Xresources & 
+feh --bg-fill ~/Pictures/wall/raindrops-3_6K.jpg &
+cp -r ~/Public/rofi/one/rofi/ ~/.config/ & 
+cp -r ~/Public/poly/flux/polybar ~/.config &
+cp -r ~/Public/theme\ and\ icons/one/.gtkrc-2.0 ~/ &
+cp -r ~/Public/theme\ and\ icons/one/settings.ini  ~/.config/gtk-3.0/ &
+cp -r ~/Public/nvim_confs/onedark/init.vim ~/.config/nvim/ & 
+sleep 10 && ~/.config/polybar/launch.sh &
+exec fluxbox 
