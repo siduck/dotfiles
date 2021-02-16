@@ -122,7 +122,7 @@ set nobackup
 set nowritebackup
 
 " Better display for messages
-set cmdheight=2
+set cmdheight=1
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
@@ -263,7 +263,6 @@ ts_config.setup {
     enable = true,
     use_languagetree = true,
   }
-
 }
 EOF
 
@@ -426,7 +425,6 @@ require'nvim-web-devicons'.setup {
  default = true;
 }
 
-
 EOF
 
 "  ------------------------ rust config ----------------------
@@ -479,15 +477,14 @@ nnoremap <silent>    <A-c> :BufferClose<CR>
 "                          :BufferCloseAllButCurrent<CR>
 "                          :BufferCloseBuffersRight<CR>
 
-
 lua << EOF 
   local gl = require('galaxyline')
 local gls = gl.section
 gl.short_line_list = {'LuaTree','vista','dbui'}
 
 local colors = {
-  bg = '#282c34',
-  line_bg = '#282c34',
+ bg = '#212425',
+  line_bg = ' #212425',
   fg = '#D8DEE9',
   fg_green = '#65a380',
   yellow = '#A3BE8C',
@@ -504,8 +501,6 @@ local colors = {
   nord = '#81A1C1',
   nordYel = '#EBCB8B'
 }
-
-
 
 gls.left[2] = {
   ViMode = {
@@ -647,62 +642,59 @@ gls.short_line_right[1] = {
   }
 }
 
-
-
 require'bufferline'.setup{
   options = {
-    buffer_close_icon= '',
+    buffer_close_icon= '',
     modified_icon = '●',
     close_icon = '',
     left_trunc_marker = '',
     right_trunc_marker = '',
-    max_name_length = 18,
-    max_prefix_length = 15, 
-    tab_size = 22,
+    max_name_length = 14,
+    max_prefix_length = 13, 
+    tab_size = 18,
     enforce_regular_tabs = true ,
    view = "multiwindow" ,
     show_buffer_close_icons = true ,
     separator_style = "thin" 
     },
-
+      
       highlights = {
         background = {
         guifg = comment_fg,
-        guibg = '#282c34'
+        guibg = ' #1d2021'
      },
       fill = {
         guifg = comment_fg,
-        guibg = '#282c34' 
+        guibg = ' #1d2021' 
       },
         buffer_selected = {
         guifg = normal_fg,
-        guibg =  '#3A3E44',
+        guibg =  '#2C2C2C',
         gui = "bold"
       }, 
        separator_visible = {
-        guifg = '#282c34' ,
-        guibg = '#282c34'
+        guifg = '#2C2C2C' ,
+        guibg = '#2C2C2C'
         },
         separator_selected = {
-        guifg = '#282c34'  ,
-        guibg = '#282c34'
+        guifg = '#2C2C2C'  ,
+        guibg = '#2C2C2C'
       },
       separator = {
-        guifg = '#282c34' ,
-        guibg = '#282c34' 
+        guifg = ' #1d2021' ,
+        guibg = ' #1d2021' 
       },
       indicator_selected = {
-         guifg = '#282c34' ,
-        guibg = '#282c34'  
+         guifg = '#2C2C2C' ,
+        guibg = '#2C2C2C'  
       },
       
         modified_selected = {
         guifg = string_fg,
-        guibg = '#3A3E44'
+        guibg = '#2C2C2C'
       }
 
      };  
-     
 }
 
 
@@ -736,7 +728,6 @@ require('gitsigns').setup {
   status_formatter = nil, -- Use default
 }
 
-
 EOF 
 
 "nnoremap mymap :lua require"bufferline".go_to_buffer(num)<CR>
@@ -762,4 +753,11 @@ highlight DiffAdd guifg=#81A1C1 guibg = none
 highlight DiffChange guifg =#3A3E44 guibg = none
 highlight DiffModified guifg = #81A1C1 guibg = none
  
+" learning vim fr now :)
+
+inoremap kk <ESC>
+" let mapleader = "'"
+set ignorecase 
+set noswapfile 
+set title
 
