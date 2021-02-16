@@ -2,9 +2,9 @@
 
 xmodmap ~/.xmodmap-sid &
 
-bspc monitor -d Home Web Work Files Mails Misc
+bspc monitor -d 1 2 3 4 5 6
 
-bspc config border_width         2
+bspc config border_width         3
 bspc config window_gap          10
 bsp  config presel_feedback_color "#ffffff" 
 bspc config split_ratio          0.50
@@ -31,6 +31,7 @@ cp -r ~/Public/rofi/one/rofi/ ~/.config/
 
 bspc config gapless_monocle      true
 cp -r ~/Public/nvim_confs/material/init.vim ~/.config/nvim/ & 
-2bspwm &
+
+mat2 &
 sxhkd 
 
