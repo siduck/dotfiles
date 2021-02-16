@@ -1,18 +1,17 @@
-
 !-- Xft settings -- !
-Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
-Xft.hinting:    true
-Xft.hintstyle:  hintfull
+Xft.antialias:	1
+Xft.hinting:	1
+Xft.autohint:	0
+Xft.hintstyle:	hintslight
+Xft.rgba:	rgb
+Xft.lcdfilter:	lcddefault
+
 
 ! window padding
-st.borderpx:          15
-st.font:           JetBrainsMono Nerd Font:style:regular:pixelsize=15 , Material Design Icons :pixelsize =15
+st.borderpx:          19
+st.font:           JetBrainsMono Nerd Font:style:medium:pixelsize=15 
 st.opacity: 255
 
-! Base16 OneDark
-! Scheme: Lalit Magant (http://github.com/tilal6991)
 
 #define base00 #21252A 
 #define base01 #353b45
@@ -57,11 +56,17 @@ st.opacity: 255
 *color14:      base0C
 *color15:      base07
 
-! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-! use 'shell' template to set these if necessary
 *color16:      base09
 *color17:      base0F
 *color18:      base01
 *color19:      base02
 *color20:      base04
 *color21:      base06
+
+
+
+tabbed.selbgcolor:   #21252A
+tabbed.selfgcolor:   #d6d8eb
+
+tabbed.normfgcolor:  #9294a8
+tabbed.normbgcolor:  #2B2F34

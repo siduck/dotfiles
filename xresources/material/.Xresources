@@ -22,16 +22,17 @@ st.borderpx: 15
 *color1  			: #ff9800
 *color9  			: #ffa74d
 ! green
-*color2  			: #8bc34a
-*color10 			: #9ccc65
+*color2  			: #9ccc65
+*color10 			: #A3BE8C
+
 ! yellow
-*color3  			: #ffc107
+*color3  			: #EBCB8B 
 *color11 			: #ffa000
 ! blue
 *color4  			: #81A1C1
 *color12 			: #81d4fa
 ! magenta
-*color5  			: #e91e63
+*color5  			:  #D08770
 *color13 			: #ad1457
 ! cyan
 *color6  			: #009688
@@ -41,3 +42,9 @@ st.borderpx: 15
 *color15 			: #eceff1
 
 
+
+tabbed.selbgcolor:   #263238
+tabbed.selfgcolor:   #d6d8eb
+
+tabbed.normfgcolor:  #9294a8
+tabbed.normbgcolor:  #37474f

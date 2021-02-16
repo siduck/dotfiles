@@ -67,8 +67,8 @@ st.font:         JetBrainsMono Nerd Font:style:medium:pixelsize=15
 *color16: #272A2B
 
 
-tabbed.selbgcolor:   #1d2021
-tabbed.selfgcolor:   #d6d8eb
+tabbed.selbgcolor:   #A3BE8C
+tabbed.selfgcolor:   #1d2021
 
 tabbed.normfgcolor:  #9294a8
 tabbed.normbgcolor:  #272A2B
