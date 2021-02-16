@@ -6,10 +6,10 @@
     <value type="int" value="1"/>
     <property name="panel-1" type="empty">
       <property name="position" type="string" value="p=12;x=280;y=745"/>
-      <property name="length" type="uint" value="51"/>
+      <property name="length" type="uint" value="100"/>
       <property name="position-locked" type="bool" value="true"/>
-      <property name="icon-size" type="uint" value="21"/>
-      <property name="size" type="uint" value="27"/>
+      <property name="icon-size" type="uint" value="23"/>
+      <property name="size" type="uint" value="28"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="9"/>
         <value type="int" value="8"/>
@@ -21,13 +21,17 @@
         <value type="int" value="13"/>
         <value type="int" value="2"/>
         <value type="int" value="6"/>
+        <value type="int" value="14"/>
+        <value type="int" value="12"/>
+        <value type="int" value="7"/>
+        <value type="int" value="10"/>
       </property>
       <property name="mode" type="uint" value="0"/>
       <property name="background-style" type="uint" value="1"/>
       <property name="background-rgba" type="array">
-        <value type="double" value="0.086275"/>
-        <value type="double" value="0.086275"/>
-        <value type="double" value="0.086275"/>
+        <value type="double" value="0.113725"/>
+        <value type="double" value="0.125490"/>
+        <value type="double" value="0.129412"/>
         <value type="double" value="1.000000"/>
       </property>
     </property>
@@ -68,5 +72,9 @@
         <value type="string" value="16114030081.desktop"/>
       </property>
     </property>
+    <property name="plugin-12" type="string" value="genmon"/>
+    <property name="plugin-7" type="string" value="genmon"/>
+    <property name="plugin-10" type="string" value="genmon"/>
+    <property name="plugin-14" type="string" value="genmon"/>
   </property>
 </channel>

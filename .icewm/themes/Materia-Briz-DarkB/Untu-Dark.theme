@@ -1,0 +1,140 @@
+ThemeName=                                 "Materia-Briz-Dark"
+ThemeAuthor=                               "rainerhg7"
+ThemeDescription=                          ".."
+License=                                   "GPLv3"
+
+Look=                                      flat
+Gradients=                                 "taskbuttonactive.xpm taskbuttonbg.xpm taskbuttonminimized.xpm dialogbg.xpm logoutbg.xpm workspacebuttonactive.xpm menusel.xpm"
+
+RolloverButtonsSupported=                  1
+TitleButtonsSupported=                     "xmis"
+TitleButtonsLeft=                          "xim"
+TitleButtonsRight=                         "s"
+TaskBarClockLeds=                          0
+TrayDrawBevel=                             0
+BorderSizeX=                               4
+BorderSizeY=                               4
+DlgBorderSizeX=                            4
+DlgBorderSizeY=                            4
+CornerSizeX=                               20
+CornerSizeY=                               20
+TitleBarHeight=                            28
+TitleBarJustify=                           50
+ScrollBarX=                                16
+ScrollBarY=                                16
+
+MenuIconSize=                              22
+SmallIconSize=                             22
+LargeIconSize=                             32
+HugeIconSize=                              48
+
+
+#DialogBox
+ColorDialog=                               "rgb:30/30/30"
+ColorDialogSelectionText=                  "rgb:28/28/28"
+
+#Taskbar
+ColorDefaultTaskBar=                       "rgb:23/27/29"
+ColorToolButton=                           "rgb:23/27/29"
+ColorActiveButton=                         "rgb:42/76/B5"
+ColorNormalButton=                         "rgb:23/27/29"
+ColorToolButtonText=                       "rgb:23/27/29"
+ColorNormalWorkspaceButtonText=            "rgb:B4/B5/B6"
+ColorActiveWorkspaceButtonText=            "rgb:F8/F9/FA"
+ColorNormalButtonText=                     "rgb:F8/F9/FA"
+ColorActiveButtonText=                     "rgb:F8/F9/FA"
+ColorActiveTaskBarApp=                     "rgb:25/68/AF"
+ColorActiveTaskBarAppText=                 "rgb:FF/FF/FF"
+ColorMinimizedTaskBarApp=                  "rgb:30/30/30"
+ColorMinimizedTaskBarAppText=              "rgb:A4/A5/A6"
+ColorNormalTaskBarApp=                     "rgb:23/27/29"
+ColorNormalTaskBarAppText=                 "rgb:F8/F9/FA"
+ColorInvisibleTaskBarApp=                  "rgb:30/30/30"
+ColorInvisibleTaskBarAppText=              "rgb:23/27/29"
+
+#Menu
+ColorActiveMenu=                           "rgb:40/40/40"
+ColorNormalMenu=                           "rgb:30/30/30"
+ColorActiveMenuItem=                       "rgb:40/40/40"
+ColorNormalMenuItemText=                   "rgb:EE/EE/EE"
+ColorActiveMenuItemText=                   "rgb:FD/FD/FD"
+ColorActiveMenuItemShadow=                 "rgb:FF/FF/FF"
+ColorDisabledMenuItemText=                 "rgb:80/80/80"
+ColorDisabledMenuItemShadow=               "rgb:00/00/00"
+
+#TitleBox
+ColorNormalBorder=                         "rgb:F8/F9/FA"
+ColorActiveBorder=                         "rgb:F8/F9/FA"
+ColorNormalTitleBarText=                   "rgb:99/97/A2"
+ColorActiveTitleBarText=                   "rgb:F8/F9/FA"
+
+#Move
+ColorMoveSizeStatus=                       "rgb:30/30/30"
+ColorMoveSizeStatusText=                   "rgb:F8/F9/FA"
+#Tooltip
+ColorToolTip=                              "rgb:30/30/30"
+ColorToolTipText=                          "rgb:F8/F9/FA"
+
+#QuickSwitch
+ColorQuickSwitch=                          "rgb:30/30/30"
+ColorQuickSwitchText=                      "rgb:A4/A5/A6"
+
+#ListBox
+ColorListBox=                              "rgb:30/30/30"
+ColorListBoxText=                          "rgb:F8/F9/FA"
+ColorListBoxSelection=                     "rgb:6A/A8/E9"
+ColorListBoxSelectionText=                 "rgb:F8/F9/FA"
+
+#Label
+ColorLabel=                                "rgb:30/30/30"
+ColorLabelText=                            "rgb:F8/F9/FA"
+
+#Clock
+ColorClock=                                "rgb:30/30/30"
+ColorClockText=                            "rgb:F8/F9/FA"
+
+#CPUMonitor
+ColorCPUStatusIdle=                        "rgb:F8/F9/FA"
+ColorCPUStatusUser=                        "rgb:30/30/30"
+ColorCPUStatusSystem=                      "rgb:B0/B0/B0"
+ColorCPUStatusInterrupts=                  "rgb:FF/82/82"
+ColorCPUStatusIoWait=                      "rgb:50/00/00"
+ColorCPUStatusSoftIrq=                     "rgb:FF/AB/AB"
+ColorCPUStatusNice=                        "rgb:FF/D3/00"
+
+#Net
+ColorNetIdle=                              "rgb:F8/F9/FA"
+ColorNetSend=                              "rgb:30/30/30"
+ColorNetReceive=                           "rgb:B0/B0/B0"
+
+#Memory Manager
+ColorMEMStatusFree=                        "rgb:F8/F9/FA"
+ColorMEMStatusCached=                      "rgb:30/30/30"
+ColorMEMStatusUser=                        "rgb:B0/B0/B0"
+ColorMEMStatusBuffers=                     "rgb:00/00/00"
+
+#Fonts
+TitleFontNameXft=                          "carlito:size=12"
+StatusFontNameXft=                         "carlito:size=12"
+MenuFontNameXft=                           "carlito:size=12"
+NormalTaskBarFontNameXft=                  "carlito:size=12"
+ActiveTaskBarFontNameXft=                  "carlito:size=12"
+ListBoxFontNameXft=                        "carlito:size=12"
+ToolTipFontNameXft=                        "carlito:size=12"
+QuickSwitchFontNameXft=                    "carlito:size=13"
+ClockFontNameXft=                          "carlito:size=12"
+
+#ScrollBar
+ColorScrollBar=                            "rgb:30/30/30"
+ColorScrollBarButton=                      "rgb:F8/F9/FA"
+ColorScrollBarSlider=                      "rgb:30/30/30"
+ColorScrollBarArrow=                       "rgb:30/30/30"
+ColorScrollBarButtonArrow=                 "rgb:F8/F9/FA"
+ColorScrollBarInactiveArrow=               "rgb:F8/F9/FA"
+
+#Desktop
+#DesktopBackgroundImage=                   "/usr/share/wallpapers/default.jpg"
+DesktopBackgroundScaled=                   1
+DesktopBackgroundColor=                    "rgb:64/64/64"
+DesktopTransparencyColor=                  "rgb:64/64/64"
+DesktopTransparencyImage=                  ""

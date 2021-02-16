@@ -6,7 +6,7 @@
     <value type="int" value="1"/>
     <property name="panel-1" type="empty">
       <property name="position" type="string" value="p=12;x=280;y=745"/>
-      <property name="length" type="uint" value="51"/>
+      <property name="length" type="uint" value="100"/>
       <property name="position-locked" type="bool" value="true"/>
       <property name="icon-size" type="uint" value="21"/>
       <property name="size" type="uint" value="27"/>
@@ -21,13 +21,15 @@
         <value type="int" value="13"/>
         <value type="int" value="2"/>
         <value type="int" value="6"/>
+        <value type="int" value="7"/>
+        <value type="int" value="10"/>
       </property>
       <property name="mode" type="uint" value="0"/>
       <property name="background-style" type="uint" value="1"/>
       <property name="background-rgba" type="array">
-        <value type="double" value="0.156863"/>
-        <value type="double" value="0.172549"/>
-        <value type="double" value="0.203922"/>
+        <value type="double" value="0.129412"/>
+        <value type="double" value="0.145098"/>
+        <value type="double" value="0.164706"/>
         <value type="double" value="1.000000"/>
       </property>
     </property>
@@ -67,6 +69,10 @@
       <property name="items" type="array">
         <value type="string" value="16114030081.desktop"/>
       </property>
+    </property>
+    <property name="plugin-7" type="string" value="clock"/>
+    <property name="plugin-10" type="string" value="directorymenu">
+      <property name="base-directory" type="string" value="/home/sid"/>
     </property>
   </property>
 </channel>

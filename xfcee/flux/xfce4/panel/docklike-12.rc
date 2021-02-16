@@ -1,6 +1,5 @@
 [user]
-pinned=/home/sid/.local/share/applications/chromium-devel.desktop;/usr/share/applications/pcmanfm.desktop;/usr/share/applications/firefox.desktop;/usr/share/applications/org.gnome.baobab.desktop;/usr/share/applications/xfce4-taskmanager.desktop;/usr/share/applications/lxappearance.desktop;/usr/share/applications/libfm-pref-apps.desktop;/home/sid/.local/share/applications/libre.desktop;/usr/share/applications/org.telegram.desktop.desktop.desktop;
+pinned=/home/sid/.local/share/applications/chromium-devel.desktop;/usr/share/applications/pcmanfm.desktop;/usr/share/applications/firefox.desktop;/usr/share/applications/org.gnome.baobab.desktop;/usr/share/applications/xfce4-taskmanager.desktop;/usr/share/applications/lxappearance.desktop;/usr/share/applications/wpa-cute.desktop;/usr/share/applications/libfm-pref-apps.desktop;/home/sid/.local/share/applications/libre.desktop;/usr/share/applications/org.pwmt.zathura.desktop;/home/sid/.local/share/applications/sxiv.desktop;/usr/share/applications/org.telegram.desktop.desktop.desktop;
 forceIconSize=true
-iconSize=22
+iconSize=18
 indicatorStyle=1
-indicatorOrientation=3

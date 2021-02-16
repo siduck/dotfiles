@@ -1,0 +1,6 @@
+[user]
+forceIconSize=true
+iconSize=22
+pinned=/usr/share/applications/firefox.desktop;/usr/share/applications/gpick.desktop;/home/sid/.local/share/applications/libre.desktop;/usr/share/applications/qasmixer.desktop;/usr/share/applications/xfce4-taskmanager.desktop;/usr/local/share/applications/st.desktop;/usr/share/applications/pcmanfm.desktop;/usr/share/applications/libfm-pref-apps.desktop;
+indicatorOrientation=1
+indicatorStyle=0

@@ -1,0 +1,8 @@
+# This is an example for icewm 1.7.0 toolbar definition file.
+# It will be installed as /usr/share/icewm/toolbar.
+# Place your variants in /etc/icewm or in $HOME/.icewm since
+# modifications to this file will be overwritten when you reinstall icewm.
+#
+prog "xterm" utilities-terminal xterm
+prog "Web browser" web-browser xdg-open about:blank
+
