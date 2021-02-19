@@ -102,7 +102,7 @@ content-padding =1
 
 [module/mail]
 type = custom/text 
-content = "" 
+content = "" 
 click-left = pcmanfm &
 content-foreground = #EBCB8B
 

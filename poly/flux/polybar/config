@@ -24,7 +24,7 @@ width = 100%
 height = 18
 fixed-center = true
 padding-right = 1
-padding-left = 6
+padding-left = 1
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -36,13 +36,13 @@ border-bottom-color = ${colors.background}
 module-margin-left = 1
 
 
-font-0 = JetBrainsMono Nerd Font:style=Bold:size=9;2
+font-0 = JetBrainsMono Nerd Font:style=medium:size=9;2
 font-1 = Material Design Icons:style=Regular:size=9;2
 font-2 = unifont:fontformat=truetype:size=9:antialias=false;2
 
-modules-left = workspaces   updates  
-modules-center =      xkeyboard
-modules-right =    alsa   mem  battery cpu wlan xbacklight time powermenu
+modules-left = workspaces     
+modules-center =     updates  xkeyboard
+modules-right =    alsa   mem   cpu wlan xbacklight time powermenu
 
 
 cursor-click = pointer
@@ -65,11 +65,12 @@ enable-click = true
 enable-scroll = true
 format-padding = 0
 
-icon-0 = Home;󰌣
-icon-1 = Web; 󰅣
-icon-2 = Work; 󰅴
-icon-3 = Files; 󰔁
-icon-4 = Misc; 󰗃
+icon-0 =  ; 
+icon-1 =  ; 
+icon-2 =  ; 
+icon-3 =  ; 
+icon-4 =  ; 
+
 icon-default = 
 
 format = <label-state>
@@ -78,10 +79,10 @@ label-occupied = %name%
 label-urgent = %icon%
 label-empty = %name%
 
-label-occupied-padding = 1
-label-empty-padding = 1
-label-urgent-padding = 1
-label-active-padding = 1
+label-occupied-padding = 2
+label-empty-padding = 2
+label-urgent-padding = 2
+label-active-padding = 2
 
 label-active-foreground = ${colors.black}
 label-active-background = ${colors.blue}
@@ -153,9 +154,7 @@ format = <label>
 format-prefix = "  "
 
 label = %percentage%%
-format-prefix-foreground = #D8DEE9
-label-foreground =   #D8DEE9
-#format-background = ${colors.foreground}
+format-prefix-foreground = #EBCB8B
 format-padding = 1
 
 
@@ -292,7 +291,7 @@ label-connected-foreground = ${colors.foreground}
 ;ramp-signal-2 = 󰤢
 ;ramp-signal-3 = 󰤥
 ramp-signal-0 = 󰤨  
-ramp-signal-foreground = ${colors.foreground}
+ramp-signal-foreground = ${colors.blue}
 
 [module/mem]
 type = custom/script

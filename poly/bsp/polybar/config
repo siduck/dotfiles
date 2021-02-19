@@ -51,15 +51,16 @@ reverse-scroll = false
 format = <label-state>
 
 
-ws-icon-0 = Home;%{F#D8DEE9}  
-ws-icon-1 = Web;%{F#BF616A}   
-ws-icon-2 = Work;%{F#EBCB8B}    
-ws-icon-3 = Files;%{F#81A1C1}
-ws-icon-4 = Mails;%{F#A3BE8C} 
-ws-icon-5 = Misc;%{F#D8DEE9} 
+ws-icon-0 = 1;%{F#D8DEE9}  
+ws-icon-1 = 2;%{F#BF616A}   
+ws-icon-2 = 3;%{F#EBCB8B}    
+ws-icon-3 = 4;%{F#81A1C1}
+ws-icon-4 = 5;%{F#A3BE8C} 
 
 
 
+
+label-separator = " "
 
 
 label-focused =  %icon%  %name%
