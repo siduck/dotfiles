@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# autostart apps 
+onedwm &
+cp -r ~/Public/theme\ and\ icons/one/.gtkrc-2.0 ~/ &
+cp -r ~/Public/theme\ and\ icons/one/settings.ini  ~/.config/gtk-3.0/ &
+picom & 
+feh --bg-fill ~/Pictures/wall/ram.png &
+xrdb merge ~/Public/xresources/ocean/.Xresources &
+cp -r ~/Public/rofi/one/rofi/ ~/.config/
+cp -r ~/Public/nvim_confs/onedark/init.vim ~/.config/nvim/ &
+
+# dwm bar 
+
+interval=0
+
+while true; do
+    [ $interval == 0 ] || [ $(($interval%3600)) == 0 ] && updates=$(xbps-updates)
+    interval=$((interval + 1))
+
+    sleep 1 && xsetroot -name "$(ghost) $updates $(backlight)$(battery)$(memory)$(wlan) $(clock)"
+done
+

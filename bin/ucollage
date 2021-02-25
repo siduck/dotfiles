@@ -1,0 +1,1846 @@
+#!/usr/bin/env bash
+config_error() {
+    echo "Configuration error [${1}]: \"${2}\" ${3}"
+}
+
+parse_config() {
+    local errors=0
+
+    [[ -n "$UCOLLAGE_LINES" ]] && ! is_natural "$UCOLLAGE_LINES" \
+        && config_error "UCOLLAGE_LINES" "$UCOLLAGE_LINES" "is not a natural number" \
+        && unset UCOLLAGE_LINES && errors=1
+    [[ -n "$UCOLLAGE_COLUMNS" ]] && ! is_natural "$UCOLLAGE_COLUMNS" \
+        && config_error "UCOLLAGE_COLUMNS" "$UCOLLAGE_COLUMNS" "is not a natural number" \
+        && unset UCOLLAGE_COLUMNS && errors=1
+    [[ -n "$UCOLLAGE_EXEC_PROMPT" ]] && [[ ! "$UCOLLAGE_EXEC_PROMPT" =~ ^(0|1)$ ]] \
+        && config_error "UCOLLAGE_EXEC_PROMPT" "$UCOLLAGE_EXEC_PROMPT" " - valid values: 0, 1" \
+        && unset UCOLLAGE_EXEC_PROMPT && errors=1
+    [[ -n "$UCOLLAGE_SHOW_NAMES" ]] && [[ ! "$UCOLLAGE_SHOW_NAMES" =~ ^(0|1)$ ]] \
+        && config_error "UCOLLAGE_SHOW_NAMES" "$UCOLLAGE_SHOW_NAMES" " - valid values: 0, 1" \
+        && unset UCOLLAGE_SHOW_NAMES && errors=1
+    [[ -n "$UCOLLAGE_EXPAND_DIRS" ]] && [[ ! "$UCOLLAGE_EXPAND_DIRS" =~ ^(0|1|ask)$ ]] \
+        && config_error "UCOLLAGE_EXPAND_DIRS" "$UCOLLAGE_EXPAND_DIRS" \
+        " - valid values: 0, 1, ask" \
+        && unset UCOLLAGE_EXPAND_DIRS && errors=1
+    [[ -n "$UCOLLAGE_SORT_BY" ]] && [[ ! "$UCOLLAGE_SORT_BY" =~ ^(name|time|size|extension)$ ]] \
+        && config_error "UCOLLAGE_SORT_BY" "$UCOLLAGE_SORT_BY" \
+        " - valid values: name, time, size, extension" \
+        && unset UCOLLAGE_SORT_BY && errors=1
+    [[ -n "$UCOLLAGE_SORT_REVERSE" ]] && [[ ! "$UCOLLAGE_SORT_REVERSE" =~ ^(0|1)$ ]] \
+        && config_error "UCOLLAGE_SORT_REVERSE" "$UCOLLAGE_SORT_REVERSE" " - valid values: 0, 1" \
+        && unset UCOLLAGE_SORT_REVERSE && errors=1
+    [[ -n "$UCOLLAGE_SCALER" ]] \
+        && [[ ! "$UCOLLAGE_SCALER" =~ ^(crop|distort|fit_contain|contain|forced_cover|cover)$ ]] \
+        && config_error "UCOLLAGE_SCALER" "$UCOLLAGE_SCALER" \
+        " - valid values: crop, distort, fit_contain, contain, forced_cover, cover" \
+        && unset UCOLLAGE_SCALER && errors=1
+    [[ -n "$UCOLLAGE_VIDEO_THUMBNAILS" ]] && [[ ! "$UCOLLAGE_VIDEO_THUMBNAILS" =~ ^(0|1)$ ]] \
+        && config_error "UCOLLAGE_VIDEO_THUMBNAILS" "$UCOLLAGE_VIDEO_THUMBNAILS" \
+        " - valid values: 0, 1" \
+        && unset UCOLLAGE_VIDEO_THUMBNAILS && errors=1
+    [[ -n "$UCOLLAGE_CACHE_THUMBNAILS" ]] && [[ ! "$UCOLLAGE_CACHE_THUMBNAILS" =~ ^(0|1)$ ]] \
+        && config_error "UCOLLAGE_CACHE_THUMBNAILS" "$UCOLLAGE_CACHE_THUMBNAILS" \
+        " - valid values: 0, 1" \
+        && unset UCOLLAGE_CACHE_THUMBNAILS && errors=1
+    [[ -n "$UCOLLAGE_THUMBNAIL_WIDTH" ]] && ! is_natural "$UCOLLAGE_THUMBNAIL_WIDTH" \
+        && config_error "UCOLLAGE_THUMBNAIL_WIDTH" "$UCOLLAGE_THUMBNAIL_WIDTH" \
+        "is not a natural number" \
+        && unset UCOLLAGE_THUMBNAIL_WIDTH && errors=1
+    [[ -n "$UCOLLAGE_MESSAGE_TIMEOUT" ]] && ! is_time "$UCOLLAGE_MESSAGE_TIMEOUT" \
+        && config_error "UCOLLAGE_MESSAGE_TIMEOUT" "$UCOLLAGE_MESSAGE_TIMEOUT" "is not a real number" \
+        && unset UCOLLAGE_MESSAGE_TIMEOUT && errors=1
+
+    [[ "$errors" -eq 1 ]] && read -rsN1
+}
+
+set_defaults() {
+    fit_vertical=${UCOLLAGE_LINES:-3}
+    fit_horizontal=${UCOLLAGE_COLUMNS:-4}
+    tmp_dir=${UCOLLAGE_TMP_DIR:-/tmp/ucollage}
+    cache_dir=${UCOLLAGE_CACHE_DIR:-~/.local/share/ucollage}
+    trash_dir=${UCOLLAGE_TRASH_DIR:-~/.local/share/Trash/ucollage}
+    exec_prompt=${UCOLLAGE_EXEC_PROMPT:-0}
+    show_names=${UCOLLAGE_SHOW_NAMES:-1}
+    expand_dirs=${UCOLLAGE_EXPAND_DIRS:-ask}
+    sort_by=${UCOLLAGE_SORT_BY:-name}
+    sort_reverse=${UCOLLAGE_SORT_REVERSE:-0}
+    scaler=${UCOLLAGE_SCALER:-contain}
+    video_thumbnails=${UCOLLAGE_VIDEO_THUMBNAILS:-1}
+    cache_thumbnails=${UCOLLAGE_CACHE_THUMBNAILS:-1}
+    thumbnail_width=${UCOLLAGE_THUMBNAIL_WIDTH:-500}
+    message_timeout=${UCOLLAGE_MESSAGE_TIMEOUT:-1}
+    error=""
+    warning=""
+    success=""
+    prefix=""
+    exit_clear=1
+}
+
+help(){
+    echo "Usage: ucollage [images] [directories]"
+    echo
+    echo "Controls:"
+    echo "  m/M         enter monocle mode: show only one image (equivalent to 1g/1G)"
+    echo "  Backspace   exit monocle mode"
+    echo "  ;           enter tag mode"
+    echo "  n/N         get next/last batch of images"
+    echo "  p/P         get previous/first batch of images"
+    echo "  E           toggle exec prompt"
+    echo "  F           toggle filenames on screen"
+    echo "  o           change sort type"
+    echo "  O           reverse sort"
+    echo "  S           change scaler"
+    echo "  q           exit"
+    echo
+    echo "Controls with vim-like prefix counters"
+    echo "  (N)s        input exact number for lines and columns"
+    echo "  (N)-        decrease both the numbers of columns and lines by N"
+    echo "  (N)+/=      increase both the numbers of columns and lines by N"
+    echo "  (N)h        decrease number of columns by N"
+    echo "  (N)j        decrease number of lines by N"
+    echo "  (N)k        increase number of lines by N"
+    echo "  (N)l        increase number of columns by N"
+    echo "  (N)c/C      rename image with (local/global) index N"
+    echo "  (N)d/D      move image with (local/global) index N to Trash"
+    echo "  (N)g/G      go to image with (local/global) index N"
+    echo "  (N)t/T      tag image with (local/global) index N"
+    echo "  (N)u/U      untag image with (local/global) index N"
+    echo "  (N)x/X      execute different commands for each image with (local/global) index N"
+    echo "              placeholders are available for command execution"
+    echo "                  %s - image filename"
+    echo "  (N)b/B      execute one command for all images with (local/global) index N"
+    echo "              placeholders"
+    echo "                  %S - all image filenames side by side"
+    echo
+    echo "Monocle mode controls:"
+    echo "  r           rotate image 90 degrees clockwise"
+    echo "  R           rotate image 90 degrees counterclockwise"
+    echo "  c/C         rename image"
+    echo "  d/D         move image to Trash"
+    echo "  x/X         execute command for image"
+    echo "              placeholders"
+    echo "                  %s - original image filename"
+    echo "                  %r - rotated image filename"
+    echo "  b/B         execute command for image"
+    echo "              placeholders"
+    echo "                  %S - original image filename"
+    echo "                  %r - rotated image filename"
+    echo
+    echo "Tag mode controls:"
+    echo "  c/C         rename (local/global) tagged images"
+    echo "  d/D         move (local/global) tagged images to Trash"
+    echo "  g/G         go to first (local/global) tagged image"
+    echo "  x/X         execute different command for every (local/global) tagged image"
+    echo "              placeholders"
+    echo "                  %s - original image filename"
+    echo "  b/B         execute one command for all (local/global) tagged images"
+    echo "              placeholders"
+    echo "                  %S - original image filename"
+    echo "                  %r - rotated image filename"
+
+}
+
+check_dependencies() {
+    local dependency
+    for dependency in ueberzug file
+    do
+        if ! command -v "$dependency" &>/dev/null
+        then
+            echo "Required dependency not installed: $dependency" && exit_clear=0 && exit
+        fi
+    done
+}
+
+######################################################################
+# Create filelist
+# Uses:
+#   sort_by
+#   sort_reverse
+#   expand_dirs
+# Modifies:
+#   filelist
+#   image_names
+#   images
+#   read_iter
+#   argc
+# Arguments:
+#   $@              command line arguments
+######################################################################
+pre_read_images() {
+    ls_args="-d"
+    [[ "$sort_reverse" -eq 1 ]] && ls_args+=" -r"
+    if [[ "$sort_by" == "time" ]]
+    then
+        ls_args+=" -t"
+    elif [[ "$sort_by" == "size" ]]
+    then
+        ls_args+=" -S"
+    elif [[ "$sort_by" == "extension" ]]
+    then
+        ls_args+=" -X"
+    fi
+    if [[ "$#" -gt 0 ]]
+    then
+        mapfile -t filelist < <(ls $ls_args "$@")
+    else
+        mapfile -t filelist < <(ls $ls_args -- *)
+    fi
+    local item
+    if [[ "$expand_dirs" -eq 1 ]]
+    then
+        for item in "${filelist[@]}"
+        do
+            [[ -d "$item" ]] && filelist+=("$item"/*)
+        done
+    elif [[ "$expand_dirs" == "ask" ]]
+    then
+        for item in "${filelist[@]}"
+        do
+            [[ -d "$item" ]] \
+                && read -p "Expand $item? (n, Esc: no, N: no to all)" -rsN1 char \
+                && echo
+            [[ "$char" == "N" ]] && break
+            [[ ! "$char" =~ ^(n|$'\e')$ ]] && filelist+=("$item"/*)
+        done
+    fi
+    argc="${#filelist[@]}"
+    image_names=()
+    images=()
+    rm -f "${tmp_dir}/image_names.txt*"
+    rm -f "${tmp_dir}/images.txt*"
+    read_iter=0
+}
+
+######################################################################
+# Search for thumbnail of file in cache directory
+# Uses:
+#   file
+#   cache_dir
+# Modifies:
+#   thumbnail_file
+#   cache_name
+# Return:
+#   0 thumbnail file was found
+#   1 thumbnail file was not found
+######################################################################
+find_thumbnail() {
+    real_path=$(realpath "$file")
+    cache_name=${real_path//\ /_}
+    cache_name=${cache_name//\(/_}
+    cache_name=${cache_name//\)/_}
+    cache_name=${cache_name//\//_}
+    cache_name="${cache_dir}/${cache_name}.thumbnail"
+    [[ -f "$cache_name" ]] && thumbnail_file="$cache_name" && return 0
+    return 1
+}
+
+######################################################################
+# Create thumbnail for file
+# Uses:
+#   file
+#   tmp_dir
+#   thumbnail_width
+# Modifies:
+#   thumbnail_file
+######################################################################
+create_thumbnail() {
+    thumbnail_file=$(mktemp --dry-run "${tmp_dir}/thumbnail-XXXXXXXX.jpg")
+    eval "$(ffprobe -i "$file" -show_entries format=duration -v quiet -of flat="s=_")"
+    format_duration=${format_duration/.*/}
+    (( time_point = format_duration / 2 ))
+    ffmpeg -ss "$time_point" -i "$file" -loglevel quiet -frames:v 1 \
+        -filter:v scale="$thumbnail_width":-1 -y "$thumbnail_file"
+    montage -label "thumbnail" "$thumbnail_file" -geometry +0+0 -background Gold "$thumbnail_file"
+}
+
+######################################################################
+# Parses filelist and filters supported filetypes
+# Uses:
+#   filelist
+#   read_iter       number of files already parsed
+#   read_target     maximum number of files to parse
+#   argc            total number of files given as arguments
+#   tmp_dir
+#   thumbnail_file
+#   video_thumbnails
+#   cache_thumbnails
+#   cache_name
+#   start
+# Modifies:
+#   read_iter
+# Outputs:
+#   appends file names into the file ${tmp_dir}/image_names.txt
+#   appends the image names corresponding to the above into the file ${tmp_dir}/images.txt
+#   touches file ${tmp_dir}/done_reading if all files are parsed
+#   prints a dot for every file with unsupported type if the user interface is not yet up
+# Arguments:
+#   $1              if "--remaining" parse the rest of the files
+######################################################################
+read_images() {
+    readc=0
+    while [[ "$1" == "--remaining" ]] || (( readc < read_target )) && (( read_iter < argc ))
+    do
+        file=${filelist[$read_iter]}
+        if [[ $(file --mime-type -b "$file") =~ ^image/.*$ ]]
+        then
+            echo "$file" >> "${tmp_dir}/image_names.txt"
+            echo "$file" >> "${tmp_dir}/images.txt"
+            (( readc += 1 ))
+        elif [[ $(file --mime-type -b "$file") =~ ^video/.*$ ]] \
+            && [[ "$video_thumbnails" -eq 1 ]] \
+            && command -v ffmpeg &> /dev/null
+        then
+            ! find_thumbnail && create_thumbnail
+            echo "$file" >> "${tmp_dir}/image_names.txt"
+            echo "$thumbnail_file" >> "${tmp_dir}/images.txt"
+            if [[ "$cache_thumbnails" -eq 1 ]] && [[ ! "$thumbnail_file" == "$cache_name" ]]
+            then
+                cp -f "$thumbnail_file" "$cache_name"
+            fi
+            (( readc += 1 ))
+        else
+            [[ ! "$1" == "--remaining" ]] && printf "." # only print if ui is not started
+        fi
+        (( read_iter += 1 ))
+    done
+    printf "\n"
+    [[ "$1" == "--remaining" ]] \
+        && true > "${tmp_dir}/done_reading" \
+        || rm -f "${tmp_dir}/done_reading"
+}
+
+######################################################################
+# 2J                Clear entire screen
+# ?25l              Hide cursor
+# H                 Move cursor to upper left corner
+######################################################################
+clear_screen() {
+    printf "\e[2J\e[?25l\e[H"
+}
+
+######################################################################
+# ?25l              Hide cursor
+# H                 Move cursor to upper left corner
+# 2B                Move cursor down 2 lines
+# 2K                Clear entire line
+# 1J                Clear screen from cursor up
+######################################################################
+clear_status() {
+    # clear only first three lines of screen
+    printf "\e[?25l\e[H\e[2B\e[2K\e[1J\e[H"
+    status=""
+}
+
+######################################################################
+# ?25l              Hide cursor
+# H                 Move cursor to upper left corner
+# 3B                Move cursor down 3 lines
+# 2K                Clear entire line
+# 0J                Clear screen from cursor down
+######################################################################
+clear_names() {
+    # clear from 4th line and down
+    printf "\e[?25l\e[H\e[3B\e[2K\e[0J\e[H"
+}
+
+empty_prefix() {
+    prefix=""
+}
+
+show_cursor() {
+    printf "\e[?25h"
+}
+
+######################################################################
+# Starts the ueberzug daemon
+# Uses:
+#   tmp_dir
+# Modifies:
+#   fifo
+#   daemon_on
+# Outputs:
+#   creates the fifo file
+######################################################################
+start_daemon() {
+    fifo=$(mktemp --dry-run "${tmp_dir}/fifo-XXXXXXXXX")
+    mkfifo "$fifo"
+    ueberzug layer --parse bash --silent < "$fifo" &
+    exec {colfd}> "$fifo"
+    daemon_on=1
+}
+
+######################################################################
+# Stops the ueberzug daemon and maybe exits the program
+# Uses:
+#   daemon_on
+#   background_pid
+#   fifo
+#   exit_clear
+#   tmp_dir
+# Modifies:
+#   daemon_on
+# Arguments:
+#   $1              "--exit" exit the program
+#                   "--reload" kill the background process
+# Outputs:
+#   deletes the fifo file
+######################################################################
+stop_daemon() {
+    [[ "$daemon_on" -eq 1 ]] && exec {colfd}>&- # prevent error message
+    daemon_on=0
+    rm -f "$fifo"
+    if [[ "$1" == "--exit" ]]
+    then
+        kill "$background_pid" &>/dev/null
+        [[ "$exit_clear" -eq 1 ]] && clear_screen
+        rm -rf "$tmp_dir" && show_cursor && stty echo && exit
+    elif [[ "$1" == "--reload" ]]
+    then
+        kill "$background_pid" &>/dev/null
+        return 0
+    fi
+}
+
+restart_daemon() {
+    stop_daemon
+    start_daemon
+}
+
+######################################################################
+# Calculates the parameters for the current view
+# Uses:
+#   fit_vertical
+#   fit_horizontal
+#   start
+# Modifies:
+#   photo_columns
+#   photo_lines
+#   batch
+#   show
+######################################################################
+calculate_dimensions() {
+    read -r lines columns < <(stty size)
+    (( photo_columns = columns / fit_horizontal ))
+    (( photo_lines = (lines - 3) / fit_vertical ))
+    (( batch = fit_horizontal * fit_vertical ))
+    (( show = total - start ))
+    [[ "$show" -gt "$batch" ]] && show="$batch"
+}
+
+######################################################################
+# Pads strings with filenames to fit into the given column width
+# Uses:
+#   current_name
+#   photo_columns
+# Modifies:
+#   current_name
+######################################################################
+pad_sides() {
+    length="${#current_name}"
+    (( pads = photo_columns - length ))
+    (( leftpad = pads / 2 ))
+    (( rightpad = pads - leftpad ))
+    local p
+    for (( p = 0; p < leftpad; p++))
+    do
+        current_name=" $current_name"
+    done
+    for (( p = 0; p < rightpad; p++))
+    do
+        current_name+=" "
+    done
+}
+
+######################################################################
+# Draws the current batch of images on the screen
+# Uses:
+#   show
+#   show_names
+#   fit_vertical
+#   fit_horizontal
+#   start
+#   images
+#   scaler
+#   fifo
+######################################################################
+show_batch() {
+    cnt=0
+    [[ "$show" -lt 1 ]] && return
+    if [[ "$show_names" -eq 1 ]] && [[ "$show" -gt 1 ]]
+    then
+        # Substracting 3 lines is a hack. The names can be printed in
+        # two lines, but ueberzug is not exact in its drawing on the
+        # terminal lines for different window sizes.
+        # So I give it some more room for error.
+        (( draw_lines = photo_lines - 3 ))
+    else
+        draw_lines="$photo_lines"
+    fi
+    local i
+    for (( i = 0; i < fit_vertical; i++ ))
+    do
+        for (( j = 0; j < fit_horizontal; j++, cnt++ ))
+        do
+            (( index = start + i * fit_horizontal + j))
+            (( posx = j * photo_columns))
+            (( posy = 3 + i * photo_lines))
+            if [[ "$cnt" -lt "$show" ]]
+            then
+                assoc=( [action]=add \
+                        [identifier]="${fifo}${i}${j}" \
+                        [path]="${images[$index]}" \
+                        [width]="$photo_columns" \
+                        [height]="$draw_lines" \
+                        [x]="$posx" \
+                        [y]="$posy" \
+                        [scaler]="$scaler" )
+            fi
+            declare -p assoc > "$fifo"
+        done
+    done
+}
+
+######################################################################
+# Modifies the parameters needed to show another batch
+# Uses:
+#   start
+#   show
+#   rotated_file
+# Modifies:
+#   new_start
+#   warning
+# Outputs:
+#   deletes rotated file if new batch is different than the current
+# Return:
+#   0               new batch is different than the current
+#   1               new batch is the same as the current
+######################################################################
+compute_batch() {
+    case $1 in
+        next)
+            # There exists an edge case here when $show is less that
+            # $batch, but we are not in the last batch of images
+            # This can happen when we are loading the images in the background
+            # and the user has changes the batch size with the 's' option
+            # right after starting up.
+            if (( start + show < total ))
+            then
+                (( new_start = start + show ))
+            else
+                warning="End of files"
+            fi
+            ;;
+        last)
+            (( new_start = total - ((total - 1) % batch + 1) ))
+            [[ "$new_start" -le "$start" ]] && warning="End of files"
+            ;;
+        prev)
+            [[ "$start" -eq 0 ]] && warning="Start of files"
+            (( new_start = start - batch))
+            # The below is useful in case of resizing
+            # If I am in the second of batches of 10 and the
+            # new window fits 20 then I don't want negative numbers
+            [[ "$new_start" -lt 0 ]] && new_start=0
+            ;;
+        first)
+            [[ "$start" -eq 0 ]] && warning="Start of files"
+            new_start=0
+            ;;
+    esac
+    [[ -z "$warning" ]] && rm -f "$rotated_file" && return 0 || return 1
+}
+
+######################################################################
+# Calculates the next suggestion from the autocomplete array
+# Uses:
+#   autocomplete
+#   suggestion_count
+# Modifies:
+#   suggestion_index
+#   suggestion
+# Arguments:
+#   $1              prev or next, depending on the direction we are cycling
+######################################################################
+set_suggestion() {
+    [[ "$suggestion_count" -eq 2 ]] && suggestion="${autocomplete[1]}" && clear_suggestions && return
+    if [[ "$1" == "next" ]]
+    then
+        (( suggestion_index = (suggestion_index + 1) % suggestion_count ))
+    elif [[ "$1" == "prev" ]]
+    then
+        (( suggestion_index = (suggestion_index - 1) % suggestion_count ))
+    fi
+    suggestion="${autocomplete[$suggestion_index]}"
+}
+
+######################################################################
+# Saves the suggestion as input and clears everything related to autocomplete
+# Uses:
+#   suggestion
+# Modifies:
+#   left
+#   suggestion
+#   autocomplete
+######################################################################
+clear_suggestions() {
+    [[ -z "$suggestion" ]] && return
+    left="$suggestion"
+    suggestion=""
+    suggestion_count=0
+    unset autocomplete
+}
+
+######################################################################
+# Escapes special characters in filenames in order to not have a problem
+# with command execution. Should be used like var=$(escape_name "$var")
+# Arguments:
+#   $1              The name we want to escape chars for
+# Outputs:
+#   $2              Prints the updated name
+######################################################################
+escape_name() {
+    local name="$1"
+    name="${name// /\\ }"
+    name="${name//\(/\\\(}"
+    name="${name//\)/\\\)}"
+    name="${name//\{/\\\{}"
+    name="${name//\}/\\\}}"
+    printf "%s" "$name"
+}
+
+######################################################################
+# Creates the automplete array based on the autocomplete type we want
+# Uses:
+#   left
+# Modifies:
+#   autocomplete
+# Arguments:
+#   $1              autocomplete type: command, file, etc.
+# Return:
+#   0               if autocomplete array was created
+#   1               if array was not created for any reason
+######################################################################
+create_suggestions() {
+    IFS=" " read -r -a split_left <<< "$left"
+    [[ "${left: -1}" == " " ]] && split_left+=("") #we do that so that a space confirms a suggestion
+    [[ "${#split_left[@]}" -eq 0 ]] && return 1
+    if [[ "$1" == "command" ]]
+    then
+        if [[ "${#split_left[@]}" -gt 1 ]]
+        then
+            mapfile -t autocomplete < <(compgen -f "${split_left[-1]}" | sort)
+        else
+            mapfile -t autocomplete < <(compgen -c "${split_left[-1]}" | sort)
+        fi
+    elif [[ "$1" == "file" ]]
+    then
+        mapfile -t autocomplete < <(compgen -f "${split_left[-1]}" | sort)
+    fi
+
+    autocomplete=("$left" "${autocomplete[@]}")
+    [[ "${#split_left[@]}" -gt 0 ]] && unset "split_left[-1]"
+    local i=1
+    while [[ "$i" -lt ${#autocomplete[@]} ]]
+    do
+        autocomplete[$i]=$(escape_name "${autocomplete[$i]}")
+        [[ "${#split_left[@]}" -gt 0 ]] && autocomplete[$i]="${split_left[*]} ${autocomplete[$i]}"
+        (( i += 1 ))
+    done
+    suggestion_index=0
+    suggestion_count=${#autocomplete[@]}
+    return 0
+}
+
+######################################################################
+# Gets input from the user
+# Modifies:
+#   input
+# Arguments:
+#   $1              text to show as prompt
+#   $2              text to have already in the input line
+#   $3              suggestion type (command, file, etc.)
+# Outputs:
+#   None
+# Return:
+#   0               if input is meaningful
+#   1               if input is not meaningful
+######################################################################
+get_input() {
+    show_cursor
+    printf "%s\e7" "$1"
+    [[ -n "$2" ]] && left="$2" || left=""
+    right=""
+    while true
+    do
+        printf "\e8\e[K"
+        move=""
+        [[ -n "$right" ]] && move="\e[${#right}D"
+        if [[ -n "$suggestion" ]]
+        then
+            printf "%s%s$move" "$suggestion" "$right"
+        else
+            printf "%s%s$move" "$left" "$right"
+        fi
+        read -rsN1 char
+        read -rsN1 -t 0.0001 k1
+        read -rsN1 -t 0.0001 k2
+        read -rsN1 -t 0.0001 k3
+        read -rsN1 -t 0.0001 k4
+        key="${char}${k1}${k2}${k3}${k4}"
+        case "$key" in
+            $'\e[D') #left arrow press
+                clear_suggestions
+                if [[ -n "$left" ]]
+                then
+                    right="${left: -1}$right"
+                    left="${left:0:-1}"
+                fi
+                ;;
+            $'\e[C') #right arrow press
+                clear_suggestions
+                if [[ -n "$right" ]]
+                then
+                    left="$left${right:0:1}"
+                    right="${right:1}"
+                fi
+                ;;
+            $'\e[H'|$'\e[1~') #Home
+                clear_suggestions
+                right="${left}${right}"
+                left=""
+                ;;
+            $'\e[F'|$'\e[4~') #End
+                clear_suggestions
+                left="${left}${right}"
+                right=""
+                ;;
+            $'\e[3~'|$'\e[P')
+                clear_suggestions
+                [[ -n "$right" ]] && right="${right:1}"
+                ;;
+            $'\e')
+                clear_suggestions
+                input="ESCAPE"
+                break
+                ;;
+            $'\b'|$'\x7F')
+                clear_suggestions
+                [[ -n "$left" ]] && left="${left:0:-1}"
+                ;;
+            $'\n')
+                clear_suggestions
+                input="${left}${right}"
+                break
+                ;;
+            [0-9]|[A-Z]|[a-z]|' '|[\/\:\;\|\<\>?+\-%._\\*@!$])
+                clear_suggestions
+                left+="$key"
+                ;;
+            $'\t')
+                [ -z "$3" ] && continue
+                [[ ${#autocomplete[@]} -gt 0 ]] && set_suggestion next && continue
+                ! create_suggestions "$3" && continue || set_suggestion next
+                ;;
+            $'\e[Z')
+                [ -z "$3" ] && continue
+                [[ ${#autocomplete[@]} -gt 0 ]] && set_suggestion prev && continue
+                ! create_suggestions "$3" && continue || set_suggestion prev
+                ;;
+            $'\e[B')
+                clear_suggestions
+                ;;
+            *)
+                ;;
+        esac
+    done
+    [[ "$input" == "ESCAPE" || -z "$input" ]] && return 1 || return 0
+}
+
+is_time() {
+    [[ "$1" =~ ^[0-9]*\.?[0-9]+$ ]]
+}
+
+is_natural() {
+    [[ "$1" =~ ^([1-9][0-9]*|0+[1-9][0-9]*)$ ]]
+}
+
+set_error() {
+    error="Invalid value for $1: $2"
+}
+
+######################################################################
+# Ask the user to set the grid size
+# Uses:
+#   fit_vertical
+#   fit_horizontal
+# Modifies:
+#   new_fit_vertical
+#   new_fit_horizontal
+######################################################################
+give_dimensions() {
+    new_fit_vertical="$fit_vertical"
+    new_fit_horizontal="$fit_horizontal"
+    read -r lines columns < <(stty size)
+    ! get_input "Give number of lines and columns [current: $fit_vertical $fit_horizontal]: " && return
+    local fit
+    IFS=" " read -r -a fit <<< "$input"
+    ! is_natural "${fit[0]}" && set_error "lines" "${fit[0]}" && return
+    ! is_natural "${fit[1]}" && set_error "columns" "${fit[1]}" && return
+    [[ ! "${fit[0]}" -eq "$fit_vertical" ]] && (( new_fit_vertical = fit[0] ))
+    [[ ! "${fit[1]}" -eq "$fit_horizontal" ]] && (( new_fit_horizontal = fit[1] ))
+}
+
+######################################################################
+# Draws filenames under the images on the screen
+# Uses:
+#   line_names
+######################################################################
+print_names() {
+    read -r lines columns < <(stty size)
+    separator=""
+    local s
+    for (( s = 0; s < columns; s++ ))
+    do
+        separator+="─"
+    done
+    l=${#line_names[@]}
+    local i
+    for (( i = 0; i < l; i++))
+    do
+        (( current_line = 2 + (i + 1) * photo_lines ))
+        printf "\e[%s;1f" "$current_line"
+        printf "\e[2K%s" "${line_names[$i]}"
+        (( current_line += 1 ))
+        printf "\e[%s;1f" "$current_line"
+        printf "%s" "$separator"
+    done
+}
+
+######################################################################
+# Update the filenames to account for batch changes or file renaming
+# Uses:
+#   show_names
+#   fit_vertical
+#   fit_horizontal
+#   start
+#   show
+#   image_names
+#   photo_columns
+# Modifies:
+#   line_names
+# Return:
+#   0               if names where modified
+#   1               if the function is unnecessary in a context
+######################################################################
+modify_names() {
+    cnt=0
+    [[ "$show_names" -eq 0 ]] || in_monocle && return 1
+    line_names=()
+    local i
+    for (( i = 0; i < fit_vertical; i++ ))
+    do
+        names=""
+        local j
+        for (( j = 0; j < fit_horizontal; j++, cnt++ ))
+        do
+            (( index = start + i * fit_horizontal + j))
+            if [[ "$cnt" -lt "$show" ]]
+            then
+                (( current_number = i * fit_horizontal + j + 1 ))
+                current_name="${current_number}: $(basename "${image_names[$index]}")"
+                [[ -n ${tags[$index]} ]] && current_name="* ${current_name}"
+                (( max_length = photo_columns - 2 ))
+                current_name=${current_name:0:$max_length}
+                pad_sides
+                names+="$current_name"
+            fi
+        done
+        [[ -n "$names" ]] && line_names+=("$names")
+    done
+    return 0
+}
+
+update_names() {
+    clear_names
+    modify_names && print_names
+}
+
+redraw() {
+    restart_daemon
+    calculate_dimensions
+    show_batch
+    update_names
+}
+
+######################################################################
+# Checks whether a redraw is necessary
+# Uses:
+#   new_fit_vertical
+#   new_fit_horizontal
+#   new_start
+#   fit_vertical
+#   fit_horizontal
+#   start
+#   batch
+# Modifies:
+#   wide_vertical
+#   wide_horizontal
+#   wide_start
+#   fit_vertical
+#   fit_horizontal
+#   start
+# Outputs:
+#   deletes the rotated image file
+######################################################################
+maybe_redraw() {
+    read -r lines columns < <(stty size)
+    if (( new_fit_vertical != fit_vertical )) \
+        || (( new_fit_horizontal != fit_horizontal )) \
+        || (( new_start != start ))
+    then
+        (( new_fit_vertical > lines - 3 || new_fit_vertical < 1 )) \
+            && set_error lines "$new_fit_vertical" && return
+        (( new_fit_horizontal > columns || new_fit_horizontal < 1 )) \
+            && set_error columns "$new_fit_horizontal" && return
+        if [[ "$new_fit_vertical" -eq 1 && "$new_fit_horizontal" -eq 1 && "$batch" -gt 1 ]]
+        then
+            wide_vertical="$fit_vertical"
+            wide_horizontal="$fit_horizontal"
+            wide_start="$start"
+        fi
+        (( wide_batch = wide_vertical * wide_horizontal ))
+        if [[ "$wide_batch" -gt 0 ]]
+        then
+            while (( new_start >= wide_start + wide_batch ))
+            do
+                (( wide_start = wide_start + wide_batch ))
+            done
+            while (( new_start < wide_start ))
+            do
+                (( wide_start = wide_start - wide_batch ))
+            done
+        fi
+        fit_vertical="$new_fit_vertical"
+        fit_horizontal="$new_fit_horizontal"
+        start="$new_start"
+        rm -f "$rotated_file"
+        redraw
+    fi
+}
+
+######################################################################
+# Set information relating to the current view
+# Uses:
+#   fit_vertical
+#   fit_horizontal
+#   start
+#   image_names
+#   prefix
+# Modifies:
+#   info
+######################################################################
+set_info() {
+    info="[$fit_vertical x $fit_horizontal]"
+    ((begin = start + 1))
+    if in_monocle
+    then
+        local photo_name
+        photo_name=$(basename "${image_names[$start]}")
+        [[ -n ${tags[$start]} ]] && photo_name="* ${photo_name}"
+        info+=" - Photo $begin of $total - ${photo_name}"
+    else
+        ((finish = begin + show - 1))
+        info+=" - Photos [$begin - $finish] of $total"
+    fi
+    local t=${#tags[@]}
+    [[ "$t" -gt 1 ]] && info+=" [${t} tagged]"
+    [[ -n "$prefix" ]] && info+=" ($prefix)"
+}
+
+######################################################################
+# Checks whether we are in monocle mode
+# Uses:
+#   batch
+# Modifies:
+#   warning
+# Arguments:
+#   $1              string to set as the beginning of warning
+# Return:
+#   0               if we are in in monocle mode
+#   1               if we are not in monocle mode
+######################################################################
+in_monocle() {
+    [[ "$batch" -eq 1 ]] && return 0
+    [[ -n "$1" ]] && \
+        warning="${1} option available for single images. Press [m] or N[g] to enter monocle mode"
+    return 1
+}
+
+######################################################################
+# Rotate the current image shown in monocle mode
+# Uses:
+#   tmp_dir
+#   images
+#   degrees
+#   fifo
+#   photo_columns
+#   photo_lines
+#   scaler
+# Modifies:
+#   rotated_file
+#   error
+# Return:
+#   0               if file was rotated
+#   1               if file was not rotated for any reason
+######################################################################
+rotate() {
+    ! in_monocle "Rotate" && return 1
+    ! command -v convert &> /dev/null \
+        && error="imagemagick not installed: required for rotation of images" \
+        && return 1
+    rotated_file="${tmp_dir}/rotated-$(basename "${images[$start]}")"
+    [[ ! -f "$rotated_file" ]] && cp "${images[$start]}" "$rotated_file"
+    error=$(convert -rotate "$degrees" "$rotated_file" "$rotated_file" 2>&1 >/dev/null)
+    error=$(echo "$error" | head -3)
+    [[ -n "$error" ]] && return 1
+    assoc=( [action]=add \
+            [identifier]="${fifo}00" \
+            [path]="$rotated_file" \
+            [width]="$photo_columns" \
+            [height]="$photo_lines" \
+            [x]=0 \
+            [y]=3 \
+            [scaler]="$scaler" )
+    declare -p assoc > "$fifo"
+    return 0
+}
+
+######################################################################
+# Evaluate a command
+# Uses:
+#   exec_prompt
+# Modifies:
+#   error
+# Arguments:
+#   $1              message to show if confirm prompt is enabled
+#   $2              command to execute
+#   $3              message to show on successful execution
+# Return:
+#   0               if command was executed successfully
+#   1               if command failed
+######################################################################
+eval_cmd() {
+    if [[ "$exec_prompt" -eq 1 ]]
+    then
+        clear_status
+        printf "%s? (press n/N/Esc to abort)" "$1"
+        read -rsN1 ans
+        if [[ ! "$ans" =~ ^(n|N|$'\e')$ ]]
+        then
+            error=$(eval "$2" 2>&1 >/dev/null)
+            error=$(echo "$error" | head -3)
+            [[ -z "$error" ]] && success="$3" && return 0
+        fi
+    else
+        error=$(eval "$cmd" 2>&1 >/dev/null)
+        error=$(echo "$error" | head -3)
+        [[ -z "$error" ]] && success="$3" && return 0
+    fi
+    return 1
+}
+
+######################################################################
+# Checks if all indices given as input are valid in the specified scope
+# Uses:
+#   scope
+#   image_index
+#   total
+#   show
+# Return:
+#   0               if all indices are valid
+#   1               if any index invalid
+######################################################################
+valid_indices() {
+    local i
+    if [[ "$scope" == "global" ]]
+    then
+        for (( i = 0; i < index_count; i++ ))
+        do
+            if (( image_index[i] < 0 || image_index[i] >= total ))
+            then
+                (( humanized_index = image_index[i] + 1 ))
+                set_error "global index" "${humanized_index}: valid in range [1, $total]" && return 1
+            fi
+        done
+    else
+        for (( i = 0; i < index_count; i++ ))
+        do
+            if (( image_index[i] < 0 || image_index[i] >= show ))
+            then
+                (( humanized_index = image_index[i] + 1 ))
+                set_error "local index" "${humanized_index}: valid in range [1, $show]" && return 1
+            fi
+        done
+    fi
+    return 0
+}
+
+######################################################################
+# Selects all indices given the scope
+# Uses:
+#   scope
+#   show
+#   total
+# Modifies:
+#   image_index
+######################################################################
+all_indices() {
+    image_index=()
+    local i
+    if [[ "$scope" == "local" ]]
+    then
+        for ((i = 1; i <= show; i++ ))
+        do
+            image_index+=("$i")
+        done
+    elif [[ "$scope" == "global" ]]
+    then
+        for ((i = 1; i <= total; i++ ))
+        do
+            image_index+=("$i")
+        done
+    fi
+
+}
+
+######################################################################
+# Set the image_index to operate on (array of indices)
+# Uses:
+#   hardcode_index
+#   prefix
+#   batch
+#   scope
+#   start
+#   tags
+# Modifies:
+#   image_index
+# Returns:
+#   0               if indices are ok to be used
+#   1               if an error occured (escaped input,zero count, invalid indices)
+######################################################################
+get_image_index() {
+    unset image_index
+    local i
+    if [[ -n "$hardcode_index" ]]
+    then
+        (( image_index = hardcode_index ))
+        unset hardcode_index
+    elif [[ -n "$prefix" ]]
+    then
+        if [[ "$prefix" == ";" ]] # in tag mode
+        then
+            for (( i = 0; i < total; i++ ))
+            do
+                if [[ "$scope" == "local" ]]
+                then
+                    # filter non-local indices out
+                    [[ -n ${tags[$i]} ]] && is_index_local "$i" && image_index+=("$i")
+                else
+                    [[ -n ${tags[$i]} ]] && image_index+=("$i")
+                fi
+            done
+        elif [[ "$prefix" == "*" ]]
+        then
+            all_indices
+        else
+            IFS=" " read -r -a image_index <<< "$prefix"
+        fi
+    elif [[ "$batch" -eq 1 ]] # no-prefix, just the key pressed
+    then
+        scope=local
+        image_index[0]=1
+    else
+        ! get_input "Give $scope indices to $1: " && return 1
+        [[ "$input" == "*" ]] && all_indices || IFS=" " read -r -a image_index <<< "$input"
+        clear_status
+    fi
+
+    index_count=${#image_index[@]}
+    [[ "$index_count" -eq 0 ]] && return 1
+
+    # if in tag mode don't check and don't adjust offset, it has already been done
+    if [[ ! "$prefix" == ";" ]]
+    then
+        for (( i = 0; i < index_count; i++ ))
+        do
+            ! is_natural "${image_index[$i]}" && set_error "${scope} index" \
+                "${image_index[$i]}: not a natural number" && return 1
+            (( image_index[i] -= 1 ))
+        done
+
+        ! valid_indices && return 1
+        if [[ "$scope" == "local" ]]
+        then
+            for (( i = 0; i < index_count; i++ ))
+            do
+                (( image_index[i] += start))
+            done
+        fi
+    fi
+    return 0
+}
+
+######################################################################
+# Checks whether the provided index is local to the current view
+# Uses:
+#   start
+#   show
+# Arguments:
+#   $1              the index to check
+# Return:
+#   0               if the index is local
+#   1               if the index is not local
+######################################################################
+is_index_local() {
+    (( end = start + show ))
+    [[ "$1" -ge "$start" ]] && [[ "$1" -lt "$end" ]] && return 0 || return 1
+}
+
+
+######################################################################
+# Checks whether the provided index corresponds to an image and not
+# another filetype, thus image_names and images need to be updated
+# together
+# Uses:
+#   image_names
+#   images
+# Arguments:
+#   $1          the index to check
+# Return:
+#   0           if the index is an image
+#   1           if the index is not an image
+######################################################################
+is_image() {
+    [[ "${image_names[$1]}" == "${images[$1]}" ]] && return 0 || return 1
+}
+
+######################################################################
+# Update the status line
+# Uses:
+#   warning
+#   error
+#   success
+# Modifies:
+#   status
+# Outputs:
+#   prints the status on stdout
+######################################################################
+update_status() {
+    local new_status
+    local status_timeout
+    if [[ -n "$success" ]]
+    then
+        new_status="\e[32m${success}\e[m"
+        success=""
+        status_timeout=1
+    elif [[ -n "$error" ]]
+    then
+        new_status="\e[31m${error}\e[m"
+        error=""
+        status_timeout=1
+    elif [[ -n "$warning" ]]
+    then
+        new_status="\e[33m${warning}\e[m"
+        warning=""
+        status_timeout=1
+    else
+        set_info
+        new_status="\e[107;30m${info}\e[m"
+        status_timeout=0
+    fi
+    if [[ ! "$new_status" == "$status" ]]
+    then
+        clear_status && status="$new_status"
+        if [[ "$status_timeout" -eq 1 ]]
+        then
+            printf "$status"
+            read -t "$message_timeout" -rsN1
+            update_status
+        else
+            printf "$status"
+        fi
+    fi
+}
+
+execute() {
+    local i
+    local action="$1"
+    if [[ "$action" == "split" ]] # each image on its own
+    then
+        ! get_image_index "execute individually" && return 1
+        for (( i = 0; i < index_count; i++))
+        do
+            ind=${image_index[$i]}
+            printf "\e[1J\e[H\n"
+            printf "%%s: %s\n" "${image_names[$ind]}"
+            [[ -f "$rotated_file" ]] && printf "%%r: %s" "$rotated_file"
+            printf "\e[H"
+            ! get_input "Command: " "" "command" && continue
+            cmd=${input//%s/\"${image_names[$ind]}\"}
+            cmd=${cmd//%r/\"${rotated_file}\"}
+            eval_cmd "Execute: ${cmd}" "$cmd" "Successful execution"
+            update_status
+        done
+    else # bundle images
+        ! get_image_index "execute bundled" && return 1
+        local args=""
+        for (( i = 0; i < index_count; i++))
+        do
+            ind=${image_index[$i]}
+            args+="\"${image_names[$ind]}\" "
+        done
+        printf "\e[1J\e[H\n"
+        printf "%%S: %s\n" "$args"
+        printf "\e[H"
+        ! get_input "Command: " "" "command" && return
+        cmd=${input//%S/${args[@]}}
+        eval_cmd "Execute: ${cmd}" "$cmd" "Successful execution"
+    fi
+}
+
+rename() {
+    local update=0
+    local i
+    ! get_image_index "rename" && return 1
+    local renamed=0
+    for (( i = 0; i < index_count; i++))
+    do
+        ind=${image_index[$i]}
+        printf "\e[1J\e[HOld name: %s\n" "${image_names[$ind]}"
+        ! get_input "New name: " "${image_names[$ind]}" && continue
+        if [[ "${image_names[$ind]}" == "$input" ]]
+        then
+            error="New name has to be different"
+            update_status
+            continue
+        elif [[ -f "$input" ]]
+        then
+            error="Filename exists"
+            update_status
+            continue
+        fi
+        cmd="mv \"${image_names[$ind]}\" \"$input\""
+        if eval_cmd "Rename to: ${input}" "$cmd" "Successfully renamed"
+        then
+            update_status
+            is_image "$ind" && images[$ind]="$input"
+            image_names[$ind]="$input"
+            is_index_local "$ind" && update=1
+            (( renamed += 1 ))
+        fi
+    done
+    if [[ "$renamed" -eq "$index_count" ]]
+    then
+        [[ "$index_count" -gt 1 ]] && success="Successfully renamed ${renamed} out of ${index_count} files"
+    elif [[ "$renamed" -gt 0 ]]
+    then
+        [[ "$index_count" -gt 1 ]] && warning="Successfully renamed ${renamed} out of ${index_count} files"
+    else
+        error="No files renamed"
+    fi
+    [[ "$update" -eq 1 ]] && return 0 || return 1
+}
+
+goto_image() {
+    ! get_image_index "go to" && return
+    new_start="$image_index"
+    new_fit_vertical=1
+    new_fit_horizontal=1
+    maybe_redraw
+}
+
+delete_image() {
+    local update=0
+    local i
+    ! get_image_index "delete" && return 1
+    local deleted=0
+    for (( i = 0; i < index_count; i++))
+    do
+        (( updated = i - deleted )) # adjust index because we trim the arrays after deleting
+        ind=${image_index[$updated]}
+        cmd="mv \"${image_names[$ind]}\" \"$trash_dir\""
+        if eval_cmd "Delete: ${image_names[$ind]}" \
+            "$cmd" "Successfully deleted"
+        then
+            update_status
+            unset image_names["${image_index[$updated]}"]
+            unset images["${image_index[$updated]}"]
+            image_names=("${image_names[@]}")
+            images=("${images[@]}")
+            total=${#images[@]}
+            is_index_local "$ind" && update=1
+            (( deleted += 1 ))
+        fi
+    done
+    if [[ "$deleted" -eq "$index_count" ]]
+    then
+        [[ "$index_count" -gt 1 ]] && success="Successfully deleted ${deleted} out of ${index_count} files"
+    elif [[ "$deleted" -gt 0 ]]
+    then
+        [[ "$index_count" -gt 1 ]] && warning="Successfully deleted ${deleted} out of ${index_count} files"
+    else
+        error="No files deleted"
+    fi
+    [[ "$update" -eq 1 ]] && return 0 || return 1
+}
+
+tag_image() {
+    local update=0
+    local i
+    case $1 in
+        tag)
+            ! get_image_index "tag" && return 1
+            for (( i = 0; i < index_count; i++))
+            do
+                [[ -z ${tags[${image_index[$i]}]} ]] && tags[${image_index[$i]}]=1 \
+                    && is_index_local "${image_index[$i]}" && update=1
+            done
+            ;;
+        untag)
+            ! get_image_index "untag" && return 1
+            for (( i = 0; i < index_count; i++))
+            do
+                [[ -n ${tags[${image_index[$i]}]} ]] && unset tags["${image_index[$i]}"] \
+                    && is_index_local "${image_index[$i]}" && update=1
+            done
+            ;;
+    esac
+    [[ "$update" -eq 1 ]] && return 0 || return 1
+}
+
+change_sort() {
+    ! get_input "New sort [current: ${sort_by}] (options: name, time, size, extension): " && return 1
+    if [[ ! "$input" =~ ^(name|time|size|extension)$ ]]
+    then
+        set_error "sort" "$input"
+        update_status
+        return 1
+    fi
+    local new_sort_by="$input"
+    [[ ! "$new_sort_by" == "$sort_by" ]] && sort_by="$new_sort_by" && return 0
+    return 1
+}
+
+toggle_sort_reverse() {
+    [[ "$sort_reverse" -eq 1 ]] && sort_reverse=0 || sort_reverse=1
+}
+
+reverse_images(){
+    min=0
+    (( max = ${#images[@]} -1 ))
+    local temp
+    while [[ min -lt max ]]
+    do
+        temp="${image_names[$min]}"
+        image_names[$min]="${image_names[$max]}"
+        image_names[$max]="$temp"
+
+        temp="${images[$min]}"
+        images[$min]="${images[$max]}"
+        images[$max]="$temp"
+
+        (( min += 1 ))
+        (( max -= 1 ))
+    done
+}
+
+toggle_names() {
+    [[ "$show_names" -eq 1 ]] && show_names=0 || show_names=1
+}
+
+change_scaler() {
+    ! get_input "New scaler [current: ${scaler}] (options: crop, distort, fit_contain, contain, forced_cover, cover): " && return 1
+    if [[ ! "$input" =~ ^(crop|distort|fit_contain|contain|forced_cover|cover)$ ]]
+    then
+        set_error "scaler" "$input"
+        update_status
+        return 1
+    fi
+    local new_scaler="$input"
+    [[ ! "$new_scaler" == "$scaler" ]] && scaler="$new_scaler" && return 0
+    return 1
+}
+
+toggle_exec_prompt() {
+    [[ "$exec_prompt" -eq 1 ]] && exec_prompt=0 || exec_prompt=1
+    [[ "$exec_prompt" -eq 1 ]] && success="Confirm command execution" \
+        || warning="Don't confirm command execution"
+    update_status
+}
+
+######################################################################
+# Populate the image_names and images arrays by reading the files
+# written by the background process
+# Uses:
+#   tmp_dir
+# Modifies:
+#   image_names
+#   images
+#   done_reading
+#   total
+######################################################################
+populate_arrays() {
+    # This is to read only new files in each iteration. Should scale well
+    [[ ! -f "${tmp_dir}/image_names.txt" ]] || [[ ! -f "${tmp_dir}/images.txt" ]] && return
+    mv "${tmp_dir}/image_names.txt" "${tmp_dir}/image_names.txt.old"
+    mv "${tmp_dir}/images.txt" "${tmp_dir}/images.txt.old"
+    mapfile -t temp_names < "${tmp_dir}/image_names.txt.old"
+    mapfile -t temp < "${tmp_dir}/images.txt.old"
+    image_names+=("${temp_names[@]}")
+    images+=("${temp[@]}")
+    [[ -f "${tmp_dir}/done_reading" ]] && done_reading=1 || done_reading=0
+    total="${#images[@]}"
+}
+
+######################################################################
+# Sets the scope based on the key that was pressed
+# Uses:
+#   key
+# Modifies:
+#   scope
+######################################################################
+set_scope() {
+    case $key in
+        [a-z])
+            scope=local
+            ;;
+        [A-Z])
+            scope=global
+    esac
+}
+
+######################################################################
+# Loop waiting for user input to execute actions
+# Uses:
+#   fit_vertical
+#   fit_horizontal
+#   prefix
+# Modifies:
+#   new_start
+#   new_fit_vertical
+#   new_fit_horizontal
+#   prefix
+#   scope
+#   hardcode_index
+######################################################################
+read_key() {
+    while true
+    do
+        read -rsN1 -t 0.01 key
+        case $key in
+            q)
+                stop_daemon --exit
+                ;;
+            n|N|p|P)
+                [[ "$prefix" =~ ^(;|\*)$ ]] && empty_prefix
+                case $key in
+                    n)
+                        keyword=next
+                        ;;
+                    N)
+                        keyword=last
+                        ;;
+                    p)
+                        keyword=prev
+                        ;;
+                    P)
+                        keyword=first
+                        ;;
+                esac
+                new_fit_vertical="$fit_vertical"
+                new_fit_horizontal="$fit_horizontal"
+                compute_batch "$keyword" && maybe_redraw
+                empty_prefix
+                update_status
+                ;;
+            s)
+                [[ "$prefix" =~ ^(;|\*)$ ]] && empty_prefix
+                clear_status
+                if [[ -z "$prefix" ]]
+                then
+                    give_dimensions
+                else
+                    IFS=" " read -r -a prefix_args <<< "$prefix"
+                    (( new_fit_vertical = prefix_args[0] ))
+                    (( new_fit_horizontal = prefix_args[1] ))
+                fi
+                new_start="$start"
+                maybe_redraw
+                empty_prefix
+                update_status
+                ;;
+            +|=)
+                [[ "$prefix" =~ ^(;|\*)$ ]] && empty_prefix
+                if [[ -z "$prefix" ]]
+                then
+                    (( new_fit_vertical = fit_vertical + 1 ))
+                    (( new_fit_horizontal = fit_horizontal + 1 ))
+                else
+                    IFS=" " read -r -a prefix_args <<< "$prefix"
+                    (( new_fit_vertical = fit_vertical + prefix_args[0] ))
+                    (( new_fit_horizontal = fit_horizontal + prefix_args[0] ))
+                fi
+                new_start="$start"
+                maybe_redraw
+                empty_prefix
+                update_status
+                ;;
+            -)
+                [[ "$prefix" =~ ^(;|\*)$ ]] && empty_prefix
+                if [[ -z "$prefix" ]]
+                then
+                    (( new_fit_vertical = fit_vertical - 1 ))
+                    (( new_fit_horizontal = fit_horizontal - 1 ))
+                else
+                    IFS=" " read -r -a prefix_args <<< "$prefix"
+                    (( new_fit_vertical = fit_vertical - prefix_args[0] ))
+                    (( new_fit_horizontal = fit_horizontal - prefix_args[0] ))
+                fi
+                new_start="$start"
+                maybe_redraw
+                empty_prefix
+                update_status
+                ;;
+            m|M)
+                [[ "$prefix" =~ ^(;|\*)$ ]] && empty_prefix
+                set_scope
+                hardcode_index=1
+                goto_image
+                empty_prefix
+                update_status
+                ;;
+            $'\b'|$'\x7F')
+                if [[ -n "$prefix" ]]
+                then
+                    prefix=${prefix:0:-1}
+                elif [[ "$show" -eq 1 ]]
+                then
+                    fit_vertical="$wide_vertical"
+                    fit_horizontal="$wide_horizontal"
+                    start="$wide_start"
+                    redraw
+                    empty_prefix
+                fi
+                update_status
+                ;;
+            k)
+                [[ "$prefix" =~ ^(;|\*)$ ]] && empty_prefix
+                if [[ -z "$prefix" ]]
+                then
+                    (( new_fit_vertical = fit_vertical + 1 ))
+                else
+                    IFS=" " read -r -a prefix_args <<< "$prefix"
+                    (( new_fit_vertical = fit_vertical + prefix_args[0] ))
+                fi
+                (( new_fit_horizontal = fit_horizontal ))
+                new_start="$start"
+                maybe_redraw
+                empty_prefix
+                update_status
+                ;;
+            j)
+                [[ "$prefix" =~ ^(;|\*)$ ]] && empty_prefix
+                if [[ -z "$prefix" ]]
+                then
+                    (( new_fit_vertical = fit_vertical - 1 ))
+                else
+                    IFS=" " read -r -a prefix_args <<< "$prefix"
+                    (( new_fit_vertical = fit_vertical - prefix_args[0] ))
+                fi
+                (( new_fit_horizontal = fit_horizontal ))
+                new_start="$start"
+                maybe_redraw
+                empty_prefix
+                update_status
+                ;;
+            l)
+                [[ "$prefix" =~ ^(;|\*)$ ]] && empty_prefix
+                if [[ -z "$prefix" ]]
+                then
+                    (( new_fit_horizontal = fit_horizontal + 1 ))
+                else
+                    IFS=" " read -r -a prefix_args <<< "$prefix"
+                    (( new_fit_horizontal = fit_horizontal + prefix_args[0] ))
+                fi
+                (( new_fit_vertical = fit_vertical ))
+                new_start="$start"
+                maybe_redraw
+                empty_prefix
+                update_status
+                ;;
+            h)
+                [[ "$prefix" =~ ^(;|\*)$ ]] && empty_prefix
+                if [[ -z "$prefix" ]]
+                then
+                    (( new_fit_horizontal = fit_horizontal - 1 ))
+                else
+                    IFS=" " read -r -a prefix_args <<< "$prefix"
+                    (( new_fit_horizontal = fit_horizontal - prefix_args[0] ))
+                fi
+                (( new_fit_vertical = fit_vertical ))
+                new_start="$start"
+                maybe_redraw
+                empty_prefix
+                update_status
+                ;;
+            r|R)
+                [[ "$prefix" =~ ^(;|\*)$ ]] && empty_prefix
+                case $key in
+                    r)
+                        degrees=90
+                        ;;
+                    R)
+                        degrees="-90"
+                        ;;
+                esac
+                ! rotate && update_status
+                empty_prefix
+                ;;
+            x|X|b|B)
+                set_scope
+                clear_status
+                case $key in
+                    x|X)
+                        action="split"
+                        ;;
+                    b|B)
+                        action="bundle"
+                        ;;
+                esac
+                execute "$action"
+                empty_prefix
+                update_status
+                ;;
+            c|C)
+                set_scope
+                clear_status
+                rename && update_names
+                empty_prefix
+                update_status
+                ;;
+            g|G)
+                set_scope
+                clear_status
+                goto_image
+                empty_prefix
+                update_status
+                ;;
+            d|D)
+                set_scope
+                clear_status
+                delete_image && redraw
+                empty_prefix
+                update_status
+                ;;
+            u|U|t|T)
+                set_scope
+                clear_status
+                case $key in
+                    t|T)
+                        action=tag
+                        ;;
+                    u|U)
+                        action=untag
+                        ;;
+                esac
+                tag_image "$action" && update_names
+                empty_prefix
+                update_status
+                ;;
+            [0-9]|" "|"*"|";")
+                [[ "$prefix" =~ ^(;|\*)$ ]] && prefix=""
+                [[ "$key" == ";" ]] && [[ ${#tags[@]} -eq 0 ]] && warning="No tagged images" \
+                    || prefix+="$key"
+                update_status
+                ;;
+            o)
+                clear_status
+                change_sort && stop_daemon --reload && break
+                empty_prefix
+                update_status
+                ;;
+            O)
+                toggle_sort_reverse
+                if [[ "$done_reading" -eq 1 ]]
+                then
+                    reverse_images
+                    start=0
+                    redraw
+                else # we have not read all images so we need to go from the start
+                    stop_daemon --reload && break
+                fi
+                empty_prefix
+                update_status
+                ;;
+            F)
+                toggle_names && redraw
+                empty_prefix
+                update_status
+                ;;
+            S)
+                clear_status
+                change_scaler && redraw
+                empty_prefix
+                update_status
+                ;;
+            E)
+                toggle_exec_prompt
+                empty_prefix
+                ;;
+            $'\e'|$'\n')
+                empty_prefix
+                update_status
+                ;;
+        esac
+        if [[ ! "$done_reading" -eq 1 ]]
+        then
+            populate_arrays
+            update_status
+        fi
+    done
+}
+
+init() {
+    start_daemon
+    calculate_dimensions
+    show_batch
+    clear_screen
+    update_status
+    update_names
+    read_key
+}
+
+check_dependencies
+parse_config
+set_defaults
+[[ ! -d "$tmp_dir" ]] && mkdir -p "$tmp_dir"
+[[ ! -d "$cache_dir" ]] && mkdir -p "$cache_dir"
+[[ ! -d "$trash_dir" ]] && mkdir -p "$trash_dir"
+trap "stop_daemon --exit" EXIT #handles stty echo better than SIGINT
+trap "redraw; update_status" SIGWINCH
+[[ "$1" =~ ^-h$|^--help$ ]] && help && exit_clear=0 && exit
+while true
+do
+    pre_read_images "$@"
+    stty -echo
+    unset start #make sure that start is not set, makes check in read_images
+    (( first_batch = fit_vertical * fit_horizontal ))
+    read_target="$first_batch" && read_images
+    populate_arrays
+    unset read_target && read_images --remaining &
+    background_pid="$!"
+    [[ "$total" -eq 0 ]] && echo "No images to show" && stty echo && exit_clear=0 && exit
+    start=0
+    declare -A assoc
+    init
+done

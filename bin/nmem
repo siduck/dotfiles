@@ -1,3 +1,3 @@
 #!/bin/bash
  
-printf " ^c#282e3a^^b#7CAFC2^ 󰳡^d^%s" "^b#7CAFC2^^c#282e3a^ $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g)"
+printf " ^c#282e3a^^b#7CAFC2^  ^d^%s" "^b#7CAFC2^^c#282e3a^ $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g) / 4 GB "

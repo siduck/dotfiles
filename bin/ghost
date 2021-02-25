@@ -1,0 +1,6 @@
+#!/bin/bash
+
+icon=" "
+ printf "$icon"
+
+exit 0

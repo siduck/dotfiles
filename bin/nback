@@ -6,7 +6,7 @@ backlight() {
  }
 
 
-icon=" 󰬬 " 
+icon="   " 
  printf "^c#BF616A^$icon"
  printf "^c#D8DEE9^%.0f\n" $(backlight) 
 

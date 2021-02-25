@@ -89,7 +89,7 @@ print-term() {
 }
 
 print-packages() {
-  packages=$(nix-store --query --requisites /run/current-system | wc -l)
+  packages=$(xbps-query -l | wc -l)
 color-echo 'Packages' "$packages"
 }
 
@@ -131,7 +131,7 @@ fi
 
 print-distro() {
 [[ -e /etc/os-release ]] && source /etc/os-release
-PRETTY_NAME='NixOS 20.09'
+PRETTY_NAME='Void Linux'
 if [[ -n "$PRETTY_NAME" ]]; then
 	color-echo 'OS' "$PRETTY_NAME"
 else

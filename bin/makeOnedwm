@@ -1,0 +1,5 @@
+#!/bin/sh
+
+ cp -r /usr/local/bin/dwm .
+ mv dwm onedwm
+doas mv onedwm  /usr/local/bin/
