@@ -22,10 +22,10 @@ static const unsigned int gappx     = 8;      /* gaps between windows */
 
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;
-static const char col_gray1[]       = "#282e3a";
+static const char col_gray1[]       = "#282c34";
 static const char col_gray2[]       = "#565C68";
 static const char col_gray3[]       = "#D8DEE9";    // Iosevka Term Slab
-static const char col_gray4[]       = "#282e3a";
+static const char col_gray4[]       = "#282c34";
 static const char col_cyan[]        = "#81A1C1";
 
  //7e0cf5 ffd800  5fdde5  // pink efa8e4  // gray a0c1b8 abc2e8 #6886c5 // lighht purple dbc6eb // blue 00bcd4 " //#80bdab";

@@ -22,11 +22,11 @@ static const unsigned int gappx     = 8;      /* gaps between windows */
 
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;
-static const char col_gray1[]       = "#282e3a";
-static const char col_gray2[]       = "#565C68";
+static const char col_gray1[]       = "#1d2021";
+static const char col_gray2[]       = "#3c3836";
 static const char col_gray3[]       = "#D8DEE9";    // Iosevka Term Slab
-static const char col_gray4[]       = "#282e3a";
-static const char col_cyan[]        = "#81A1C1";
+static const char col_gray4[]       = "#1d2021";
+static const char col_cyan[]        = "#817F7F";
 
  //7e0cf5 ffd800  5fdde5  // pink efa8e4  // gray a0c1b8 abc2e8 #6886c5 // lighht purple dbc6eb // blue 00bcd4 " //#80bdab";
 
@@ -121,9 +121,6 @@ static Key keys[] = {
     
           { 0,                            XF86MonBrightnessDown,   spawn,      {.v = xd } },
                     { 0,                            XF86MonBrightnessUp,   spawn,      {.v = xi } },
-
-
-
 
         { MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 

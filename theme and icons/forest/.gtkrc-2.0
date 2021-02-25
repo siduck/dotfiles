@@ -2,8 +2,8 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/sid/.gtkrc-2.0.mine"
-gtk-theme-name="Base16-Gruvbox-Dark"
-gtk-icon-theme-name="NordArc-Icons"
+gtk-theme-name="nord_gruv_onedark"
+gtk-icon-theme-name="Tela-circle-dark"
 gtk-font-name="Roboto 11"
 gtk-cursor-theme-name="Premium"
 gtk-cursor-theme-size=18
@@ -15,5 +15,5 @@ gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=1
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle="hintfull"
+gtk-xft-hintstyle="hintslight"
 gtk-xft-rgba="rgb"
