@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=siduck-material
+Comment=A Material Design theme
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=siduck-material
+MetacityTheme=siduck-material
+IconTheme=Adwaita
+CursorTheme=Adwaita
+CursorSize=24
