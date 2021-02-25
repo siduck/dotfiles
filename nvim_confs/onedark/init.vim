@@ -303,28 +303,6 @@ let g:nvim_tree_show_icons = {
 
 " You can edit keybindings be defining this variable
 " You don't have to define all keys.
-" NOTE: the 'edit' key will wrap/unwrap a folder and open a file
-let g:nvim_tree_bindings = {
-    \ 'edit':            ['<CR>', 'o'],
-    \ 'edit_vsplit':     '<C-v>',
-    \ 'edit_split':      '<C-x>',
-    \ 'edit_tab':        '<C-t>',
-    \ 'close_node':      ['<S-CR>', '<BS>'],
-    \ 'toggle_ignored':  'I',
-    \ 'toggle_dotfiles': 'H',
-    \ 'refresh':         'R',
-    \ 'preview':         '<Tab>',
-    \ 'cd':              '<C-]>',
-    \ 'create':          'a',
-    \ 'remove':          'd',
-    \ 'rename':          'r',
-    \ 'cut':             'x',
-    \ 'copy':            'c',
-    \ 'paste':           'p',
-    \ 'prev_git_item':   '[c',
-    \ 'next_git_item':   ']c',
-    \ }
-
 " Disable default mappings by plugin
 " Bindings are enable by default, disabled on any non-zero value
 " let nvim_tree_disable_keybindings=1
@@ -361,6 +339,40 @@ highlight NvimTreeFolderName guifg = #61afef
 
 
 lua << EOF
+
+local get_lua_cb = function (cb_name)
+  return string.format(":lua require'nvim-tree'.on_keypress('%s')<CR>", cb_name)
+end
+
+-- Mappings for nvimtree
+vim.g.nvim_tree_bindings = {
+  ["<CR>"]           = get_lua_cb("edit"),
+  ["o"]              = get_lua_cb("edit"),
+  ["<2-LeftMouse>"]  = get_lua_cb("edit"),
+  ["<2-RightMouse>"] = get_lua_cb("cd"),
+  ["<C-]>"]          = get_lua_cb("cd"),
+  ["<C-v>"]          = get_lua_cb("vsplit"),
+  ["<C-x>"]          = get_lua_cb("split"),
+  ["<C-t>"]          = get_lua_cb("tabnew"),
+  ["<BS>"]           = get_lua_cb("close_node"),
+  ["<S-CR>"]         = get_lua_cb("close_node"),
+  ["<Tab>"]          = get_lua_cb("preview"),
+  ["I"]              = get_lua_cb("toggle_ignored"),
+  ["H"]              = get_lua_cb("toggle_dotfiles"),
+  ["R"]              = get_lua_cb("refresh"),
+  ["a"]              = get_lua_cb("create"),
+  ["d"]              = get_lua_cb("remove"),
+  ["r"]              = get_lua_cb("rename"),
+  ["<C-r>"]          = get_lua_cb("full_rename"),
+  ["x"]              = get_lua_cb("cut"),
+  ["c"]              = get_lua_cb("copy"),
+  ["p"]              = get_lua_cb("paste"),
+  ["[c"]             = get_lua_cb("prev_git_item"),
+  ["]c"]             = get_lua_cb("next_git_item"),
+  ["-"]              = get_lua_cb("dir_up"),
+  ["q"]              = get_lua_cb("close"),
+}
+
 require'nvim-web-devicons'.setup {
  -- your personnal icons can go here (to override)
  -- DevIcon will be appended to `name`
@@ -651,14 +663,14 @@ gls.short_line_right[1] = {
 
 require'bufferline'.setup{
   options = {
-    buffer_close_icon= '',
+    buffer_close_icon= '',
     modified_icon = '●',
     close_icon = '',
     left_trunc_marker = '',
     right_trunc_marker = '',
-    max_name_length = 18,
-    max_prefix_length = 15, 
-    tab_size = 22,
+    max_name_length = 14,
+    max_prefix_length = 13, 
+    tab_size = 18,
     enforce_regular_tabs = true ,
    view = "multiwindow" ,
     show_buffer_close_icons = true ,
@@ -762,4 +774,10 @@ highlight DiffAdd guifg=#81A1C1 guibg = none
 highlight DiffChange guifg =#3A3E44 guibg = none
 highlight DiffModified guifg = #81A1C1 guibg = none
  
+inoremap kk <ESC>
+" let mapleader = "'"
+set ignorecase 
+set noswapfile 
+set title
+
 
