@@ -106,7 +106,7 @@ map <C-h> <C-w>h
 syntax on
 syntax enable
 set termguicolors
-colorscheme base16-default-dark 
+colorscheme base16-onedark 
 
 highlight! Normal guifg=NONE guibg=NONE
 
@@ -263,6 +263,7 @@ ts_config.setup {
     enable = true,
     use_languagetree = true,
   }
+
 }
 EOF
 
@@ -303,6 +304,27 @@ let g:nvim_tree_show_icons = {
 " You can edit keybindings be defining this variable
 " You don't have to define all keys.
 " NOTE: the 'edit' key will wrap/unwrap a folder and open a file
+let g:nvim_tree_bindings = {
+    \ 'edit':            ['<CR>', 'o'],
+    \ 'edit_vsplit':     '<C-v>',
+    \ 'edit_split':      '<C-x>',
+    \ 'edit_tab':        '<C-t>',
+    \ 'close_node':      ['<S-CR>', '<BS>'],
+    \ 'toggle_ignored':  'I',
+    \ 'toggle_dotfiles': 'H',
+    \ 'refresh':         'R',
+    \ 'preview':         '<Tab>',
+    \ 'cd':              '<C-]>',
+    \ 'create':          'a',
+    \ 'remove':          'd',
+    \ 'rename':          'r',
+    \ 'cut':             'x',
+    \ 'copy':            'c',
+    \ 'paste':           'p',
+    \ 'prev_git_item':   '[c',
+    \ 'next_git_item':   ']c',
+    \ }
+
 " Disable default mappings by plugin
 " Bindings are enable by default, disabled on any non-zero value
 " let nvim_tree_disable_keybindings=1
@@ -334,45 +356,11 @@ nnoremap <leader>n :LuaTreeFindFile<CR>
 set termguicolors " this variable must be enabled for colors to be applied properly
 
 " a list of groups can be found at `:help nvim_tree_highlight`
-highlight NvimTreeFolderIcon guifg= #81A1C1
-highlight NvimTreeFolderName guifg = #81A1C1
+highlight NvimTreeFolderIcon guifg= #61afef 
+highlight NvimTreeFolderName guifg = #61afef
 
 
 lua << EOF
-
-local get_lua_cb = function (cb_name)
-  return string.format(":lua require'nvim-tree'.on_keypress('%s')<CR>", cb_name)
-end
-
--- Mappings for nvimtree
-vim.g.nvim_tree_bindings = {
-  ["<CR>"]           = get_lua_cb("edit"),
-  ["o"]              = get_lua_cb("edit"),
-  ["<2-LeftMouse>"]  = get_lua_cb("edit"),
-  ["<2-RightMouse>"] = get_lua_cb("cd"),
-  ["<C-]>"]          = get_lua_cb("cd"),
-  ["<C-v>"]          = get_lua_cb("vsplit"),
-  ["<C-x>"]          = get_lua_cb("split"),
-  ["<C-t>"]          = get_lua_cb("tabnew"),
-  ["<BS>"]           = get_lua_cb("close_node"),
-  ["<S-CR>"]         = get_lua_cb("close_node"),
-  ["<Tab>"]          = get_lua_cb("preview"),
-  ["I"]              = get_lua_cb("toggle_ignored"),
-  ["H"]              = get_lua_cb("toggle_dotfiles"),
-  ["R"]              = get_lua_cb("refresh"),
-  ["a"]              = get_lua_cb("create"),
-  ["d"]              = get_lua_cb("remove"),
-  ["r"]              = get_lua_cb("rename"),
-  ["<C-r>"]          = get_lua_cb("full_rename"),
-  ["x"]              = get_lua_cb("cut"),
-  ["c"]              = get_lua_cb("copy"),
-  ["p"]              = get_lua_cb("paste"),
-  ["[c"]             = get_lua_cb("prev_git_item"),
-  ["]c"]             = get_lua_cb("next_git_item"),
-  ["-"]              = get_lua_cb("dir_up"),
-  ["q"]              = get_lua_cb("close"),
-}
-
 require'nvim-web-devicons'.setup {
  -- your personnal icons can go here (to override)
  -- DevIcon will be appended to `name`
@@ -438,6 +426,7 @@ require'nvim-web-devicons'.setup {
  default = true;
 }
 
+
 EOF
 
 "  ------------------------ rust config ----------------------
@@ -490,14 +479,15 @@ nnoremap <silent>    <A-c> :BufferClose<CR>
 "                          :BufferCloseAllButCurrent<CR>
 "                          :BufferCloseBuffersRight<CR>
 
+
 lua << EOF 
   local gl = require('galaxyline')
 local gls = gl.section
 gl.short_line_list = {'LuaTree','vista','dbui'}
 
 local colors = {
- bg = '#1d2021',
-  line_bg = ' #1d2021',
+ bg = '#21252A',
+  line_bg = ' #21252A',
   fg = '#D8DEE9',
   fg_green = '#65a380',
   yellow = '#A3BE8C',
@@ -510,10 +500,12 @@ local colors = {
   blue = '#22262C';
   red = '#ec5f67',
   firored = '#DF8890',
-  lightbg = '#3C4048',
+  lightbg = '#353b45',
   nord = '#81A1C1',
   nordYel = '#EBCB8B'
 }
+
+
 
 gls.left[2] = {
   ViMode = {
@@ -655,16 +647,18 @@ gls.short_line_right[1] = {
   }
 }
 
+
+
 require'bufferline'.setup{
   options = {
-    buffer_close_icon= '',
+    buffer_close_icon= '',
     modified_icon = '●',
     close_icon = '',
     left_trunc_marker = '',
     right_trunc_marker = '',
-    max_name_length = 14,
-    max_prefix_length = 13, 
-    tab_size = 18,
+    max_name_length = 18,
+    max_prefix_length = 15, 
+    tab_size = 22,
     enforce_regular_tabs = true ,
    view = "multiwindow" ,
     show_buffer_close_icons = true ,
@@ -674,40 +668,41 @@ require'bufferline'.setup{
       highlights = {
         background = {
         guifg = comment_fg,
-        guibg = ' #1d2021'
+        guibg = ' #21252A'
      },
       fill = {
         guifg = comment_fg,
-        guibg = ' #1d2021' 
+        guibg = ' #21252A' 
       },
         buffer_selected = {
         guifg = normal_fg,
-        guibg =  '#2C2C2C',
+        guibg =  '#353b45',
         gui = "bold"
       }, 
        separator_visible = {
-        guifg = '#2C2C2C' ,
-        guibg = '#2C2C2C'
+        guifg = '#353b45' ,
+        guibg = '#353b45'
         },
         separator_selected = {
-        guifg = '#2C2C2C'  ,
-        guibg = '#2C2C2C'
+        guifg = '#353b45'  ,
+        guibg = '#353b45'
       },
       separator = {
-        guifg = ' #1d2021' ,
-        guibg = ' #1d2021' 
+        guifg = ' #21252A' ,
+        guibg = ' #21252A' 
       },
       indicator_selected = {
-         guifg = '#2C2C2C' ,
-        guibg = '#2C2C2C'  
+         guifg = '#353b45' ,
+        guibg = '#353b45'  
       },
       
         modified_selected = {
         guifg = string_fg,
-        guibg = '#2C2C2C'
+        guibg = '#353b45'
       }
 
      };  
+     
 }
 
 
@@ -741,6 +736,7 @@ require('gitsigns').setup {
   status_formatter = nil, -- Use default
 }
 
+
 EOF 
 
 "nnoremap mymap :lua require"bufferline".go_to_buffer(num)<CR>
@@ -766,11 +762,4 @@ highlight DiffAdd guifg=#81A1C1 guibg = none
 highlight DiffChange guifg =#3A3E44 guibg = none
 highlight DiffModified guifg = #81A1C1 guibg = none
  
-" learning vim fr now :)
-
-inoremap kk <ESC>
-" let mapleader = "'"
-set ignorecase 
-set noswapfile 
-set title
 
