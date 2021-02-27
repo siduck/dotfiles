@@ -18,6 +18,7 @@ cyan-light = ${xrdb:color14}
 white = ${xrdb:color7}
 white-light = ${xrdb:color15}
 faint-dark = #3C4048
+ws-inactive = #8C9098
 
 [bar/example]
 width = 100%
@@ -38,7 +39,7 @@ module-margin-left = 1
 
 font-0 = JetBrainsMono Nerd Font:style=medium:size=9;2
 font-1 = Material Design Icons:style=Regular:size=9;2
-font-2 = unifont:fontformat=truetype:size=9:antialias=false;2
+font-2 = unifont:fontformat=truetype:size=11:antialias=false;2
 
 modules-left = workspaces     
 modules-center =     updates  xkeyboard
@@ -79,16 +80,14 @@ label-occupied = %name%
 label-urgent = %icon%
 label-empty = %name%
 
-label-occupied-padding = 2
-label-empty-padding = 2
-label-urgent-padding = 2
-label-active-padding = 2
+label-occupied-padding = 1
+label-empty-padding = 1
+label-urgent-padding = 1
+label-active-padding = 1
 
-label-active-foreground = ${colors.black}
-label-active-background = ${colors.blue}
-
+label-active-foreground = ${colors.blue}
+label-empty-foreground = ${colors.ws-inactive}
 label-occupied-background = ${colors.faint-dark}
-
 
   
 [module/cpu]
@@ -121,7 +120,7 @@ content-background =  #61afef
 type = internal/alsa
 
 format-volume = <label-volume> <bar-volume>
-label-volume = 󰕾   
+label-volume = 
 label-volume-foreground = ${colors.foreground}
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground}
@@ -136,7 +135,7 @@ bar-volume-foreground-4 = #61afef
 bar-volume-foreground-5 = #61afef
 bar-volume-foreground-6 = #61afef
 bar-volume-gradient = false
-bar-volume-indicator = |
+bar-volume-indicator = 
 bar-volume-indicator-foreground = #61afef
 bar-volume-indicator-font = 2
 bar-volume-fill = ━ 

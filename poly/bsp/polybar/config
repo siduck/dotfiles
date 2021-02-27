@@ -66,22 +66,22 @@ label-separator = " "
 label-focused =  %icon%  %name%
 label-focused-foreground = ${colors.background}
 label-focused-background =${colors.active-light}
-label-focused-padding = 2
+label-focused-padding = 1
 
 
 label-occupied = %icon%  %name% 
 label-occupied-foreground =#ffffff
 label-occupied-background =${colors.dark-light}
 
-label-occupied-padding = 2
+label-occupied-padding = 1
 
 label-empty = %icon%
 label-empty-foreground =#ffffff
-label-empty-padding = 2
+label-empty-padding = 1
 
 label-urgent = %icon%
 xxlabel-urgent-foreground = #88C0D0
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 [bar/example]
 
