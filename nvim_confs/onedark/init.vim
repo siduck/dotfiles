@@ -263,7 +263,6 @@ ts_config.setup {
     enable = true,
     use_languagetree = true,
   }
-
 }
 EOF
 

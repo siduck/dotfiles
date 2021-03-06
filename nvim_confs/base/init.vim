@@ -9,21 +9,12 @@ Plug 'michalliu/jsruntime.vim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-"Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
-"Plug 'romgrk/barbar.nvim'
-" Plug 'itchyny/lightline.vim'
-" Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'joshdick/onedark.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'bfrg/vim-cpp-modern'
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-"Plug 'rhysd/vim-clang-format'
 Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
@@ -309,31 +300,6 @@ let g:nvim_tree_show_icons = {
 "If 0, do not show the icons for one of 'git' 'folder' and 'files'
 "1 by default, notice that if 'files' is 1, it will only display
 "if nvim-web-devicons is installed and on your runtimepath
-
-" You can edit keybindings be defining this variable
-" You don't have to define all keys.
-" NOTE: the 'edit' key will wrap/unwrap a folder and open a file
-let g:nvim_tree_bindings = {
-    \ 'edit':            ['<CR>', 'o'],
-    \ 'edit_vsplit':     '<C-v>',
-    \ 'edit_split':      '<C-x>',
-    \ 'edit_tab':        '<C-t>',
-    \ 'close_node':      ['<S-CR>', '<BS>'],
-    \ 'toggle_ignored':  'I',
-    \ 'toggle_dotfiles': 'H',
-    \ 'refresh':         'R',
-    \ 'preview':         '<Tab>',
-    \ 'cd':              '<C-]>',
-    \ 'create':          'a',
-    \ 'remove':          'd',
-    \ 'rename':          'r',
-    \ 'cut':             'x',
-    \ 'copy':            'c',
-    \ 'paste':           'p',
-    \ 'prev_git_item':   '[c',
-    \ 'next_git_item':   ']c',
-    \ }
-
 " Disable default mappings by plugin
 " Bindings are enable by default, disabled on any non-zero value
 " let nvim_tree_disable_keybindings=1
@@ -371,6 +337,41 @@ highlight NvimTreeFolderName guifg = #81A1C1
 
 
 lua << EOF
+
+local get_lua_cb = function (cb_name)
+  return string.format(":lua require'nvim-tree'.on_keypress('%s')<CR>", cb_name)
+end
+
+-- Mappings for nvimtree
+vim.g.nvim_tree_bindings = {
+  ["<CR>"]           = get_lua_cb("edit"),
+  ["o"]              = get_lua_cb("edit"),
+  ["<2-LeftMouse>"]  = get_lua_cb("edit"),
+  ["<2-RightMouse>"] = get_lua_cb("cd"),
+  ["<C-]>"]          = get_lua_cb("cd"),
+  ["<C-v>"]          = get_lua_cb("vsplit"),
+  ["<C-x>"]          = get_lua_cb("split"),
+  ["<C-t>"]          = get_lua_cb("tabnew"),
+  ["<BS>"]           = get_lua_cb("close_node"),
+  ["<S-CR>"]         = get_lua_cb("close_node"),
+  ["<Tab>"]          = get_lua_cb("preview"),
+  ["I"]              = get_lua_cb("toggle_ignored"),
+  ["H"]              = get_lua_cb("toggle_dotfiles"),
+  ["R"]              = get_lua_cb("refresh"),
+  ["a"]              = get_lua_cb("create"),
+  ["d"]              = get_lua_cb("remove"),
+  ["r"]              = get_lua_cb("rename"),
+  ["<C-r>"]          = get_lua_cb("full_rename"),
+  ["x"]              = get_lua_cb("cut"),
+  ["c"]              = get_lua_cb("copy"),
+  ["p"]              = get_lua_cb("paste"),
+  ["[c"]             = get_lua_cb("prev_git_item"),
+  ["]c"]             = get_lua_cb("next_git_item"),
+  ["-"]              = get_lua_cb("dir_up"),
+  ["q"]              = get_lua_cb("close"),
+}
+
+
 require'nvim-web-devicons'.setup {
  -- your personnal icons can go here (to override)
  -- DevIcon will be appended to `name`
@@ -531,8 +532,8 @@ local gls = gl.section
 gl.short_line_list = {'LuaTree','vista','dbui'}
 
 local colors = {
-  bg = '#1E1E1E',
-  line_bg = '#1E1E1E',
+  bg = '#181818',
+  line_bg = '#181818',
   fg = '#D8DEE9',
   fg_green = '#65a380',
   yellow = '#A3BE8C',
@@ -712,11 +713,11 @@ require'bufferline'.setup{
       highlights = {
         background = {
         guifg = comment_fg,
-        guibg = '#1E1E1E'
+        guibg = '#181818'
      },
       fill = {
         guifg = comment_fg,
-        guibg = '#1E1E1E' 
+        guibg = '#181818' 
       },
         buffer_selected = {
         guifg = normal_fg,
@@ -732,8 +733,8 @@ require'bufferline'.setup{
         guibg = '#2C2C2C'
       },
       separator = {
-        guifg = '#1E1E1E' ,
-        guibg = '#1E1E1E' 
+        guifg = '#181818' ,
+        guibg = '#181818' 
       },
       indicator_selected = {
          guifg = '#2C2C2C' ,
@@ -760,4 +761,11 @@ EOF
 "augroup END
 
 let g:auto_save = 1
+
+inoremap kk <ESC>
+" let mapleader = "'"
+set ignorecase 
+set noswapfile 
+set title
+
 
