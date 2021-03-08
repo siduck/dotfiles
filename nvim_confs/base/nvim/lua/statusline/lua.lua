@@ -1,4 +1,3 @@
-lua << EOF
 local gl = require('galaxyline')
 local gls = gl.section
 gl.short_line_list = {'LuaTree','vista','dbui'}
@@ -25,7 +24,7 @@ local colors = {
 gls.left[1] = {
   leftRounded = {
     provider = function() return '' end,
-    highlight = { colors.red, colors.bg }
+    highlight = { colors.nord, colors.bg }
   },
 }
 
@@ -34,7 +33,7 @@ gls.left[2] = {
     provider = function()
       return ' 󰀘  '
     end,
-    highlight = {colors.bg,colors.red},
+    highlight = {colors.bg,colors.nord},
      separator = ' ',
   separator_highlight = {colors.lightbg,colors.lightbg},
   },
@@ -152,7 +151,7 @@ gls.right[3] = {
     provider = function() return '' end,
     separator = ' ',
     separator_highlight = {colors.bg,colors.bg},
-    highlight = { colors.nord, colors.bg }
+    highlight = { colors.red, colors.bg }
   },
 }
 
@@ -170,7 +169,7 @@ gls.right[4] = {
       }
       return alias[vim.fn.mode()]
     end,
-    highlight = { colors.bg, colors.nord },
+    highlight = { colors.bg, colors.red },
   },
 }
 
@@ -179,7 +178,7 @@ gls.right[5] = {
   PerCent = {
     provider = 'LinePercent',
     separator = ' ',
-    separator_highlight = {colors.nord,colors.nord},
+    separator_highlight = {colors.red,colors.red},
     highlight = {colors.bg,colors.fg},
   }
 }
@@ -190,4 +189,3 @@ gls.right[6] = {
     highlight = { colors.fg, colors.bg }
   },
 }
-EOF

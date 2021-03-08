@@ -1,5 +1,3 @@
-lua << EOF 
-
 require('gitsigns').setup {
   signs = {
     add          = {hl = 'DiffAdd'   , text = '▌', numhl='GitSignsAddNr'},
@@ -29,4 +27,3 @@ require('gitsigns').setup {
   sign_priority = 5,
   status_formatter = nil, -- Use default
 }
-EOF

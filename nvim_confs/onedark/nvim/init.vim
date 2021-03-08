@@ -15,3 +15,4 @@ source ~/.config/nvim/confs/coc.vim
 source ~/.config/nvim/confs/treesitter.vim 
 source ~/.config/nvim/confs/nvimTree.vim 
 source ~/.config/nvim/confs/tabline.vim 
+source ~/.config/nvim/confs/statusline.vim 
