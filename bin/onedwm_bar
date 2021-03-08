@@ -5,12 +5,12 @@ onedwm &
 cp -r ~/Public/theme\ and\ icons/one/.gtkrc-2.0 ~/ &
 cp -r ~/Public/theme\ and\ icons/one/settings.ini  ~/.config/gtk-3.0/ &
 picom & 
-feh --bg-fill ~/Pictures/wall/ram.png &
+feh --bg-fill ~/Pictures/wall/auro.png &
 xrdb merge ~/Public/xresources/ocean/.Xresources &
-cp -r ~/Public/rofi/one/rofi/ ~/.config/
-cp -r ~/Public/nvim_confs/onedark/init.vim ~/.config/nvim/ &
+cp -r ~/Public/rofi/one/rofi/ ~/.config/ & 
+del ~/.config/nvim && cp -r ~/Public/nvim_confs/base/nvim ~/.config/ &
 
-# dwm bar 
+# running dwm bar 
 
 interval=0
 
