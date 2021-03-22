@@ -1,0 +1,47 @@
+# This is an example for icewm 1.7.0 window options file.
+# It will be installed as /usr/share/icewm/winoptions.
+# Place your variants in /etc/icewm or in $HOME/.icewm since
+# modifications to this file will be overwritten when you reinstall icewm.
+
+xterm.icon: xterm
+rxvt.icon: xterm
+nxterm.icon: xterm
+fte.icon: fte
+emacs.Emacs.icon: emacs
+AWTapp.icon: java
+# workaround for XV window repositioning problems
+xv.nonICCCMconfigureRequest: 1
+
+# make Evince resizable
+evince.dBorder: 1
+
+xeyes.ignoreWinList: 0
+xeyes.ignoreTaskBar: 1
+xeyes.allWorkspaces: 1
+xeyes.dTitleBar: 0
+xeyes.dBorder: 0
+xeyes.dSysMenu: 0
+xeyes.dResize: 0
+xeyes.dClose: 0
+xeyes.dMinimize: 0
+xeyes.dMaximize: 0
+xeyes.ignoreNoFocusHint: 1
+
+XClock.ignoreNoFocusHint: 1
+Vim.icon: vim
+
+applix.ignoreNoFocusHint: 1
+XDdts.noFocusOnAppRaise: 1
+Wingz.noFocusOnAppRaise: 1
+WingzPro.noFocusOnAppRaise: 1
+
+gkrellm.Gkrellm.allWorkspaces: 1
+gkrellm.Gkrellm.ignoreTaskBar: 1
+gkrellm.Gkrellm.layer: Below
+#gkrellm.Gkrellm.doNotCover: 1
+
+MainWindow.licq.allWorkspaces: 1
+MainWindow.licq.ignoreQuickSwitch: 1
+MainWindow.licq.ignoreWinList: 1
+MainWindow.licq.layer: Below
+#MainWindow.licq.doNotCover: 1
