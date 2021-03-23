@@ -1,8 +1,58 @@
+set window-title-basename "true"
+set selection-clipboard "clipboard"
 
-set smooth-scroll true
-set window-title-home-tilde true
-set statusbar-basename true
-set selection-clipboard clipboard
-set show-scrollbars true
-set show-v-scrollbar true
-set show-h-scrollbar true
+map <C-i> recolor
+
+# Dracula color theme for Zathura
+# Swaps Foreground for Background to get a light version if the user prefers
+
+#
+# Dracula color theme
+#
+
+set notification-error-bg       "#ff5555" # Red
+set notification-error-fg       "#c8ccd4" # Foreground
+set notification-warning-bg     "#ffb86c" # Orange
+set notification-warning-fg     "#44475a" # Selection
+set notification-bg             "#282c34" # Background
+set notification-fg             "#c8ccd4" # Foreground
+
+set completion-bg               "#282c34" # Background
+set completion-fg               "#81A1C1" # Comment
+set completion-group-bg         "#282c34" # Background
+set completion-group-fg         "#81A1C1" # Comment
+set completion-highlight-bg     "#44475a" # Selection
+set completion-highlight-fg     "#c8ccd4" # Foreground
+
+set index-bg                    "#282c34" # Background
+set index-fg                    "#c8ccd4" # Foreground
+set index-active-bg             "#44475a" # Current Line
+set index-active-fg             "#c8ccd4" # Foreground
+
+set inputbar-bg                 "#282c34" # Background
+set inputbar-fg                 "#c8ccd4" # Foreground
+set statusbar-bg                "#282c34" # Background
+set statusbar-fg                "#c8ccd4" # Foreground
+
+set highlight-color             "#ffb86c" # Orange
+set highlight-active-color      "#ff79c6" # Pink
+
+set default-bg                  "#282c34" # Background
+set default-fg                  "#c8ccd4" # Foreground
+
+set render-loading              true
+set render-loading-fg           "#282c34" # Background
+set render-loading-bg           "#c8ccd4" # Foreground
+
+#
+# Recolor mode settings
+#
+
+set recolor-lightcolor          "#282c34" # Background
+set recolor-darkcolor           "#c8ccd4" # Foreground
+
+#
+# Startup options
+#
+set adjust-open width
+set recolor true
