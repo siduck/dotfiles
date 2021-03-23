@@ -15,7 +15,8 @@ host=$(hostname)
 memory=$(free -h)
 os=$(source /etc/os-release && echo $PRETTY_NAME)
 kernel=$(uname -sr)
-wm="$(xprop -id $(xprop -root -notype | awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5}') -notype -f _NET_WM_NAME 8t | grep "WM_NAME" | cut -f2 -d \")" 
+#wm="$(xprop -id $(xprop -root -notype | awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5}') -notype -f _NET_WM_NAME 8t | grep "WM_NAME" | cut -f2 -d \")" 
+wm=Icewm
 mem=$(free -m | sed -n 's/^Mem:\s\+[0-9]\+\s\+\([0-9]\+\)\s.\+/\1/p')
 uptime="$(uptime -p | sed 's/up //')"
 pkgs="$(xbps-query -l | wc -l)"
