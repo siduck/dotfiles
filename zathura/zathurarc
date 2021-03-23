@@ -56,3 +56,6 @@ set recolor-darkcolor           "#c8ccd4" # Foreground
 #
 set adjust-open width
 set recolor true
+
+set smooth-scroll true
+set show-v-scrollbar true
