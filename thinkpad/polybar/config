@@ -21,8 +21,6 @@ background = ${xrdb:background}
 ;foreground = #676b73 
 foreground = ${xrdb:foreground}
 
-
-
 color0 = ${xrdb:color0}
 color1 = ${xrdb:color1}
 color2 = ${xrdb:color2}
@@ -57,7 +55,7 @@ border-bottom-size = 7
 border-top-color = ${colors.background}
 border-bottom-color = ${colors.background}
 
-line-size = 2
+line-size = 3
 wm-restack = bspwm
 
 modules-left = round-left bspwm round-right 
@@ -132,8 +130,8 @@ label-focused-padding = 1
 label-focused-background = #353941
 label-focused-margin = 0 
 
-label-occupied = %icon%  
-label-occupied-foreground = ${colors.foreground}
+label-occupied =  %icon%  
+label-occupied-foreground = #646870  
 label-occupied-background = #353941
 label-occupied-padding = 1
 label-occupied-margin = 0 
