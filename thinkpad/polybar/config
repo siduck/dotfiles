@@ -18,7 +18,11 @@
 
 [colors]
 background = ${xrdb:background}
+;foreground = #676b73 
 foreground = ${xrdb:foreground}
+
+
+
 color0 = ${xrdb:color0}
 color1 = ${xrdb:color1}
 color2 = ${xrdb:color2}
@@ -39,32 +43,52 @@ dark-light = #272A2B
 active-light = #313435
 
 [bar/example]
-
 tray-position = right
 monitor = eDP1
 width =  100%
-height = 29
+height = 26
 padding-left =1
-padding-right =1
+padding-right =0
 background = ${colors.background}
 foreground = ${colors.foreground}
 bottom = false
-
-border-top-size = 6
-border-bottom-size = 6
+border-top-size = 7
+border-bottom-size = 7
 border-top-color = ${colors.background}
 border-bottom-color = ${colors.background}
 
 line-size = 2
 wm-restack = bspwm
 
-modules-left = bspwm 
+modules-left = round-left bspwm round-right 
 modules-center =    
-modules-right =    temperature alsa battery cpu updates wlan mem xbacklight time powermenu
+modules-right =    temperature alsa battery  round-left cpu round-right updates wlan mem xbacklight roundd-left time roundd-right  powermenu
 
-font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=13;2
-font-1 = Material Design Icons:style=Regular:size=13;2
-font-2 = unifont:fontformat=truetype:size=13:antialias=true;
+font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=13;3
+font-1 = JetBrainsMono Nerd Font:size=18;5
+font-2 = Material Design Icons:style=Bold:size=13;3
+font-3 = unifont:fontformat=truetype:size=13:antialias=true;
+
+
+[module/round-left]
+type = custom/text
+content = %{T3}%{T-}
+content-foreground = #353941
+
+[module/round-right]
+type = custom/text
+content = %{T3}%{T-}
+content-foreground = #353941
+
+[module/roundd-left]
+type = custom/text
+content = %{T3}%{T-}
+content-foreground = #a3be8c 
+
+[module/roundd-right]
+type = custom/text
+content = %{T3}%{T-}
+content-foreground = #a3be8c
 
 [module/temperature]
 type = internal/temperature
@@ -76,9 +100,9 @@ format-warn = <ramp> <label-warn>
 format-padding = 1
 label = %temperature%
 label-warn = %temperature%
-ramp-0 = 
+ramp-0 =  "󰜗" 
 ramp-font = 3
-ramp-foreground = #d19a66
+ramp-foreground = #a4ebf3
 
 
 [module/bspwm]
@@ -93,28 +117,37 @@ reverse-scroll = false
 format = <label-state>
 
 ws-icon-0 = 1;%{F#fafafa}  
-ws-icon-1 = 2;%{F#BF616A}   
-ws-icon-2 = 3;%{F#EBCB8B}    
+ws-icon-1 = 2;%{F#ffaec0}   
+ws-icon-2 = 3;%{F#95e1d3}    
 ws-icon-3 = 4;%{F#81A1C1}
 ws-icon-4 = 5;%{F#A3BE8C} 
 
 label-separator = " "
+label-separator-background = #353941
 
-label-focused =  %name%  %icon%  
+label-focused =  %icon%  
 label-focused-foreground = ${colors.foreground}
 label-focused-underline =  #565c64
 label-focused-padding = 1
+label-focused-background = #353941
+label-focused-margin = 0 
 
-label-occupied = %name% %icon%  
+label-occupied = %icon%  
 label-occupied-foreground = ${colors.foreground}
+label-occupied-background = #353941
 label-occupied-padding = 1
+label-occupied-margin = 0 
 
 label-empty = %icon%
 label-empty-foreground =   ${colors.foreground}
 label-empty-padding = 1
+label-empty-background = #353941
+label-empty-margin = 0 
+
 
 label-urgent = %icon%
-xxlabel-urgent-foreground = #88C0D0
+label-urgent-foreground = #88C0D0
+label-urgent-background = #353941
 label-urgent-padding = 1
 
 [module/alsa]
@@ -122,13 +155,10 @@ type = internal/alsa
 format-volume = <label-volume> <bar-volume>
 label-volume = " "  
 label-volume-foreground = ${colors.foreground}
-format-muted-prefix = "󰚙 "
 format-muted-foreground = ${colors.foreground}
-label-muted = eek
+label-muted = 󰚙
 
 format-muted-padding = 1
-
-
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #61afef
@@ -156,7 +186,6 @@ interval = 60
 
 format = <label>
 format-background = #a3be8c
-format-padding = 1
 
 date = %{F#282A36}󰥔 %H:%M%{F-}
 time-alt = %{F#282A36}󰃭 %a, %b %d%{F-}
@@ -174,7 +203,7 @@ label =
 type = custom/script
 exec = free -m | sed -n 's/^Mem:\s\+[0-9]\+\s\+\([0-9]\+\)\s.\+/\1/p'
 format = <label>
-format-prefix = 󰳡
+format-prefix = "﬙ " 
 label = %output% MB
 label-padding = 1
 format-prefix-foreground = #d19a66
@@ -191,10 +220,8 @@ label-foreground = #BF616A
 [module/powermenu]
 type = custom/text 
 content =" " 
-content-padding =0
+content-padding =2
 click-left = doas zzz &
-content-foreground =  #000
-content-background = #A3BE8C
 
 [module/wlan]
 type = internal/network
@@ -275,11 +302,9 @@ interval = 2.5
 
 format-prefix ="  " 
 format =  <label> 
-format-padding = 1
-format-margin = 1
 
 label = CPU %percentage%%
-format-background = #373b43
+format-background = #353941
 format-foreground = #989cff
 
 [module/xwindow]
