@@ -18,8 +18,7 @@
 
 [colors]
 background = ${xrdb:background}
-;foreground = #676b73 
-foreground = ${xrdb:foreground}
+foreground = #adb1b9   
 
 color0 = ${xrdb:color0}
 color1 = ${xrdb:color1}
@@ -60,7 +59,7 @@ wm-restack = bspwm
 
 modules-left = round-left bspwm round-right 
 modules-center =    
-modules-right =    temperature alsa battery  round-left cpu round-right updates wlan mem xbacklight roundd-left time roundd-right  powermenu
+modules-right =    temperature alsa battery  round-left cpu round-right updates wlan mem xbacklight round-left time round-right  powermenu
 
 font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=13;3
 font-1 = JetBrainsMono Nerd Font:size=18;5
@@ -77,16 +76,6 @@ content-foreground = #353941
 type = custom/text
 content = %{T3}%{T-}
 content-foreground = #353941
-
-[module/roundd-left]
-type = custom/text
-content = %{T3}%{T-}
-content-foreground = #a3be8c 
-
-[module/roundd-right]
-type = custom/text
-content = %{T3}%{T-}
-content-foreground = #a3be8c
 
 [module/temperature]
 type = internal/temperature
@@ -120,7 +109,7 @@ ws-icon-2 = 3;%{F#95e1d3}
 ws-icon-3 = 4;%{F#81A1C1}
 ws-icon-4 = 5;%{F#A3BE8C} 
 
-label-separator = " "
+label-separator = ""
 label-separator-background = #353941
 
 label-focused =  %icon%  
@@ -128,19 +117,16 @@ label-focused-foreground = ${colors.foreground}
 label-focused-underline =  #565c64
 label-focused-padding = 1
 label-focused-background = #353941
-label-focused-margin = 0 
 
 label-occupied =  %icon%  
 label-occupied-foreground = #646870  
 label-occupied-background = #353941
 label-occupied-padding = 1
-label-occupied-margin = 0 
 
 label-empty = %icon%
 label-empty-foreground =   ${colors.foreground}
 label-empty-padding = 1
 label-empty-background = #353941
-label-empty-margin = 0 
 
 
 label-urgent = %icon%
@@ -176,23 +162,25 @@ bar-volume-fill-font = 2
 bar-volume-empty = ━
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground}
-format-volume-padding = 2
+format-volume-padding = 1
 
 [module/time]
 type = internal/date
 interval = 60
 
 format = <label>
-format-background = #a3be8c
+format-background = #353941
 
-date = %{F#282A36}󰥔 %H:%M%{F-}
-time-alt = %{F#282A36}󰃭 %a, %b %d%{F-}
+
+date = %{F#888e96}󰥔 %H:%M%{F-}
+time-alt = %{F#61afef}󰃭 %a, %b %d%{F-}
 
 label = %date%%time%
 
 [module/repo]
 type = custom/script
 exec = doas xbps-install -S
+
 format = 
 interval = 4600 
 label =  
@@ -220,6 +208,7 @@ type = custom/text
 content =" " 
 content-padding =2
 click-left = doas zzz &
+content-foreground =  #e06c75
 
 [module/wlan]
 type = internal/network
@@ -275,6 +264,8 @@ animation-charging-framerate = 750
 
 format-charging-padding = 1
 format-discharging-padding = 1
+
+format-full-padding = 1
 
 [module/volume]
 type = custom/script
