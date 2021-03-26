@@ -175,13 +175,6 @@ time-alt = %{F#61afef}󰃭 %a, %b %d%{F-}
 
 label = %date%%time%
 
-[module/repo]
-type = custom/script
-exec = doas xbps-install -S
-
-format = 
-interval = 4600 
-label =  
 
 [module/mem]
 type = custom/script
@@ -194,7 +187,7 @@ format-prefix-foreground = #d19a66
 
 [module/updates]
 type = custom/script
-exec = xbps-updates
+exec = doas xbps-install -S > /dev/null 2>&1; xbps-updates
 format = <label>
 interval = 4600 
 label =  %output%  
@@ -225,6 +218,7 @@ full-at = 98
 format-charging = <animation-charging> <label-charging>
 label-charging = %percentage%%
 
+format-charging-padding = 1
 format-charging-foreground = ${colors.color4}
 
 format-discharging = <ramp-capacity> <label-discharging>
@@ -256,7 +250,6 @@ animation-charging-3 = "  "
 animation-charging-4 = "  "
 
 animation-charging-foreground = #DF8890
-animation-charging-background = #353941
 animation-charging-framerate = 910 
 format-discharging-padding = 1
 
