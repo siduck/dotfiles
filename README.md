@@ -1,4 +1,4 @@
- #Screenshots
+ # Screenshots
 
 <img src = "https://raw.githubusercontent.com/siduck76/dotfiles/master/rice%20flex/neovim-rice.png">
 
