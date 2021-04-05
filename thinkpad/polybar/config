@@ -70,12 +70,12 @@ font-3 = unifont:fontformat=truetype:size=13:antialias=true;
 [module/round-left]
 type = custom/text
 content = %{T3}%{T-}
-content-foreground = #353941
+content-foreground = #2b2f37
 
 [module/round-right]
 type = custom/text
 content = %{T3}%{T-}
-content-foreground = #353941
+content-foreground = #2b2f37
 
 [module/temperature]
 type = internal/temperature
@@ -109,28 +109,28 @@ ws-icon-3 = 4;%{F#81A1C1}
 ws-icon-4 = 5;%{F#A3BE8C} 
 
 label-separator = ""
-label-separator-background = #353941
+label-separator-background = #2b2f37
 
 label-focused =  %icon%  
 label-focused-foreground = ${colors.foreground}
 label-focused-underline =  #565c64
 label-focused-padding = 1
-label-focused-background = #353941
+label-focused-background = #2b2f37
 
 label-occupied =  %icon%  
 label-occupied-foreground = #646870  
-label-occupied-background = #353941
+label-occupied-background = #2b2f37
 label-occupied-padding = 1
 
 label-empty = %icon%
 label-empty-foreground =   ${colors.foreground}
 label-empty-padding = 1
-label-empty-background = #353941
+label-empty-background = #2b2f37
 
 
 label-urgent = %icon%
 label-urgent-foreground = #88C0D0
-label-urgent-background = #353941
+label-urgent-background = #2b2f37
 label-urgent-padding = 1
 
 [module/alsa]
@@ -143,7 +143,7 @@ format-muted-foreground = ${colors.foreground}
 label-muted = 󰚙
 
 format-muted-padding = 1
-format-muted-background = #353941
+format-muted-background = #2b2f37
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #61afef
@@ -169,7 +169,7 @@ format-volume-padding = 1
 type = internal/date
 interval = 60
 format = <label>
-format-background = #353941
+format-background = #2b2f37
 date = %{F#888e96}󰥔 %H:%M%{F-}
 time-alt = %{F#61afef}󰃭 %a, %b %d%{F-}
 
@@ -230,7 +230,7 @@ format-full-prefix = "  "
 
 format-full-prefix-foreground = #A0E8A2
 format-foreground = ${colors.color4}
-format-background = #353941 
+format-background = #2b2f37 
 
 label-discharging-foreground = ${colors.foreground}
 
@@ -281,7 +281,7 @@ format = <label>
 
 label = CPU %percentage%%
 
-format-background = #353941
+format-background = #2b2f37
 format-foreground = #989cff
 
 [module/xwindow]

@@ -16,7 +16,7 @@ st.borderpx: 10
 ! Base16 OneDark
 ! Scheme: Lalit Magant (http://github.com/tilal6991)
 
-#define base00 #282c34
+#define base00 #1e222a
 #define base01 #353b45
 #define base02 #3e4451
 #define base03 #545862
