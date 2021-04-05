@@ -8,7 +8,6 @@
 - I use [ST](https://github.com/siduck76/st)  as terminal with JetbrainsMono Nerd Font medium 
 - [wallpaper](https://github.com/siduck76/dotfiles/blob/master/wall/sniper.jpg)
 - Music player : ncmpcpp with mpd ( ncmpcpp-ueberzug to show artwork)
+- Text Editor : neovim nightly , [config](https://github.com/siduck76/neovim-dots)
 
-
-
-https://github.com/siduck76/dotfiles/blob/master/wall/sniper.jpg
+I'll keep adding cool stuffs and improve my rice / make it more organise in my free time eventually :)
