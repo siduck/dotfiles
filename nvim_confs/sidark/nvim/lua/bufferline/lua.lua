@@ -19,40 +19,40 @@ require "bufferline".setup {
     highlights = {
         background = {
             guifg = comment_fg,
-            guibg = "#282c34"
+            guibg = "#1e222a"
         },
         fill = {
             guifg = comment_fg,
-            guibg = "#282c34"
+            guibg = "#1e222a"
         },
         buffer_selected = {
             guifg = normal_fg,
-            guibg = "#3A3E44",
+            guibg = "#282c34",
             gui = "bold"
         },
         buffer_visible = {
-            guifg = "#565c64",
-            guibg = "#282c34"
+            guifg = "#3e4451",
+            guibg = "#1e222a"
         },
         separator_visible = {
-            guifg = "#282c34",
-            guibg = "#282c34"
+            guifg = "#1e222a",
+            guibg = "#1e222a"
         },
         separator_selected = {
-            guifg = "#282c34",
-            guibg = "#282c34"
+            guifg = "#1e222a",
+            guibg = "#1e222a"
         },
         separator = {
-            guifg = "#282c34",
-            guibg = "#282c34"
+            guifg = "#1e222a",
+            guibg = "#1e222a"
         },
         indicator_selected = {
-            guifg = "#282c34",
-            guibg = "#282c34"
+            guifg = "#1e222a",
+            guibg = "#1e222a"
         },
         modified_selected = {
             guifg = string_fg,
-            guibg = "#3A3E44"
+            guibg = "#353b45"
         }
     }
 }
