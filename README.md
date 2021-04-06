@@ -11,6 +11,7 @@
 - Music player : ncmpcpp with mpd ( ncmpcpp-ueberzug to show artwork) , configs in cli_tools folder. 
 - Text Editor : neovim nightly , [config](https://github.com/siduck76/neovim-dots).
 - colorscheme : onedark but darker bg.
+- gtk theme : my own based on onedark but darker (in the gtk folder )
 - change dpi in the xresources.
 - change some values in polybar like in wlan , battery module for your wifi adapter etc , run polybar example to find out any erorrs if polybar isnt working.
 
