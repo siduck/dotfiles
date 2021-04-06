@@ -12,5 +12,6 @@
 - Text Editor : neovim nightly , [config](https://github.com/siduck76/neovim-dots).
 - colorscheme : onedark but darker bg.
 - change dpi in the xresources.
+- change some values in polybar like in wlan , battery module for your wifi adapter etc , run polybar example to find out any erorrs if polybar isnt working.
 
 I'll keep adding cool stuffs and improve my rice / make it more organise in my free time eventually :)
