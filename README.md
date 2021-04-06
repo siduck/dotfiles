@@ -1,4 +1,5 @@
- # Screenshots
+# DONT SKIP THE README 
+# Screenshots
 
 <img src = "https://raw.githubusercontent.com/siduck76/dotfiles/master/rice%20flex/neovim-rice.png">
 
@@ -8,7 +9,7 @@
 - Install all the polybar fonts!
 - I use [ST](https://github.com/siduck76/st)  as terminal with JetbrainsMono Nerd Font medium.
 - [wallpaper](https://github.com/siduck76/dotfiles/blob/master/wall/sniper.jpg).
-- Music player : ncmpcpp with mpd ( ncmpcpp-ueberzug to show artwork) , configs in cli_tools folder. 
+- Music player : ncmpcpp with mpd ( ncmpcpp-ueberzug to show artwork) , configs in cli_tools folder. you need to chmod +x its scripts in ncmcpp-ueberzug and ffmpeg , mpc is needed to show albumn art and check the .bashrc for important aliases. 
 - Text Editor : neovim nightly , [config](https://github.com/siduck76/neovim-dots).
 - colorscheme : onedark but darker bg.
 - gtk theme : my own based on onedark but darker (in the gtk folder )
