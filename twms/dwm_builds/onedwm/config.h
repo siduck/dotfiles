@@ -1,4 +1,4 @@
-/* See LICENSE file for copyright and license details. */
+/* See LICENSE file for copyright and license details. Prettiest dwm build so far , give @siduck76 proper credits!!*/
 
 #define XF86MonBrightnessDown   0x1008ff03
 #define XF86MonBrightnessUp     0x1008ff02
