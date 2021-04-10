@@ -14,6 +14,6 @@
 - colorscheme : onedark but darker bg.
 - gtk theme : my own based on onedark but darker (in the gtk folder )
 - change dpi in the xresources.
-- change some values in polybar like in wlan , battery module for your wifi adapter etc , run polybar example to find out any erorrs if polybar isnt working.
+- change some values in polybar like in wlan , battery module for your wifi adapter etc , run polybar example to find out any erorrs if polybar isnt working. Also polybar takes colors from xresources file so first load xresources then run polybar.
 
 I'll keep adding cool stuffs and improve my rice / make it more organise in my free time eventually :)
