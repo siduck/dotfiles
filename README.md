@@ -7,6 +7,7 @@
 
 - The above image is my latest bspwm rice , you'll find out its configs in the thinkpad folder.
 - Install all the polybar fonts!
+- My bspwm has workspaces named from 1 to 5 , and the polybar bspwm module uses those workspace names only . So if workspace icons dont show for you then add this    in bspwmrc  bspc monitor -d 1 2 3 4 5  . 
 - I use [ST](https://github.com/siduck76/st)  as terminal with JetbrainsMono Nerd Font medium.
 - [wallpaper](https://github.com/siduck76/dotfiles/blob/master/wall/sniper.jpg).
 - Music player : ncmpcpp with mpd ( ncmpcpp-ueberzug to show artwork) , configs in cli_tools folder. you need to chmod +x its scripts in ncmcpp-ueberzug and ffmpeg , mpc is needed to show albumn art and check the .bashrc for important aliases. 
