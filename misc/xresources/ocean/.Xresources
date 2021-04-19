@@ -1,4 +1,4 @@
-!-- Xft settings -- !
+ !-- Xft settings -- !
 
 Xft.antialias:	1
 Xft.hinting:	1
@@ -11,12 +11,11 @@ Xft.lcdfilter:	lcddefault
 st.font:         JetBrainsMono Nerd Font:style:medium:pixelsize=15
 
 ! window padding
-st.opacity: 255
-st.borderpx: 15
+st.borderpx: 8
 ! Base16 OneDark
 ! Scheme: Lalit Magant (http://github.com/tilal6991)
 
-#define base00 #282c34
+#define base00 #1e222a
 #define base01 #353b45
 #define base02 #3e4451
 #define base03 #545862
@@ -24,10 +23,10 @@ st.borderpx: 15
 #define base05 #abb2bf
 #define base06 #b6bdca
 #define base07 #c8ccd4
-#define base08 #e06c75
+#define base08 #f9929b
 #define base09 #d19a66
-#define base0A #e5c07b
-#define base0B #98c379
+#define base0A #fbdf90
+#define base0B #A3BE8C
 #define base0C #56b6c2
 #define base0D #61afef
 #define base0E #c678dd
@@ -41,7 +40,7 @@ st.borderpx: 15
 #endif
 *cursorColor:  base05
 
-*color0:       base00
+*color0:       #2d3139
 *color1:       base08
 *color2:       base0B
 *color3:       base0A
@@ -69,8 +68,13 @@ st.borderpx: 15
 *color21:      base06
 
 
-tabbed.selbgcolor:   #282c34
 tabbed.selfgcolor:   #d6d8eb
+tabbed.selbgcolor:   #1e222a
 
 tabbed.normfgcolor:  #9294a8
-tabbed.normbgcolor:  #353b45
+tabbed.normbgcolor:  #282c34
+
+
+!-- values between 0.1  - 1.0 --! 
+
+st.alpha: 1.0
