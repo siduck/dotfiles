@@ -1,10 +1,13 @@
 #!/bin/bash
 
 # autostart apps
-dwm &
+onedwm & # I renamed dwm to onedwm
+cp -r ~/Public/theme\ and\ icons/one/.gtkrc-2.0 ~/ &
+cp -r ~/Public/theme\ and\ icons/one/settings.ini ~/.config/gtk-3.0/ &
 picom &
-feh --bg-fill ~/Pictures/wall/minanime.png &
-xrdb merge ~/.Xresources &
+feh --bg-fill ~/Pictures/wall/ice.jpg &
+xrdb merge ~/Public/xresources/ocean/.Xresources &
+cp -r ~/Public/rofi/one/rofi/ ~/.config/ &
 del ~/.config/nvim && cp -r ~/Public/nvim_confs/base/nvim ~/.config/ &
 
 # running dwm bar
@@ -12,8 +15,10 @@ del ~/.config/nvim && cp -r ~/Public/nvim_confs/base/nvim ~/.config/ &
 interval=0
 
 while true; do
+  # This is for running xbps-updates script every hour
   [ $interval == 0 ] || [ $(($interval % 3600)) == 0 ] && updates=$(xbps-updates)
   interval=$((interval + 1))
 
+  # only this is needed if you dont use void , remove the $(ghost) $updates from it too!
   sleep 1 && xsetroot -name "$(ghost) $updates $(backlight)$(battery)$(memory)$(wlan) $(clock)"
 done
