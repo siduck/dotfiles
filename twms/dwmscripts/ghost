@@ -1,0 +1,8 @@
+#!/bin/bash
+
+icon=""
+
+printf "^c#A3BE8C^ $icon ^d^%s"
+printf "^c#A3BE8C^"
+
+exit 0
