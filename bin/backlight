@@ -6,7 +6,7 @@ backlight() {
  }
 
 icon=" "
- printf "^c#A3BE8C^ $icon"
- printf "^c#D8DEE9^ %.0f\n" $(backlight) 
+ printf "^c#abb2bf^ $icon"
+ printf "^c#abb2bf^ %.0f\n" $(backlight) 
 
 exit 0

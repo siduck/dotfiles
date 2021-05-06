@@ -754,7 +754,7 @@ disk_display="off"
 #           'viu'
 
 # Flag:     --backend
-image_backend="ascii"
+image_backend="ueberzug"
 
 # Image Source
 #

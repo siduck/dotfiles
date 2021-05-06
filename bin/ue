@@ -86,9 +86,6 @@ function parse_options {
     esac
 }
 
-
-
-
 trap finalise EXIT
 start_ueberzug
 parse_options "${@}"

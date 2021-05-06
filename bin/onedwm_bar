@@ -19,6 +19,6 @@ while true; do
   [ $interval == 0 ] || [ $(($interval % 3600)) == 0 ] && updates=$(xbps-updates)
   interval=$((interval + 1))
 
-  # If you dont use void then the above 2 lines arent needed and only this line is needed, remove the $(ghost) $updates from it too!
+  # only this is needed if you dont use void , remove the $(ghost) $updates from it too!
   sleep 1 && xsetroot -name "$(ghost) $updates $(backlight)$(battery)$(memory)$(wlan) $(clock)"
 done
