@@ -16,10 +16,10 @@ map("v", "dd", [=[ "_dd ]=], opt)
 map("v", "x", [=[ "_x ]=], opt)
 
  this line too ]]
-
 -- OPEN TERMINALS --
-map("n", "<C-l>", [[<Cmd>vnew term://bash <CR>]], opt) -- open term over right
-map("n", "<C-x>", [[<Cmd> split term://bash | resize 10 <CR>]], opt) -- open term bottom
+map("n", "<C-l>", [[<Cmd>vnew term://bash <CR>]], opt) -- term over right
+map("n", "<C-x>", [[<Cmd> split term://bash | resize 10 <CR>]], opt) --  term bottom
+map("n", "<C-t>t", [[<Cmd> tabnew | term <CR>]], opt) -- term newtab
 
 -- COPY EVERYTHING --
 map("n", "<C-a>", [[ <Cmd> %y+<CR>]], opt)
@@ -30,3 +30,6 @@ map("n", "<leader>n", [[ <Cmd> set nu!<CR>]], opt)
 -- toggle truezen.nvim's ataraxis and minimalist mode
 map("n", "<leader>z", [[ <Cmd> TZAtaraxis<CR>]], opt)
 map("n", "<leader>m", [[ <Cmd> TZMinimalist<CR>]], opt)
+
+map("n", "<C-s>", [[ <Cmd> w <CR>]], opt)
+-- vim.cmd("inoremap jh <Esc>")
