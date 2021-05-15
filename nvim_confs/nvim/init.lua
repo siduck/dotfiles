@@ -9,7 +9,7 @@ require "statusline"
 require("colorizer").setup()
 require("neoscroll").setup() -- smooth scroll
 
--- lsp
+-- lsp stuff
 require "nvim-lspconfig"
 require "compe-completion"
 
@@ -25,14 +25,14 @@ cmd "syntax on"
 local base16 = require "base16"
 base16(base16.themes["onedark"], true)
 
+require "custom_highlights"
+
 -- blankline
 
 local indent = 2
 
 g.indentLine_enabled = 1
 g.indent_blankline_char = "▏"
-
-cmd "hi IndentBlanklineChar guifg=#383c44"
 
 g.indent_blankline_filetype_exclude = {"help", "terminal"}
 g.indent_blankline_buftype_exclude = {"terminal"}
@@ -43,15 +43,6 @@ g.indent_blankline_show_first_indent_level = false
 require "treesitter-nvim"
 require "mappings"
 
--- highlights --
-cmd "hi LineNr guifg=#42464e"
-cmd "hi Comment guifg=#42464e"
-
-cmd "hi VertSplit guifg=#2a2e36"
-cmd "hi EndOfBuffer guifg=#1e222a"
-cmd "hi PmenuSel guibg=#98c379"
-cmd "hi Pmenu  guibg=#282c34"
-
 require "telescope-nvim"
 require "nvimTree"
 
@@ -61,15 +52,25 @@ require("nvim-autopairs").setup()
 require("lspkind").init()
 
 -- hide line numbers in terminal windows
-vim.api.nvim_exec([[
-   au BufEnter term://* setlocal nonumber
-]], false)
-
--- inactive statuslines as thin splitlines
-cmd("highlight! StatusLineNC gui=underline guifg=#383c44")
-
-cmd "hi clear CursorLine"
-cmd "hi cursorlinenr guifg=#abb2bf"
 
 -- setup for TrueZen.nvim
 require "zenmode"
+
+-- speeden up compe :D
+g.loaded_compe_calc = 0
+g.loaded_compe_emoji = 0
+
+g.loaded_compe_luasnip = 0
+g.loaded_compe_nvim_lua = 0
+
+g.loaded_compe_path = 0
+g.loaded_compe_spell = 0
+g.loaded_compe_tags = 0
+g.loaded_compe_treesitter = 0
+
+g.loaded_compe_snippets_nvim = 0
+
+g.loaded_compe_ultisnips = 0
+g.loaded_compe_vim_lsc = 0
+g.loaded_compe_vim_lsp = 0
+g.loaded_compe_omni = 0
