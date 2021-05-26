@@ -1,8 +1,7 @@
 -- load all plugins
 require "pluginList"
-require "file-icons"
-
 require "misc-utils"
+
 require "top-bufferline"
 require "statusline"
 
@@ -29,8 +28,6 @@ require "custom_highlights"
 
 -- blankline
 
-local indent = 2
-
 g.indentLine_enabled = 1
 g.indent_blankline_char = "▏"
 
@@ -44,7 +41,8 @@ require "treesitter-nvim"
 require "mappings"
 
 require "telescope-nvim"
-require "nvimTree"
+require "nvimTree" -- file tree stuff
+require "file-icons"
 
 -- git signs , lsp symbols etc
 require "gitsigns-nvim"
@@ -52,25 +50,10 @@ require("nvim-autopairs").setup()
 require("lspkind").init()
 
 -- hide line numbers in terminal windows
+vim.api.nvim_exec([[
+   au BufEnter term://* setlocal nonumber
+]], false)
 
 -- setup for TrueZen.nvim
 require "zenmode"
-
--- speeden up compe :D
-g.loaded_compe_calc = 0
-g.loaded_compe_emoji = 0
-
-g.loaded_compe_luasnip = 0
-g.loaded_compe_nvim_lua = 0
-
-g.loaded_compe_path = 0
-g.loaded_compe_spell = 0
-g.loaded_compe_tags = 0
-g.loaded_compe_treesitter = 0
-
-g.loaded_compe_snippets_nvim = 0
-
-g.loaded_compe_ultisnips = 0
-g.loaded_compe_vim_lsc = 0
-g.loaded_compe_vim_lsp = 0
-g.loaded_compe_omni = 0
+require "whichkey"

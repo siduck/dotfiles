@@ -54,7 +54,7 @@ require "bufferline".setup {
             guibg = "#9298a0"
         },
          tab_close = {
-            guifg = "#f9929b",
+            guifg = "#d47d85",
             guibg = "#252931"
         },
 
