@@ -1,5 +1,3 @@
- !-- Xft settings -- !
-
 Xft.antialias:	1
 Xft.hinting:	1
 Xft.autohint:	0
@@ -7,66 +5,44 @@ Xft.hintstyle:	hintslight
 Xft.rgba:	rgb
 Xft.lcdfilter:	lcddefault
 
-
-st.font:         JetBrainsMono Nerd Font:style:medium:pixelsize=15
-
 ! window padding
-st.borderpx: 8
-! Base16 OneDark
-! Scheme: Lalit Magant (http://github.com/tilal6991)
+st.borderpx: 0
 
-#define base00 #1e222a
-#define base01 #353b45
-#define base02 #3e4451
-#define base03 #545862
-#define base04 #565c64
-#define base05 #abb2bf
-#define base06 #b6bdca
-#define base07 #c8ccd4
-#define base08 #f9929b
-#define base09 #d19a66
-#define base0A #fbdf90
-#define base0B #A3BE8C
-#define base0C #56b6c2
-#define base0D #61afef
-#define base0E #c678dd
-#define base0F #be5046
+*foreground:   #c8ccd4
+*background:   #1e222a
+*cursorColor:  #abb2bf
 
-*foreground:   base07
-#ifdef background_opacity
-*background:   [background_opacity]base00
-#else
-*background:   base00
-#endif
-*cursorColor:  base05
+! black
+*color0:       #282c34
+*color8:       #545862
 
-*color0:       #2d3139
-*color1:       base08
-*color2:       base0B
-*color3:       base0A
-*color4:       base0D
-*color5:       base0E
-*color6:       base0C
-*color7:       base05
+! red
+*color1:       #D47D85
+*color9:       #d19a66
 
-*color8:       base03
-*color9:       base08
-*color10:      base0B
-*color11:      base0A
-*color12:      base0D
-*color13:      base0E
-*color14:      base0C
-*color15:      base07
+! green
+*color2:       #adc896
+*color10:      #A3BE8C 
 
-! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-! use 'shell' template to set these if necessary
-*color16:      base09
-*color17:      base0F
-*color18:      base01
-*color19:      base02
-*color20:      base04
-*color21:      base06
+! yellow
+*color3:       #EBCB8B
+*color11:      #fbdf90
 
+! blue
+*color4:       #61afef
+*color12:      #52a0e0
+
+! magenta
+*color5:       #c678dd
+*color13:      #d082e7
+
+! cyan
+*color6:       #56b6c2
+*color14:      #47a7b3
+
+! white 
+*color7:       #abb2bf
+*color15:      #c8ccd4
 
 tabbed.selfgcolor:   #d6d8eb
 tabbed.selbgcolor:   #1e222a
@@ -77,4 +53,4 @@ tabbed.normbgcolor:  #282c34
 
 !-- values between 0.1  - 1.0 --! 
 
-st.alpha: 1.0
+st.alpha: 1.0 

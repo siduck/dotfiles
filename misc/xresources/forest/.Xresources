@@ -16,8 +16,6 @@ st.borderpx: 15
 
 st.font:         JetBrainsMono Nerd Font:style:medium:pixelsize=15
 
-
-
 ! Mix of Base16 Gruvbox dark hard , nord and onedark
 ! Scheme: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox) 
 

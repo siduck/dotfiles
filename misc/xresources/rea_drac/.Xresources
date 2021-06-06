@@ -13,7 +13,7 @@ st.opacity:      255
 ! Dracula Xresources palette
 *.foreground: #D8DEE9
 *.background: #21232C   
-*.color0:     #1e1f29
+*.color0:     #21232C
 *.color8:     #4D4D4D
 *.color1:     #FF5555
 *.color9:     #FF6E67
