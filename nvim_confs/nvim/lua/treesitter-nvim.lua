@@ -8,6 +8,7 @@ ts_config.setup {
         "bash",
         "lua",
         "json",
+        "python"
     },
     highlight = {
         enable = true,

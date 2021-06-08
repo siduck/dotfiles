@@ -10,13 +10,14 @@ return require("packer").startup(
         use "siduck76/nvim-base16.lua"
         use "norcalli/nvim-colorizer.lua"
 
-        -- lsp stuff
+        -- lang stuff
         use "nvim-treesitter/nvim-treesitter"
         use "neovim/nvim-lspconfig"
         use "hrsh7th/nvim-compe"
         use "onsails/lspkind-nvim"
         use "sbdchd/neoformat"
         use "nvim-lua/plenary.nvim"
+        use "kabouzeid/nvim-lspinstall"
 
         use "lewis6991/gitsigns.nvim"
         use "akinsho/nvim-bufferline.lua"
@@ -42,7 +43,6 @@ return require("packer").startup(
         use "karb94/neoscroll.nvim"
         use "kdav5758/TrueZen.nvim"
         use "folke/which-key.nvim"
-
         use {"lukas-reineke/indent-blankline.nvim", branch = "lua"}
     end,
     {
