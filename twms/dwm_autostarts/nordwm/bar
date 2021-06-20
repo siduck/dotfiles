@@ -1,7 +1,0 @@
-#!/bin/sh
-
-while :
- do
-     sleep 1 && xsetroot -name "$(nbat)$(nback)$(nmem) $(nwlan) $(nclock) "
-
-done

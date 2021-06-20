@@ -1,6 +1,0 @@
-Command=wlan
-UseLabel=0
-Text=(genmon)
-UpdatePeriod=500
-Font=Roboto 11
-

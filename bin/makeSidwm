@@ -1,5 +1,0 @@
-#!/bin/sh
-
- cp -r /usr/local/bin/dwm .
- mv dwm sidwm
-doas mv sidwm  /usr/local/bin/
