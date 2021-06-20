@@ -36,7 +36,7 @@ end
 
 -- blankline
 
-fg("IndentBlanklineChar", one_bg)
+fg("IndentBlanklineChar", line)
 
 -- misc --
 fg("LineNr", grey)
@@ -46,7 +46,6 @@ fg("VertSplit", line)
 fg("EndOfBuffer", black)
 
 -- Pmenu
-
 bg("Pmenu", one_bg)
 bg("PmenuSbar", one_bg2)
 bg("PmenuSel", green)
@@ -68,9 +67,12 @@ fg_bg("DiffModified", nord_blue, "none")
 fg("NvimTreeFolderIcon", blue)
 fg("NvimTreeFolderName", blue)
 fg("NvimTreeIndentMarker", one_bg2)
-fg("NvimTreeVertSplit", black)
+fg("NvimTreeVertSplit", darker_black)
+bg("NvimTreeVertSplit", darker_black)
+
 fg("NvimTreeRootFolder", darker_black)
 bg("NvimTreeNormal", darker_black)
+fg_bg("NvimTreeStatuslineNc", darker_black, darker_black)
 
 -- telescope
 fg("TelescopeBorder", line)
@@ -97,25 +99,42 @@ fg("LspDiagnosticsVirtualTextHint", purple)
 -- bufferline
 
 fg_bg("BufferLineFill", grey_fg, black2)
-fg_bg("BufferLineBackground", grey_fg, black2)
-fg_bg("BufferLineBackground", grey_fg, black2)
+fg_bg("BufferLineBackground", light_grey, black2)
 
 fg_bg("BufferLineBufferVisible", light_grey, black2)
 fg_bg("BufferLineBufferSelected", white, black)
 
 cmd "hi BufferLineBufferSelected gui=bold"
 
+-- tabs
 fg_bg("BufferLineTab", light_grey, one_bg3)
 fg_bg("BufferLineTabSelected", black2, nord_blue)
-fg_bg("BufferLineTabClose", red, black2)
+fg_bg("BufferLineTabClose", red, black)
 
 fg_bg("BufferLineIndicator", black2, black2)
-fg_bg("BufferLineIndicatorSelected", black2, black2)
+fg_bg("BufferLineIndicatorSelected", black, black)
 
-fg_bg("BufferLineSeparator", black2, black2)
-fg_bg("BufferLineSeparatorVisible", black2, black2)
+-- separators
+fg_bg("BufferLineSeparator", line, black2)
+fg_bg("BufferLineSeparatorVisible", line, black2)
 fg_bg("BufferLineSeparatorSelected", black, black2)
 
+-- modified buffers
 fg_bg("BufferLineModified", red, black2)
 fg_bg("BufferLineModifiedVisible", red, black2)
 fg_bg("BufferLineModifiedSelected", green, black)
+
+-- close buttons
+fg_bg("BufferLineCLoseButtonVisible", light_grey, black2)
+fg_bg("BufferLineCLoseButton", light_grey, black2)
+fg_bg("BufferLineCLoseButtonSelected", red, black)
+
+-- dashboard
+
+fg("DashboardHeader", grey_fg)
+fg("DashboardCenter", grey_fg)
+fg("DashboardShortcut", grey_fg)
+fg("DashboardFooter", grey_fg)
+
+-- Default nvim bg
+-- cmd "hi Normal guibg=#1e222a"

@@ -10,7 +10,6 @@ require("neoscroll").setup() -- smooth scroll
 
 -- lsp stuff
 require "nvim-lspconfig"
-require "compe-completion"
 
 local cmd = vim.cmd
 local g = vim.g
@@ -31,7 +30,7 @@ require "highlights"
 g.indentLine_enabled = 1
 g.indent_blankline_char = "▏"
 
-g.indent_blankline_filetype_exclude = {"help", "terminal"}
+g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard"}
 g.indent_blankline_buftype_exclude = {"terminal"}
 
 g.indent_blankline_show_trailing_blankline_indent = false
@@ -49,11 +48,17 @@ require "gitsigns-nvim"
 require("nvim-autopairs").setup()
 require("lspkind").init()
 
--- hide line numbers in terminal windows
-vim.api.nvim_exec([[
+-- hide line numbers , statusline in specific buffers!
+vim.api.nvim_exec(
+    [[
    au BufEnter term://* setlocal nonumber
-]], false)
+   au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
+   au BufEnter term://* set laststatus=0 
+]],
+    false
+)
 
--- setup for TrueZen.nvim
 require "zenmode"
 require "whichkey"
+require "dashboard"
+require("nvim_comment").setup()

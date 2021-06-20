@@ -3,7 +3,7 @@ local g = vim.g
 vim.o.termguicolors = true
 
 g.nvim_tree_side = "left"
-g.nvim_tree_width = 26
+g.nvim_tree_width = 25
 g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
 g.nvim_tree_auto_open = 0
 g.nvim_tree_auto_close = 0
@@ -23,8 +23,8 @@ g.nvim_tree_show_icons = {
 }
 
 g.nvim_tree_icons = {
-    default = " ",
-    symlink = " ",
+    default = "",
+    symlink = "",
     git = {
         unstaged = "✗",
         staged = "✓",
@@ -39,7 +39,7 @@ g.nvim_tree_icons = {
         open = "",
         symlink = "",
         empty = "",
-        empty_open = "",
+        empty_open = "",
         symlink_open = ""
     }
 }

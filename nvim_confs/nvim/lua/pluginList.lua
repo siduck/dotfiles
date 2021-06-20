@@ -2,9 +2,23 @@ local packer = require("packer")
 local use = packer.use
 
 -- using { } for using different branch , loading plugin with certain commands etc
-return require("packer").startup(
+return packer.startup(
     function()
         use "wbthomason/packer.nvim"
+
+        -- loads compe and vsnip in insert mode only
+        use {
+            "hrsh7th/nvim-compe",
+            event = "InsertEnter",
+            config = function()
+                require("compe-completion").config()
+            end
+        }
+
+        use {
+            "hrsh7th/vim-vsnip",
+            event = "InsertEnter"
+        }
 
         -- color related stuff
         use "siduck76/nvim-base16.lua"
@@ -13,7 +27,6 @@ return require("packer").startup(
         -- lang stuff
         use "nvim-treesitter/nvim-treesitter"
         use "neovim/nvim-lspconfig"
-        use "hrsh7th/nvim-compe"
         use "onsails/lspkind-nvim"
         use "sbdchd/neoformat"
         use "nvim-lua/plenary.nvim"
@@ -25,19 +38,21 @@ return require("packer").startup(
         use "windwp/nvim-autopairs"
         use "alvan/vim-closetag"
 
+        -- Comment
+        use "terrortylor/nvim-comment"
+
         -- snippet support
-        use "hrsh7th/vim-vsnip"
         use "rafamadriz/friendly-snippets"
 
         -- file managing , picker etc
         use "kyazdani42/nvim-tree.lua"
         use "kyazdani42/nvim-web-devicons"
-        use "ryanoasis/vim-devicons"
         use "nvim-telescope/telescope.nvim"
         use "nvim-telescope/telescope-media-files.nvim"
         use "nvim-lua/popup.nvim"
 
         -- misc
+        use "glepnir/dashboard-nvim"
         use "tweekmonster/startuptime.vim"
         use "907th/vim-auto-save"
         use "karb94/neoscroll.nvim"

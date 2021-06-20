@@ -7,13 +7,14 @@ local function opt(scope, key, value)
     end
 end
 
+opt("o", "completeopt", "menuone,noselect") -- for compe
+opt("o", "ruler", false)
+opt("o", "showmode", false)
 opt("o", "hidden", true)
 opt("o", "ignorecase", true)
 opt("o", "splitbelow", true)
 opt("o", "splitright", true)
 opt("o", "termguicolors", true)
-opt("w", "number", true)
-opt("o", "numberwidth", 2)
 opt("w", "cul", true)
 
 opt("o", "mouse", "a")
@@ -25,9 +26,15 @@ opt("o", "updatetime", 250) -- update interval for gitsigns
 opt("o", "clipboard", "unnamedplus")
 opt("o", "timeoutlen", 500)
 
+-- Numbers
+opt("w", "number", true)
+opt("o", "numberwidth", 2)
+-- opt("w", "relativenumber", true)
+
 -- for indenline
 opt("b", "expandtab", true)
 opt("b", "shiftwidth", 2)
+opt("b", "smartindent", true)
 
 local M = {}
 
@@ -40,6 +47,8 @@ function M.has_width_gt(cols)
     -- Check if the windows width is greater than a given number of columns
     return vim.fn.winwidth(0) / 2 > cols
 end
+
 -- file extension specific tabbing
 vim.cmd([[autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4]])
+
 return M

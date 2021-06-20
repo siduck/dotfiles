@@ -6,10 +6,17 @@ gl.short_line_list = {" "}
 
 local colors = require "themes/onedark"
 
+gls.left[1] = {
+  FirstElement = {
+    provider = function() return '▋' end,
+    highlight = { colors.nord_blue, colors.nord_blue }
+  },
+}
+
 gls.left[2] = {
     statusIcon = {
         provider = function()
-            return "   "
+            return "  "
         end,
         highlight = {colors.statusline_bg, colors.nord_blue},
         separator = "  ",
