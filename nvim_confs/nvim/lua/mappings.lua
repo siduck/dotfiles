@@ -40,7 +40,7 @@ map("n", "<C-s>", [[ <Cmd> w <CR>]], opt)
 map("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
 map("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
 
--- compe mappings
+-- compe stuff
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -54,8 +54,6 @@ local check_back_space = function()
         return false
     end
 end
-
--- tab completion
 
 _G.tab_complete = function()
     if vim.fn.pumvisible() == 1 then
@@ -87,9 +85,29 @@ function _G.completions()
     return npairs.check_break_line_char()
 end
 
---  mappings
+--  compe mappings
 map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 map("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 map("i", "<CR>", "v:lua.completions()", {expr = true})
+
+-- Mappings for nvimtree
+map(
+    "n",
+    "<C-n>",
+    ":NvimTreeToggle<CR>",
+    {
+        noremap = true,
+        silent = true
+    }
+)
+
+map("n", "<Leader>fm", [[<Cmd> Neoformat<CR>]], opt)
+
+-- dashboard stuff
+map("n", "<Leader>fw", [[<Cmd> Telescope live_grep<CR>]], opt)
+map("n", "<Leader>fn", [[<Cmd> DashboardNewFile<CR>]], opt)
+map("n", "<Leader>bm", [[<Cmd> DashboardJumpMarks<CR>]], opt)
+map("n", "<Leader>sl", [[<Cmd> SessionLoad<CR>]], opt)
+map("n", "<Leader>ss", [[<Cmd> SessionSave<CR>]], opt)
