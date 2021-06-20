@@ -1,0 +1,161 @@
+# click on the desktop to get menus
+OnDesktop Mouse1 :HideMenus
+OnDesktop Mouse2 :WorkspaceMenu
+OnDesktop Mouse3 :RootMenu
+
+# scroll on the desktop to change workspaces
+OnDesktop Mouse4 :PrevWorkspace
+OnDesktop Mouse5 :NextWorkspace
+
+# scroll on the toolbar to change current window
+OnToolbar Mouse4 :PrevWindow {static groups} (iconhidden=no)
+OnToolbar Mouse5 :NextWindow {static groups} (iconhidden=no)
+
+# alt + left/right click to move/resize a window
+OnWindow Mod4 Mouse1 :MacroCmd {Raise} {Focus} {StartMoving}
+OnWindowBorder Move1 :StartMoving
+
+OnWindow Mod4 Mouse3 :MacroCmd {Raise} {Focus} {StartResizing NearestCorner}
+OnLeftGrip Move1 :StartResizing bottomleft
+OnRightGrip Move1 :StartResizing bottomright
+
+# alt + middle click to lower the window
+OnWindow Mod4 Mouse2 :Lower
+
+# control-click a window's titlebar and drag to attach windows
+OnTitlebar Control Mouse1 :StartTabbing
+
+# double click on the titlebar to shade
+OnTitlebar Double Mouse1 :Shade
+
+# left click on the titlebar to move the window
+OnTitlebar Mouse1 :MacroCmd {Raise} {Focus} {ActivateTab}
+OnTitlebar Move1  :StartMoving
+
+# middle click on the titlebar to lower
+OnTitlebar Mouse2 :Lower
+
+# right click on the titlebar for a menu of options
+OnTitlebar Mouse3 :WindowMenu
+
+# alt-tab
+Mod1 Tab :NextWindow {groups} (workspace=[current])
+Mod1 Shift Tab :PrevWindow {groups} (workspace=[current])
+
+# cycle through tabs in the current window
+Mod4 Tab :NextTab
+Mod4 Shift Tab :PrevTab
+
+# go to a specific tab in the current window
+Mod4 1 :Tab 1
+Mod4 2 :Tab 2
+Mod4 3 :Tab 3
+Mod4 4 :Tab 4
+Mod4 5 :Tab 5
+Mod4 6 :Tab 6
+Mod4 7 :Tab 7
+Mod4 8 :Tab 8
+Mod4 9 :Tab 9
+
+# open a terminal
+Mod4 Return :Exec st
+XF86MonBrightnessUp : Exec xbacklight -inc 10
+XF86MonBrightnessDown : Exec xbacklight -dec 10
+
+# open a dialog to run programs
+Mod1 F2 :Exec fbrun
+
+# volume settings, using common keycodes
+# if these don't work, use xev to find out your real keycodes
+176 :Exec amixer sset Master,0 1+
+174 :Exec amixer sset Master,0 1-
+160 :Exec amixer sset Master,0 toggle
+
+# current window commands
+Mod1 F4 :Close
+Mod4 q :Kill
+Mod4 i :Minimize
+Mod1 F10 :Maximize
+Mod1 F11 :Fullscreen
+
+# open the window menu
+Mod4 C :Exec rofi -show drun 
+Mod4 l :Exec maim | xclip -selection clipboard -t image/png
+Mod4 U :Exec  maim --select | xclip -selection clipboard -t image/png
+
+# exit fluxbox
+Control Mod1 Delete :Exit
+
+# change to previous/next workspace
+Control Mod1 Left :PrevWorkspace
+Control Mod1 Right :NextWorkspace
+
+# send the current window to previous/next workspace
+Mod4 Left :SendToPrevWorkspace
+Mod4 Right :SendToNextWorkspace
+
+# send the current window and follow it to previous/next workspace
+Control Mod4 Left :TakeToPrevWorkspace
+Control Mod4 Right :TakeToNextWorkspace
+
+# change to a specific workspace
+Control F1 :Workspace 1
+Control F2 :Workspace 2
+Control F3 :Workspace 3
+Control F4 :Workspace 4
+Control F5 :Workspace 5
+Control F6 :Workspace 6
+Control F7 :Workspace 7
+Control F8 :Workspace 8
+Control F9 :Workspace 9
+Control F10 :Workspace 10
+Control F11 :Workspace 11
+Control F12 :Workspace 12
+
+# send the current window to a specific workspace
+Mod4 F1 :SendToWorkspace 1
+Mod4 F2 :SendToWorkspace 2
+Mod4 F3 :SendToWorkspace 3
+Mod4 F4 :SendToWorkspace 4
+Mod4 F5 :SendToWorkspace 5
+Mod4 F6 :SendToWorkspace 6
+Mod4 F7 :SendToWorkspace 7
+Mod4 F8 :SendToWorkspace 8
+Mod4 F9 :SendToWorkspace 9
+Mod4 F10 :SendToWorkspace 10
+Mod4 F11 :SendToWorkspace 11
+Mod4 F12 :SendToWorkspace 12
+
+# send the current window and change to a specific workspace
+Control Mod4 F1 :TakeToWorkspace 1
+Control Mod4 F2 :TakeToWorkspace 2
+Control Mod4 F3 :TakeToWorkspace 3
+Control Mod4 F4 :TakeToWorkspace 4
+Control Mod4 F5 :TakeToWorkspace 5
+Control Mod4 F6 :TakeToWorkspace 6
+Control Mod4 F7 :TakeToWorkspace 7
+Control Mod4 F8 :TakeToWorkspace 8
+Control Mod4 F9 :TakeToWorkspace 9
+Control Mod4 F10 :TakeToWorkspace 10
+Control Mod4 F11 :TakeToWorkspace 11
+Control Mod4 F12 :TakeToWorkspace 12
+
+
+
+
+# Tiling
+Mod4 Shift z :MacroCmd {ResizeTo 50% 50%} {MoveTo 00 00 BottomLeft}
+Mod4 Shift x :MacroCmd {ResizeTo 100% 50%} {MoveTo 00 00 Bottom}
+ 
+
+Mod4 Shift c   :MacroCmd {ResizeTo 50% 50%} {MoveTo 00 00 BottomRight}
+
+ 
+
+Mod4 Shift h :MacroCmd {ResizeTo 50% 100%} {MoveTo 00 00 Left}
+Mod4 space :MacroCmd {ResizeTo 50% 50%} {MoveTo 00 00 Center}
+Mod4 Shift l :MacroCmd {ResizeTo 50% 100%} {MoveTo 00 00 Right}
+Mod4 Shift v :MacroCmd {ResizeTo 50% 50%} {MoveTo 00 00 TopLeft}
+Mod4 Shift b :MacroCmd {ResizeTo 100% 50%} {MoveTo 00 00 Top}
+Mod4 Shift r :MacroCmd {ResizeTo 50% 50%} {MoveTo 00 00 TopRight}
+Mod4 f :ToggleCmd {Maximize} {Restore}

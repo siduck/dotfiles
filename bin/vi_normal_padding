@@ -1,0 +1,6 @@
+#!/bin/sh
+
+sed -i "s/st.borderpx: 0/st.borderpx: 8/g" ~/Public/xresources/ocean/.Xresources
+xrdb merge ~/Public/xresources/ocean/.Xresources
+kill -USR1 $(pidof st)
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="23px" viewBox="0 0 27 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>close-icon-backdrop</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.7">
+        <g id="Group" transform="translate(-123.000000, 0.000000)">
+            <g id="titlebutton-close-backdrop-dark" transform="translate(123.000000, 0.000000)">
+                <rect id="Rectangle-9" fill-opacity="0.288836051" fill="#000000" opacity="0" x="0" y="0" width="27" height="23"></rect>
+                <polygon id="Combined-Shape" fill="#303030" points="13.2426407 11.9497475 10.0606602 15.131728 9.70710678 15.4852814 9 14.7781746 9.35355339 14.4246212 12.5355339 11.2426407 9.35355339 8.06066017 9 7.70710678 9.70710678 7 10.0606602 7.35355339 13.2426407 10.5355339 16.4246212 7.35355339 16.7781746 7 17.4852814 7.70710678 17.131728 8.06066017 13.9497475 11.2426407 17.131728 14.4246212 17.4852814 14.7781746 16.7781746 15.4852814 16.4246212 15.131728"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

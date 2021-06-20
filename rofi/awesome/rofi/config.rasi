@@ -1,0 +1,17 @@
+configuration{
+    modi: "drun";
+    width: 40;
+    columns: 1;
+    lines: 5;
+ 	font: "Iosevka 12";
+    show-icons: true;
+	icon-theme: "Papirus-Dark";
+    terminal: "st";
+    drun-display-format: "{icon} {name}";
+    display-drun: "Run";
+    location: 0;
+    separator-style: "solid";
+    disable-history: false;
+    hide-scrollbar: true;
+	theme: "~/.config/rofi/simple.rasi";
+}

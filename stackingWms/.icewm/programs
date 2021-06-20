@@ -1,0 +1,72 @@
+## This is an example for icewm 1.7.0 program definition file.
+## It will be installed as /usr/share/icewm/programs.
+## Place your variants in /etc/icewm or in $HOME/.icewm.
+## This file is intended to be customized by distributions.
+##
+## mostly obsolete, fixme
+#menu Editors folder {
+#    prog fte fte fte
+#    prog vim vim gvim 
+#    prog xemacs xemacs xemacs
+#    prog emacs emacs emacs
+#    prog NEdit nedit nedit
+#    prog xedit xedit xedit
+#    prog Lyx emacs lyx
+#}
+#menu "WWW" folder {
+#    prog Netscape netscape netscape
+#    prog Mozilla mozilla mozilla
+#    prog Galeon galeon galeon
+#    prog Arena arena arena
+#    prog Lynx lynx xterm -e lynx
+#    prog Links lynx xterm -e links
+#}
+#menu "Document Viewers" folder {
+#    prog "Acrobat Reader" pdf acroread
+#    prog "DVI Previewer" xdvi xdvi
+#    prog "Ghostview" ghostview gv
+#}
+#menu Graphics folder {
+#    prog Gimp gimp gimp
+#    prog XV xv xv
+#    prog XPaint xpaint xpaint
+#    prog XFig xfig xfig
+#}
+#menu Games folder {
+#    prog "Koules for X" koules xkoules -f
+#    prog Xboing xboing xboing
+#    prog Xboard xboard xboard
+#    prog XGalaga xgalaga xgal
+#    prog XDemineur xdemineur xdemineur
+#    prog "Tux Racer" tuxracer tuxracer
+#}
+#menu System folder {
+#    prog "Control Panel" redhat control-panel
+#}
+#menu Utilities folder {
+#    prog XPlayCD xplaycd xplaycd
+#    prog XMixer xmixer xmixer
+#    prog Clock xclock xclock
+#    prog Magnify xmag xmag
+#    prog Calculator xcalc xcalc
+#    prog Colormap xcolormap xcmap
+#    prog Clipboard xclipboard xclipboard
+#    prog xkill bomb xkill
+#    prog xload xload xload
+#    prog xosview xosview xosview
+#    separator
+#    prog "Screen Saver" xlock xlock -nolock
+#    prog "Screen Lock" xlock xlock
+#}
+#menu "Window Managers" folder {
+#    restart icewm - icewm
+#    restart metacity - metacity
+#    restart wmaker - wmaker
+#    restart fluxbox - fluxbox
+#    restart blackbox - blackbox
+#    restart enlightenment - enlightenment
+#    restart fvwm2 - fvwm2
+#    restart fvwm - fvwm
+#    restart sawfish - sawfish
+#    restart sawfish2 - sawfish2
+#}

@@ -1,0 +1,6 @@
+Command=xfce-updates\ 
+UseLabel=0
+Text=(genmon)
+UpdatePeriod=3600000
+Font=Roboto Mono Medium for Powerline Medium 10
+

@@ -1,0 +1,74 @@
+
+!-- Xft settings -- !
+
+Xft.antialias:	1
+Xft.hinting:	1
+Xft.autohint:	0
+Xft.hintstyle:	hintslight
+Xft.rgba:	rgb
+Xft.lcdfilter:	lcddefault
+
+!-- transparen5y ( any value under 255 ) --!
+st.opacity:        255
+
+st.borderpx: 15
+!-- inner border -- ! 
+
+st.font:         JetBrainsMono Nerd Font:style:medium:pixelsize=15
+
+! Mix of Base16 Gruvbox dark hard , nord and onedark
+! Scheme: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox) 
+
+#define base00 #1d2021
+#define base01 #3c3836
+#define base02 #504945
+#define base03 #665c54
+#define base04 #61afef
+#define base05 #c8ccd4
+#define base06 #ebdbb2
+#define base07 #fbf1c7
+#define base08 #BF616A
+#define base09 #D08770
+#define base0A #EBCB8B 
+#define base0B #A3BE8C
+
+#define base0C #81A1C1
+#define base0D #83a598
+#define base0E #d3869b
+#define base0F #d65d0e
+
+*foreground:   base05
+#ifdef background_opacity
+*background:   [background_opacity]base00
+#else
+*background:   base00
+#endif
+*cursorColor:  base05
+
+*color0:       base00
+*color1:       base08
+*color2:       base0B
+*color3:       base0A
+*color4:       base0D
+*color5:       base0E
+*color6:       base0C
+*color7:       base05
+
+*color8:       base03
+*color9:       base09
+*color10:      base01
+*color11:      base02
+*color12:      base04
+*color13:      base06
+*color14:      base0F
+*color15:      base07
+*color16: #272A2B
+
+
+tabbed.selbgcolor:   #1d2021
+tabbed.selfgcolor:   #c8ccd4
+
+tabbed.normfgcolor:  #9294a8
+tabbed.normbgcolor:  #272A2B
+
+

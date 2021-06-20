@@ -1,0 +1,103 @@
+URxvt*background: #0f111a
+urxvt*foreground:#ffffff
+URxvt*geometry: 80x30
+URxvt*scrollBar: false
+
+
+!-- Xft settings -- !
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
+
+! -- Fonts -- !
+  URxvt.font:xft:Monospace-Bold:pixelsize=12.5
+  URxvt.boldfont:xft:Monospace-Bold:pixelsize=12.5
+
+! window padding
+
+URxvt.letterSpace: -1
+URxvt.internalBorder:  10
+
+urxvt.foreground:       #aaaaaa
+
+
+st.opacity:        255
+
+
+*color12: #0D72CA
+*color4: #0D72CA
+
+URxvt*inheritPixmap: true
+URxvt*transparent: true
+! -- URxvt*shading: 0 to 99 darkens, 101 to 200 lightens -- !
+URxvt*shading:0
+
+! -- URxvt.perl-ext-common: ...,tabbed,...  -- !
+
+URxvt.tabbed.tabbar-fg: 4
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 2
+
+! -- xterm config -- !
+
+
+xterm*faceName: Fira Code Medium Nerd Font Complete Mono
+
+
+xterm*faceSize: 10
+xterm*renderFont: true
+xterm*BorderWidth: 15
+XTerm*selectToClipboard: true
+
+
+ 
+st.borderpx:          15
+st.font:    JetBrainsMono Nerd Font:style:medium :pixelsize=15 
+! Copyright (c) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
+! Copyright (c) 2016-present Sven Greb <code@svengreb.de>
+
+
+#define nord0 #2E3440
+#define nord1 #3B4252
+#define nord2 #434C5E
+#define nord3 #4C566A
+#define nord4 #D8DEE9
+#define nord5 #E5E9F0
+#define nord6 #ECEFF4
+#define nord7 #8FBCBB
+#define nord8 #88C0D0
+#define nord9 #81A1C1
+#define nord10 #5E81AC
+#define nord11 #BF616A
+#define nord12 #D08770
+#define nord13 #EBCB8B
+#define nord14 #A3BE8C
+#define nord15 #B48EAD
+
+*.foreground:   nord4
+*.background:   nord0
+! *.cursorColor:  nord4
+
+
+*.color0: nord1
+*.color1: nord11
+*.color2: nord14
+*.color3: nord13
+*.color4: nord9
+*.color5: nord15
+*.color6: nord8
+*.color7: nord5
+*.color8: nord3
+*.color9: nord11
+*.color10: nord14
+*.color11: nord13
+*.color12: nord9
+*.color13: nord15
+*.color14: nord7
+*.color15: nord6
+
+
+

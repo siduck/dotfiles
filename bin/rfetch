@@ -1,0 +1,75 @@
+#!/bin/bash
+
+#colors
+bold="(tput bold)"
+magenta="$(tput setaf 5)"
+green="$(tput setaf 2)"
+white="$(tput setaf 7)"
+blue="$(tput setaf 4)"
+red="$(tput setaf 1)"
+black="(tput setaf 0)"
+yellow="$(tput setaf 3)"
+cyan="$(tput setaf 6)" 
+
+c0="${reset}${bold}"
+c1="${reset}${magenta}"
+c2="${reset}${green}"
+c3="${reset}${white}"
+c4="${reset}${blue}"
+c5="${reset}${red}"
+c6="${reset}${yellow}"
+c7="${reset}${cyan}"
+
+#get total packages
+net_pkg(){
+    pack=$(which {xbps-install,apk,apt,pacman,nix,yum,rpm,dpkg} 2> /dev/null |grep -v "not found" | awk -F/ 'NR==1{print $NF}')
+    case $pack in
+        "xbps-install")
+            total=$(xbps-query -l | wc -l)
+            ;;
+        "apk")
+            total=$(apk search | wc -l)
+            ;;
+        "apt")
+            total=$(apt list --installed | wc -l)
+            ;;
+        "pacman")
+            total=$(pacman -Q | wc -l)
+            ;;
+        "nix")
+            total=$(nix-env -qa --installed "*"| wc -l)
+            ;;
+        "yum")
+            total=$(yum list installed | wc -l)
+            ;;
+        "rpm")
+            total=$(rpm -qa | wc -l)
+            ;;
+        "dpkg")
+            total=$(dpkg-query -l | wc -l)
+            ;;
+        "")
+            total="Unknown"
+    esac
+
+    echo $total
+}
+
+# check distro info for counting n.o of packages accordingly
+distro=$(source /etc/os-release && echo $PRETTY_NAME)
+mem=$(free -m | sed -n 's/^Mem:\s\+[0-9]\+\s\+\([0-9]\+\)\s.\+/\1/p')
+
+pkgcount=$(net_pkg)
+# fetch output 
+
+echo "               " 
+echo "               ${c1}os${c3}    $(source /etc/os-release && echo $PRETTY_NAME)"
+echo "      .-.      ${c2}kr${c3}    $(uname -r)"
+echo "      oo|      ${c7}pkgs${c3}  $pkgcount" 
+echo "     / '\      ${c4}sh${c3}    $(basename $SHELL)"
+echo "    (\_;/)     ${c5}up${c3}   $(uptime -p | sed 's/up//')"
+echo "               ${c6}ram${c3}   $mem MB"
+echo "               " 
+echo "     	 ${c6}󰮯 ${c6} ${c2}󰊠 ${c2} ${c4}󰊠 ${c4} ${c5}󰊠 ${c5} ${c7}󰊠 ${c7}"
+echo "               " 
+

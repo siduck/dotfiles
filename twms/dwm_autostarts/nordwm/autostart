@@ -1,0 +1,10 @@
+#!/bin/sh
+
+feh --bg-fill ~/Pictures/wall/n14.png &
+xrdb merge ~/Public/xresources/sidnord/siflux &
+picom & 
+cp -r ~/Public/theme\ and\ icons/flux/.gtkrc-2.0 ~/ &
+cp -r ~/Public/theme\ and\ icons/flux/settings.ini  ~/.config/gtk-3.0/ &
+cp -r ~/Public/rofi/dwm_nord/rofi/ ~/.config/ & 
+~/Public/dwm_autostarts/nordwm/bar &
+dwm

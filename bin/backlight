@@ -1,0 +1,12 @@
+#!/bin/bash
+
+backlight() {
+         backlight="$(xbacklight -get)"
+         echo -e "$backlight" #| cut -c 1-2
+ }
+
+icon=" "
+ printf "^c#abb2bf^ $icon"
+ printf "^c#abb2bf^ %.0f\n" $(backlight) 
+
+exit 0

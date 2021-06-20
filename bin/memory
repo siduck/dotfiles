@@ -1,0 +1,3 @@
+#!/bin/bash
+ 
+printf "^c#BF616A^   ^d^%s" "^c#BF616A^ $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g) "

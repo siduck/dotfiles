@@ -1,0 +1,3 @@
+#!/bin/bash
+ 
+printf "^c#fc5c9c^  󰳡^d^%s" " $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g)"

@@ -1,0 +1,56 @@
+Xft.antialias:	1
+Xft.hinting:	1
+Xft.autohint:	0
+Xft.hintstyle:	hintslight
+Xft.rgba:	rgb
+Xft.lcdfilter:	lcddefault
+
+! window padding
+st.borderpx: 0
+
+*foreground:   #c8ccd4
+*background:   #1e222a
+*cursorColor:  #abb2bf
+
+! black
+*color0:       #282c34
+*color8:       #545862
+
+! red
+*color1:       #D47D85
+*color9:       #d19a66
+
+! green
+*color2:       #adc896
+*color10:      #A3BE8C 
+
+! yellow
+*color3:       #EBCB8B
+*color11:      #fbdf90
+
+! blue
+*color4:       #61afef
+*color12:      #52a0e0
+
+! magenta
+*color5:       #c678dd
+*color13:      #d082e7
+
+! cyan
+*color6:       #56b6c2
+*color14:      #47a7b3
+
+! white 
+*color7:       #abb2bf
+*color15:      #c8ccd4
+
+tabbed.selfgcolor:   #d6d8eb
+tabbed.selbgcolor:   #1e222a
+
+tabbed.normfgcolor:  #9294a8
+tabbed.normbgcolor:  #282c34
+
+
+!-- values between 0.1  - 1.0 --! 
+
+st.alpha: 1.0 

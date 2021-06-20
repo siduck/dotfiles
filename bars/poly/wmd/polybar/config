@@ -1,0 +1,395 @@
+e;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+;background = ${xrdb:color0:#222}
+background = #171a1f
+background-alt = #444
+;foreground = ${xrdb:color7:#222}
+foreground = #D8DEE9
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/example]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 20 
+offset-x = 0
+offset-y = 0 
+radius = 0.0
+fixed-center = false
+bottom = false
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2 
+line-color = #e0fcff
+
+border-size = 0
+border-color = #BD93F9
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 0
+module-margin-right = 2
+
+font-0 = Hack:style=Bold:size=9;1
+font-1 = Hack:style=Bold:size=9;1
+font-2 = Font Awesome 5 Free:style=Solid:size=9;1
+font-3 = Font Awesome 5 Free:style=Regular:size=9;1
+font-4 = Font Awesome 5 Brands:style=Regular:size=11;1
+font-5 = Material Design Icons:style=Regular:size=11;1
+
+modules-left =  xworkspaces 
+modules-center = xwindow  
+modules-right =   mem cpu-graph wlan date powermenu  
+
+
+
+ tray-position = center
+tray-padding = 2
+ 
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+ 
+
+ 
+[module/xbacklight]
+type = internal/xbacklight
+
+format =   <bar> 
+format-prefix = " "
+ 
+
+bar-width = 5
+bar-indicator =|
+bar-indicator-foreground = #88C0D0
+
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #88C0D0
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = #ffffff
+bar-width-background = #88C0D0
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+
+[module/xworkspaces]
+type           = internal/xworkspaces
+pin-workspaces = true
+enable-click   = true
+enable-scroll  = false
+
+format            = <label-state>
+format-padding    = 1 
+format-background = #171a1f 
+; %index%, %name% or %icon%
+label-active              = %icon%
+label-active-foreground   = ${colors.foreground}
+label-active-padding      = 1 
+label-active-underline    = #8f00ff
+
+label-occupied            = %icon%
+label-occupied-foreground =1  
+label-occupied-padding    = 1 
+label-urgent              = %icon%
+label-urgent-foreground   = #ffffff 
+label-urgent-padding      = 1 
+label-empty               = %icon%
+label-empty-foreground    = #ffffff 
+label-empty-padding       = 1 
+
+
+icon-0 = 1;%{F#fabea7}󰈹 %{F-} 
+icon-1 = 2;%{F#88e1f2}󰔁 %{F-} 
+icon-2 = 3;%{F#e36387}󰉍 %{F-} 
+icon-3 = 4;%{F#c2f0fc}󰣘 %{F-}  
+icon-4 = 5;%{F#f7ff56}󰪱 %{F-}
+
+[module/polywins]
+type = custom/script
+exec = ~/.config/polybar/scripts/polywins.sh 2>/dev/null
+format = <label>
+label = %output%
+label-padding = 0
+tail = true
+
+
+[module/mem]
+type = custom/script
+exec = free -m | sed -n 's/^Mem:\s\+[0-9]\+\s\+\([0-9]\+\)\s.\+/\1/p'
+format = <label>
+label = 󰳡 %output%
+label-padding = 1
+ 
+
+ 
+ 
+ 
+
+[module/ewmh]
+type = internal/xworkspaces
+
+pin-workspaces = false
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+
+;extra icons to choose from
+;http://fontawesome.io/cheatsheet/
+;       v     
+
+icon-0 = 1; %{F#fabea7}󰈹 %{F-} 
+icon-1 = 2; %{F#88e1f2}󰔁 %{F-} 
+icon-2 = 3; %{F#e36387}󰉍 %{F-} 
+icon-3 = 4; %{F#c2f0fc}󰣘 %{F-}  
+icon-4 = 5; %{F#f7ff56}󰪱 %{F-} 
+#icon-5 = 6; %{F#87e0ff}󰕰%{F-}  
+#icon-6 = 7;  7
+#icon-7 = 8;  8
+#icon-8 = 9;  9
+#icon-9 = 10; 
+#icon-default = " "
+format = <label-state>
+label-monitor = %name%
+
+
+label-active = %icon%
+label-active-foreground =  ${colors.foreground} 
+label-active-background = ${colors.background} 
+label-active-underline= #7d8df6
+label-active-padding = 0.5 
+
+label-occupied = %icon%
+label-occupied-background = ${colors.background}
+label-occupied-padding =  0.5  
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.alert}
+label-urgent-underline = ${colors.alert}
+label-urgent-padding =  0.5 
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding =  0.5 
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+ 
+ 
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+format-connected = <label-connected>
+
+label-connected =󰤨 %essid% 
+ 
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 󰤥
+ramp-signal-1 = 󰤥
+ramp-signal-2 = 󰤥
+ramp-signal-3 = 󰤥
+ramp-signal-4 = 󰤥
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/menu-apps]
+type = custom/menu
+
+; If true, <label-toggle> will be to the left of the menu items (default).
+; If false, it will be on the right of all the items.
+expand-right = true
+
+; "menu-LEVEL-N" has the same properties as "label-NAME" with
+; the additional "exec" property
+;
+; Available exec commands:
+;   menu-open-LEVEL
+;   menu-close
+; Other commands will be executed using "/bin/sh -c $COMMAND"
+
+menu-0-0 = Browsers
+menu-0-0-exec = menu-open-1
+menu-0-1 = conv
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = ungoogled
+menu-1-0-exec =  /opt/ungoogled-chromium_83.0.4103.97-1.1_linux/chrome-wrapper &
+menu-1-1 = conn
+menu-1-1-exec = connman-gtk &
+
+menu-2-0 = tel
+menu-2-0-exec = telegram-desktop &
+menu-2-1 = pcmanfm
+menu-2-1-exec = pcmanfm &
+
+; Available tags:
+;   <label-toggle> (default) - gets replaced with <label-(open|close)>
+;   <menu> (default)
+; If expand-right is true, the default will be "<label-toggle><menu>" and the
+; other way around otherwise.
+; Note that if you use <label-toggle> you must also include
+; the definition for <label-open>
+; format = <label-toggle><menu>
+
+label-open = 󰙀 apps
+label-close = 󰅙
+
+; Optional item separator
+; Default: none
+label-separator = "  "
+[module/eth]
+type = internal/network
+interface = eth1
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = "%Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-padding-left = 1
+format-prefix-foreground = #282A36
+format-prefix-background = #78bbe6
+label = %date% %time%
+label-background = #78bbe6
+label-foreground = #10141c
+label-padding-left = 0
+label-padding-right = 2
+ 
+
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = 󰕾 <bar-volume> 
+format-prefix = ""
+label-volume-foreground = ${root.foreground}
+ 
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted =  muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #BD93F9
+bar-volume-foreground-1 = #BD93F9
+bar-volume-foreground-2 = #BD93F9
+bar-volume-foreground-3 = #BD93F9
+bar-volume-foreground-4 = #BD93F9
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = true
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = 
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = #88C0D0
+
+ 
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 0
+
+label-open =      
+label-open-foreground = #ffffff
+
+label-close =  cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
+
+
+
+

@@ -1,0 +1,39 @@
+# This is an example for icewm 1.7.0 hotkey definition file.
+# It will be installed as /usr/share/icewm/keys.
+# Place your variants in /etc/icewm or in $HOME/.icewm since
+# modifications to this file will be overwritten when you reinstall icewm.
+#
+# A list of all valid keyboard symbols can be found in
+# /usr/include/X11/keysym.h, keysymdefs.h, XF86keysym.h, ...
+# You'll have to omit XK_ prefixs and to replace XF86XK_ prefixes by
+# XF86. Valid modifiers are Alt, Ctrl, Shift, Meta, Super and Hyper.
+#
+key "Super+Return"          st
+key "Super+c"               rofi -show drun
+key "Super+u"         sh -c "maim --select | xclip -selection clipboard -t image/png"
+key "Super+Shift+u"               sh -c "maim  | xclip -selection clipboard -t image/png"
+key "Super+t"             tabbed -c -r 2 st -w ""
+key  "Super+z"              xbacklight -dec 10
+key  "Super+space"        xbacklight -inc 10
+key "Super+r"         icewm -r
+
+
+# "Multimedia key" bindings for Xorg. Gather the keycodes of your
+# advanced function keys by watching the output of the xev command whilest
+# pressing those keys and map those symbols by using xmodmap.
+
+# Note: some of them might have unwanted side effects through concurrency with
+# other listeners like systemd for the suspend key events
+#
+# key "XF86Standby"         /bin/sh -c "{ test -e /run/systemd/system && systemctl suspend; } ||:"
+# key "XF86Sleep"           /bin/sh -c "{ test -e /run/systemd/system && systemctl suspend; } ||:"
+key "XF86AudioLowerVolume"  amixer sset Master 5%-
+key "XF86AudioRaiseVolume"  amixer sset Master 5%+
+key "XF86AudioMute"         amixer sset Master toggle
+key "XF86HomePage"          xdg-open about:
+blank
+key "XF86Search"            xdg-open https://www.google.com
+key "XF86Eject"             eject
+key "XF86Calculator"        /bin/sh -c "gnome-calculator || xcalc || ( type bc >/dev/null 2>&1 && xterm -e bc -l)"
+
+switchkey "Super+p"         icewm-menu-xrandr

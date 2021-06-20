@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# date '+%b %d (%a) %I:%M%p' | sed "s/^/🗓/;s/$/🕓/"
+#printf " 󱑆  %s %s\n" "$(date '+%a, %I:%M %p')" "$( )"
+
+case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
+  up) printf " 󰳡 $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g) 󰤨 connected 󱑆 $(date '+%a, %I:%M %p')" "$( ) ";;
+  down) printf " 󰳡 $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g) 󰤭 disconnected 󱑆 $(date '+%a, %I:%M %p')" "$( ) ";;
+esac

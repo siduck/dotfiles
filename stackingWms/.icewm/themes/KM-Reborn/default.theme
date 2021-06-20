@@ -1,0 +1,61 @@
+ThemeAuthor = "KraMus-Reborn-Team"
+   # Updated for IceWM 1.2.x
+
+Look=flat
+
+TitleBarHeight=20
+TitleBarJustify=50
+TitleButtonsSupported="xsmi"
+ShowMenuButtonIcon=0
+
+BorderSizeX=0
+BorderSizeY=0
+CornerSizeX=4
+CornerSizeY=4
+DlgBorderSizeX=0
+DlgBorderSizeY=0
+
+   # Window decor
+ColorNormalBorder="rgb:0/0/0"
+ColorActiveBorder="rgb:0/0/0"
+ColorActiveTitleBar="rgb:30/30/30"
+ColorNormalTitleBar="rgb:30/30/30"
+ColorNormalTitleBarText="rgb:ff/ff/ff"
+ColorActiveTitleBarText="rgb:ff/ff/ff"
+
+   # Dialogs
+ColorDialog="rgb:30/30/30"
+ColorLabel="rgb:30/30/30"
+ColorLabelText="rgb:ff/ff/ff"
+
+   # Buttons
+ColorNormalButton="rgb:30/30/30"
+ColorActiveButton="rgb:ff/30/30"
+ColorActiveButtonText="rgb:ff/ff/ff"
+ColorNormalButtonText="rgb:ff/ff/ff"
+
+   # Menus
+ColorNormalMenu="rgb:30/30/30"
+ColorActiveMenuItem="rgb:30/30/30"
+ColorNormalMenuItemText="rgb:ff/ff/ff"
+ColorActiveMenuItemText="rgb:ff/ff/ff"
+ColorDisabledMenuItemText="rgb:80/80/80"
+
+   # Move/size
+ColorMoveSizeStatus="rgb:30/30/30"
+ColorMoveSizeStatusText="rgb:ff/ff/ff"
+
+   # Taskbar
+ColorDefaultTaskBar="rgb:30/30/30"
+ColorNormalTaskBarApp="rgb:30/30/30"
+ColorNormalTaskBarAppText="rgb:5f/5f/5f"
+ColorActiveTaskBarApp="rgb:30/30/30"
+ColorActiveTaskBarAppText="rgb:ff/ff/ff"
+ColorInvisibleTaskBarApp="rgb:30/30/30"
+ColorInvisibleTaskBarAppText="rgb:5f/5f/5f"
+ColorMinimizedTaskBarApp="rgb:30/30/30"
+ColorMinimizedTaskBarAppText="rgb:5f/5f/5f"
+
+   # Clock
+ColorClock="#202020"
+ColorClockText="white"

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+dwm & 
+#wallpaper and terminal theme
+feh --bg-fill ~/Pictures/wall/moun.jpg &
+xrdb merge ~/Public/xresources/sidnord/.Xresources &
+
+picom & 
+
+#icons and themes
+cp -r ~/Public/theme\ and\ icons/flux/.gtkrc-2.0 ~/ &
+cp -r ~/Public/theme\ and\ icons/flux/settings.ini  ~/.config/gtk-3.0/ &
+cp -r ~/Public/rofi/dwm_nord/rofi/ ~/.config/ & 
+
+#bar
+~/Public/dwm_autostarts/nordwm/bar &
+
+#neovim
+cp -r ~/Desktop/nvim_confs/onedark/init.vim ~/.config/nvim &
+
+interval=0
+
+while true; do
+    [ $interval == 0 ] || [ $(($interval%3600)) == 0 ] && updates=$(xbps-updates)
+    interval=$((interval + 1))
+
+    sleep 1 && xsetroot -name "$(ghost) $updates $(nbat)$(nback)$(nmem) $(nwlan) $(nclock) "
+done
+

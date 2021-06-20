@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# autostart apps 
+chadwm & 
+xmodmap ~/.xmodmap-sid & 
+cp -r Public/nvim_confs/gruv/init.vim  ~/.config/nvim/ & 
+xrdb merge ~/Public/xresources/forest/.Xresources & 
+picom  &
+feh --bg-fill ~/Pictures/wall/autumn.jpg &
+cp -r ~/Public/theme\ and\ icons/forest/.gtkrc-2.0 ~/ &
+cp -r ~/Public/theme\ and\ icons/forest/settings.ini  ~/.config/gtk-3.0/ &
+cp -r ~/Public/rofi/forest/rofi ~/.config/ & 
+cp -r Desktop/nvim_confs/gruv/init.vim ~/.config/nvim/ & 
+
+# dwm bar 
+
+interval=0
+
+while true; do
+    [ $interval == 0 ] || [ $(($interval%3600)) == 0 ] && updates=$(xbps-updates)
+    interval=$((interval + 1))
+
+    sleep 1 && xsetroot -name "$(ghost) $updates $(backlight)$(battery)$(memory)$(wlan) $(clock)"
+done
+

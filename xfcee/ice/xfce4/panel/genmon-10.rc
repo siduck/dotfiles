@@ -1,0 +1,6 @@
+Command=xfce-clock
+UseLabel=0
+Text=(genmon)
+UpdatePeriod=250
+Font=Roboto Mono Light for Powerline Bold 10
+

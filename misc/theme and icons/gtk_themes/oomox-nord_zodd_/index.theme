@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=oomox-nord_zodd_-dark-compact
+Comment=A Material Design theme
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=oomox-nord_zodd_-dark-compact
+MetacityTheme=oomox-nord_zodd_-dark-compact
+IconTheme=Adwaita
+CursorTheme=Adwaita
+CursorSize=24
