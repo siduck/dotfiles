@@ -77,8 +77,9 @@ _G.packer_plugins = {
     path = "/home/sid/.local/share/nvim/site/pack/packer/start/TrueZen.nvim"
   },
   ["dashboard-nvim"] = {
-    loaded = true,
-    path = "/home/sid/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/sid/.local/share/nvim/site/pack/packer/opt/dashboard-nvim"
   },
   ["friendly-snippets"] = {
     loaded = true,
@@ -180,12 +181,9 @@ _G.packer_plugins = {
     path = "/home/sid/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["vim-auto-save"] = {
-    loaded = true,
-    path = "/home/sid/.local/share/nvim/site/pack/packer/start/vim-auto-save"
-  },
-  ["vim-closetag"] = {
-    loaded = true,
-    path = "/home/sid/.local/share/nvim/site/pack/packer/start/vim-closetag"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/sid/.local/share/nvim/site/pack/packer/opt/vim-auto-save"
   },
   ["vim-vsnip"] = {
     loaded = false,
@@ -199,11 +197,34 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Conditional loads
+time("Condition for { 'dashboard-nvim' }", true)
+if
+try_loadstring('\27LJ\2\nP\0\0\1\0\3\1\t6\0\0\0009\0\1\0009\0\2\0\b\0\0\0X\0\2€+\0\1\0X\1\1€+\0\2\0L\0\2\0"dashboard_disable_at_vimenter\6g\bvim\0\0', "condition", '{ "dashboard-nvim" }')
+then
+time("Condition for { 'dashboard-nvim' }", false)
+time([[packadd for dashboard-nvim]], true)
+		vim.cmd [[packadd dashboard-nvim]]
+	time([[packadd for dashboard-nvim]], false)
+else
+time("Condition for { 'dashboard-nvim' }", false)
+end
+time("Condition for { 'vim-auto-save' }", true)
+if
+try_loadstring("\27LJ\2\n<\0\0\1\0\3\1\t6\0\0\0009\0\1\0009\0\2\0\b\0\0\0X\0\2€+\0\1\0X\1\1€+\0\2\0L\0\2\0\14auto_save\6g\bvim\2\0", "condition", '{ "vim-auto-save" }')
+then
+time("Condition for { 'vim-auto-save' }", false)
+time([[packadd for vim-auto-save]], true)
+		vim.cmd [[packadd vim-auto-save]]
+	time([[packadd for vim-auto-save]], false)
+else
+time("Condition for { 'vim-auto-save' }", false)
+end
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-compe', 'vim-vsnip'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'vim-vsnip', 'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end

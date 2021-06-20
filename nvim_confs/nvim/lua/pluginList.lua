@@ -20,6 +20,20 @@ return packer.startup(
             event = "InsertEnter"
         }
 
+        -- load autosave only if its enabled globally
+        use {
+            "907th/vim-auto-save",
+            cond = function()
+                return vim.g.auto_save == 1
+            end
+        }
+
+        use {
+            "glepnir/dashboard-nvim",
+            cond = function()
+                return vim.g.dashboard_disable_at_vimenter == 0
+            end
+        }
         -- color related stuff
         use "siduck76/nvim-base16.lua"
         use "norcalli/nvim-colorizer.lua"
@@ -36,7 +50,7 @@ return packer.startup(
         use "akinsho/nvim-bufferline.lua"
         use "glepnir/galaxyline.nvim"
         use "windwp/nvim-autopairs"
-        use "alvan/vim-closetag"
+        -- use "alvan/vim-closetag"
 
         -- Comment
         use "terrortylor/nvim-comment"
@@ -52,9 +66,7 @@ return packer.startup(
         use "nvim-lua/popup.nvim"
 
         -- misc
-        use "glepnir/dashboard-nvim"
         use "tweekmonster/startuptime.vim"
-        use "907th/vim-auto-save"
         use "karb94/neoscroll.nvim"
         use "kdav5758/TrueZen.nvim"
         use "folke/which-key.nvim"
