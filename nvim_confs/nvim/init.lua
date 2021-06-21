@@ -5,11 +5,6 @@ require "misc-utils"
 require "top-bufferline"
 require "statusline"
 
-require("neoscroll").setup() -- smooth scroll
-
--- lsp stuff
-require "nvim-lspconfig"
-
 local cmd = vim.cmd
 local g = vim.g
 
@@ -37,5 +32,3 @@ vim.api.nvim_exec(
 ]],
     false
 )
-
-require "whichkey"
