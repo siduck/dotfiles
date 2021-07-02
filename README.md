@@ -2,7 +2,7 @@
 # Screenshots
 
 <img src = "https://raw.githubusercontent.com/siduck76/dotfiles/master/rice%20flex/neovim-rice.png">
-
+<img src = "https://cdn.discordapp.com/attachments/610012460828852229/853933487295299584/unknown.png>
 # Important Notes
 
 - The above image is my latest bspwm rice , you'll find out its configs in the thinkpad folder.
