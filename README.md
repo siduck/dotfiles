@@ -20,3 +20,5 @@
 - change some values in polybar like in wlan , battery module for your wifi adapter etc , run polybar example to find out any erorrs if polybar isnt working. Also polybar takes colors from xresources file so first load xresources then run polybar.
 
 I'll keep adding cool stuffs and improve my rice / make it more organise in my free time eventually :)
+
+NOTE : gimmie credits if you're using my rice! no kangg pls :c 
