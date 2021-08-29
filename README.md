@@ -30,5 +30,6 @@ I'll keep adding cool stuffs and improve my rice / make it more organise in my f
 - [config](https://github.com/siduck76/dotfiles/tree/master/stackingWms/fluxbox/.fluxbox)
 - [wall](https://raw.githubusercontent.com/siduck76/dotfiles/master/wall/clean.png)
 - [polybar config](https://github.com/siduck76/dotfiles/tree/master/bars/poly/fluxbox)
+- check my st repo for the onedark xresources
 
 NOTE : gimmie credits if you're using my rice! no kangg pls :c 
