@@ -58,9 +58,14 @@ Mod4 8 :Tab 8
 Mod4 9 :Tab 9
 
 # open a terminal
-Mod4 Return :Exec st
+Mod4 Return :Exec  ~/.local/bin/./st_settings && st
 XF86MonBrightnessUp : Exec xbacklight -inc 10
 XF86MonBrightnessDown : Exec xbacklight -dec 10
+
+# open the window menu
+Mod4 C :Exec rofi -show drun 
+Mod4 l :Exec maim | xclip -selection clipboard -t image/png
+Mod4 U :Exec  maim --select | xclip -selection clipboard -t image/png
 
 # open a dialog to run programs
 Mod1 F2 :Exec fbrun
@@ -77,11 +82,6 @@ Mod4 q :Kill
 Mod4 i :Minimize
 Mod1 F10 :Maximize
 Mod1 F11 :Fullscreen
-
-# open the window menu
-Mod4 C :Exec rofi -show drun 
-Mod4 l :Exec maim | xclip -selection clipboard -t image/png
-Mod4 U :Exec  maim --select | xclip -selection clipboard -t image/png
 
 # exit fluxbox
 Control Mod1 Delete :Exit
@@ -140,18 +140,10 @@ Control Mod4 F10 :TakeToWorkspace 10
 Control Mod4 F11 :TakeToWorkspace 11
 Control Mod4 F12 :TakeToWorkspace 12
 
-
-
-
 # Tiling
 Mod4 Shift z :MacroCmd {ResizeTo 50% 50%} {MoveTo 00 00 BottomLeft}
 Mod4 Shift x :MacroCmd {ResizeTo 100% 50%} {MoveTo 00 00 Bottom}
- 
-
 Mod4 Shift c   :MacroCmd {ResizeTo 50% 50%} {MoveTo 00 00 BottomRight}
-
- 
-
 Mod4 Shift h :MacroCmd {ResizeTo 50% 100%} {MoveTo 00 00 Left}
 Mod4 space :MacroCmd {ResizeTo 50% 50%} {MoveTo 00 00 Center}
 Mod4 Shift l :MacroCmd {ResizeTo 50% 100%} {MoveTo 00 00 Right}
@@ -159,3 +151,4 @@ Mod4 Shift v :MacroCmd {ResizeTo 50% 50%} {MoveTo 00 00 TopLeft}
 Mod4 Shift b :MacroCmd {ResizeTo 100% 50%} {MoveTo 00 00 Top}
 Mod4 Shift r :MacroCmd {ResizeTo 50% 50%} {MoveTo 00 00 TopRight}
 Mod4 f :ToggleCmd {Maximize} {Restore}
+Mod4 t :ToggleDecor
