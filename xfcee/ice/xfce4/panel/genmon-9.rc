@@ -1,6 +1,0 @@
-Command=iceclock
-UseLabel=0
-Text=(genmon)
-UpdatePeriod=10000
-Font=JetBrainsMono Nerd Font Mono Bold 10
-
