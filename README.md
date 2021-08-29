@@ -1,10 +1,10 @@
 # DONT SKIP THE README 
-# Screenshots
+# Screenshots (BSPWM)
 
 <img src = "https://raw.githubusercontent.com/siduck76/dotfiles/master/rice%20flex/neovim-rice.png">
 <img src = "https://cdn.discordapp.com/attachments/610012460828852229/853933487295299584/unknown.png">
 
-# Important Notes
+# Important Notes For BSPWM 
 
 - The above image is my latest bspwm rice , you'll find out its configs in the thinkpad folder.
 - Install all the polybar fonts!
@@ -20,5 +20,15 @@
 - change some values in polybar like in wlan , battery module for your wifi adapter etc , run polybar example to find out any erorrs if polybar isnt working. Also polybar takes colors from xresources file so first load xresources then run polybar.
 
 I'll keep adding cool stuffs and improve my rice / make it more organise in my free time eventually :)
+
+# Fluxbox
+
+<img src="https://chadpaste.com/f/frjdliwmwr.png">
+
+## Important Notes for fluxbox
+
+- [config](https://github.com/siduck76/dotfiles/tree/master/stackingWms/fluxbox/.fluxbox)
+- [wall](https://raw.githubusercontent.com/siduck76/dotfiles/master/wall/clean.png)
+- [polybar config](https://github.com/siduck76/dotfiles/tree/master/bars/poly/fluxbox)
 
 NOTE : gimmie credits if you're using my rice! no kangg pls :c 
