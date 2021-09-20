@@ -1,0 +1,346 @@
+.TH 2bwm 1 "Jun 10, 2014" "" ""
+.SH NAME
+2bwm \- A small and fast keyboard driven window manager with two borders.
+
+.SH DESCRIPTION
+.B 2bwm\fP is a fast floating WM, with the particularity of having 2 borders, written over the XCB library and derived from mcwm written by Michael Cardell. In 2bWM everything is accessible from the keyboard but a pointing device can be used for move, resize and raise/lower.
+.SH USE
+Nota bene: It is highly recommended to check the config.h file at least once. 2bWM is configured at compile time and anything you might want to change is in the config.h file, from colors to keybinds.
+
+With the the default configuration:
+.PP
+MOUSEMODKEY + mouse buttons:
+.RS
+.IP \(bu 2
+.B 1
+move
+.IP \(bu 2
+.B 3
+resize window
+.RE
+.PP
+MOUSEMODKEY + CTRL + mouse buttons :
+.RS
+.IP \(bu 2
+.B 3
+starts the menu (you have to set the menu in the config file)
+.RE
+.PP
+MOUSEMODKEY + ALT + mouse buttons :
+.RS
+.IP \(bu 2
+.B 3
+next screen
+.IP \(bu 2
+.B 1
+previous screen
+.RE
+.PP
+MODKEY + key :
+.RS
+.IP \(bu 2
+.B 0\-9
+go to workspace n, 0-9.
+.IP \(bu 2
+.B shift+0\-9
+Move window to workspace.
+.IP \(bu 2
+.B Tab or shift+Tab
+go to next window in the current workspace window ring.
+.IP \(bu 2
+.B Q
+close/kill a window.
+.IP \(bu 2
+.B shift+J
+resize down.
+.IP \(bu 2
+.B shift+K
+resize up.
+.IP \(bu 2
+.B shift+L
+resize right.
+.IP \(bu 2
+.B shift+H
+resize left.
+.IP \(bu 2
+.B shift+ctrl+H
+resize slow left.
+.IP \(bu 2
+.B shift+ctrl+J
+resize slow down.
+.IP \(bu 2
+.B shift+ctrl+K
+resize slow up.
+.IP \(bu 2
+.B shift+ctrl+L
+resize slow right.
+.IP \(bu 2
+.B h
+move left.
+.IP \(bu 2
+.B j
+move down.
+.IP \(bu 2
+.B k
+move up.
+.IP \(bu 2
+.B l
+move right.
+.IP \(bu 2
+.B ctrl+h
+move left slow.
+.IP \(bu 2
+.B ctrl+j
+move down slow.
+.IP \(bu 2
+.B ctrl+k
+move up slow.
+.IP \(bu 2
+.B ctrl+l
+move right slow.
+.IP \(bu 2
+.B y
+move to upper left corner of monitor.
+.IP \(bu 2
+.B u
+move  to upper right corner of monitor.
+.IP \(bu 2
+.B b
+move to lower left corner of monitor.
+.IP \(bu 2
+.B n
+move to lower right corner of monitor.
+.IP \(bu 2
+.B g
+move to the center of the monitor.
+.IP \(bu 2
+.B Home
+Grow keeping aspect.
+.IP \(bu 2
+.B End
+Shrink keeping aspect.
+.IP \(bu 2
+.B x
+maximize/full screen (toggles).
+.IP \(bu 2
+.B shift+x
+maximize/full screen overriding offsets (toggles).
+.IP \(bu 2
+.B m
+maximize vertically (toggles).
+.IP \(bu 2
+.B shift+m
+maximize horizontally (toggles).
+.IP \(bu 2
+.B shift+y/shift+u/shift+b/shift+n
+move to the left/right/bottom/top while maxvert/maxhor and half max horizontal/vertical
+.IP \(bu 2
+.B shift+ctrl+b/n
+fold or Unfold horizontally
+.IP \(bu 2
+.B shift+ctrl+y/u
+fold or Unfold vertically
+.IP \(bu 2
+.B .
+move window to next monitor/screen.
+.IP \(bu 2
+.B ,
+move window to previous monitor.
+.IP \(bu 2
+.B r
+raise or lower (toggles).
+.IP \(bu 2
+.B  v/c
+Go to next/previous workspace
+.IP \(bu 2
+.B  shift+v/c
+move to next/previous workspace
+.IP \(bu 2
+.B i
+iconify (or hide) window from the display.
+.IP \(bu 2
+.B a
+Make a window unkillable (toggles).
+.IP \(bu 2
+.B t
+Make a window stay on top.
+.IP \(bu 2
+.B f
+fix window so it is visible on all workspaces (toggles).
+.IP \(bu 2
+.B arrows (+shift)
+Move the cursor (with shift fast).
+.IP \(bu 2
+.B w
+start the menu program (to be set in the config file)
+.IP \(bu 2
+.B ctr+q ctrl+r
+quit or restart 2bwm
+.IP \(bu 2
+.B space
+half the screen and centered
+.IP \(bu 2
+.B ctrl+(up/down/right)
+emulate click 1,2,3 (depends on 
+.B xdotool(1))
+.RE
+.PP
+Note that all functions activated from the keyboard work on the
+currently focused window regardless of the position of the mouse
+cursor.
+.PP
+You can change the keybinds and colors in the config.h file and then recompile and restart to see changes.
+.SH EXTERNAL PROGRAMS
+2bwm does not come with a bar, or panel. 2bwm will respect some EWMH hints such as _NET_WM_WINDOW_TYPE_DOCK. Thus, most panels should work.
+The followinds were tested:
+.PP
+Panels
+.RS
+.IP \(bu 2
+cairo-dock
+.IP \(bu 2
+fbpanel
+.IP \(bu 2
+hpanel
+.IP \(bu 2
+lxpanel
+.IP \(bu 2
+tint2
+.IP \(bu 2
+xfce4-panel
+.RE
+.PP
+Bars
+.RS
+.IP \(bu 2
+bar
+.IP \(bu 2
+dzen2
+.RE
+.PP
+If you set up a bar don't forget to add the space at the bottom or at the top
+of the screen in the configs.
+Also, if you want to know the current workspace you can use `xprop -root _NET_CURRENT_DESKTOP| sed -e 's/_NET_CURRENT_DESKTOP(CARDINAL) = //'`
+.SH SIGNALS
+.IP \(bu 2
+SIGINT - SIGTERM
+.RS
+Cleanup and exit (with the signal number as exit code)
+.RE
+.PP
+.IP \(bu 2
+SIGHUP
+.RS
+Cleanup and restart
+
+.SH RETURN VALUE
+0 on success anything else on error or on signal received.
+
+.SH ENVIRONMENT
+.B 2bwm\fP obeys the $DISPLAY variable.
+
+.SH ERRORS AND TROUBLESHOOTING
+.SS Race Condition
+There is currently a race condition when switching worskpaces really
+fast. This may be due to the asynchronous nature of the X11 protocol. A
+fix was tried using locks without much luck (using atomic variables.)
+.SS White java windows
+If you experience problems with java GUI you can refer to http://awesome.naquadah.org/wiki/Problems_with_Java most probably adding _JAVA_AWT_WM_NONREPARENTING=1 to the environment variable will resolve the problem.
+(export _JAVA_AWT_WM_NONREPARENTING=1)
+.SS Raising hidden windows
+2bWM comes with the 
+.B hidden(1) 
+program. 
+.B hidden(1) 
+lists all the hiden windows so you can pipe it into a menu program such as 
+.B 9menu(1).
+.sp
+hidden -c|xargs 9menu -popup -label Iconics -font "terminus12-10"
+
+You might also be interested in the following shell function that
+might come in handy to give your terminal emulators good titles before
+hiding them.
+.sp
+.in +4
+.nf
+# Set the title and icon name of an xterm or clone.
+function title
+{
+	# icon name
+	echo -e '\\033]1;'$1'\\007'
+	# title
+	echo -e '\\033]2;'$1'\\007'
+}
+.fi
+.in -4
+.sp
+Use it like this:
+.sp
+.in +4
+.nf
+% title 'really descriptive title'
+.fi
+.in -4
+.sp
+.SS Preventing X11 Crash
+Typically the window manager is started from a script, either run by
+.B startx(1)
+or a login manager such as
+.B xdm(1).
+.PP
+If you start from the console, you need an .xinitrc file. Here's a
+complete example:
+.sp
+.in +4
+.nf
+\&#! /bin/sh
+
+# Set nice background.
+xsetroot -bg \#282828 -fg \#121212 -mod 4 2
+
+# Set nice pointer cursor.
+xsetroot \-cursor_name plus \-fg white \-bg black
+
+# Load resources.
+xrdb \-load ~/.Xresources
+
+# Start window manager in the background. If it dies, X still lives.
+2bwm &
+
+# Start a terminal in the foreground. If this dies, X dies.
+exec urxvt
+.fi
+.in -4
+.PP
+
+.SH SEE ALSO
+.B hidden(1)
+.B xdotool(1)
+.B 9menu(1)
+.B startx(1)
+.B xdm(1)
+.SH AUTHOR
+Venam | Patrick Louis <patrick at psychology dot wtf>
+.PP
+Big thanks for the help of the following persons:
+.RS
+.IP \(bu 2 
+Yrmt
+.IP \(bu 2 
+maxrp
+.IP \(bu 2 
+z3bra
+.IP \(bu 2 
+cicku
+.IP \(bu 2 
+tbck
+.IP \(bu 2 
+crshd
+.IP \(bu 2 
+anshin
+.RE
+.PP
+Thanks to the UnixHub/Nixers community for the support and ideas.  
+.PP
+Thanks to Michael Cardell <mc@hack.org> for starting it all.
+.PP

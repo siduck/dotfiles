@@ -1,0 +1,19 @@
+.TH hidden 1 "Mar 09, 2012" "" ""
+.SH NAME
+hidden \- list iconified windows
+.SH SYNOPSIS
+.B hidden
+[ 
+.B \-c
+]
+
+.SH DESCRIPTION
+.B hidden\fP lists all windows on an X server with WM_STATE Iconic.
+.SH OPTIONS
+.PP
+\-c prints a command suitable to get the window back again.
+
+.SH ENVIRONMENT
+.B hidden\fP obeys the $DISPLAY variable.
+.SH AUTHOR
+Michael Cardell Widerkrantz <mc@hack.org>.
