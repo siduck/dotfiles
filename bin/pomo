@@ -1,6 +1,0 @@
-#!/bin/sh
-
-sleep 1500 && mpg123 ~/Music/cocGame.mp3 
-
-
-

@@ -1,0 +1,24 @@
+#! /bin/sh
+
+xmodmap .xmodmap-sid & # remove this 
+
+#bspc monitor -d Home Web Work Files Mails Misc
+bspc monitor -d 1 2 3 4 5 6
+
+bspc config border_width         3
+bspc config borderless_monocle   false
+
+bspc config window_gap            10
+bspc config split_ratio           0.50
+bspc config gapless_monocle       true
+bspc config focus_follows_pointer true
+
+#bspc config focused_border_color "#BF616A"
+#bspc config normal_border_color "#353b45"
+
+# autostart up applications 
+~/.config/polybar/launch.sh &
+picom & 
+feh --bg-fill ~/Pictures/wall/neon.png &
+xrdb merge ~/.Xresources &
+sxhkd 

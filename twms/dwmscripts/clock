@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# date '+%b %d (%a) %I:%M%p' | sed "s/^/🗓/;s/$/🕓/"
-printf "^c#181818^ ^b#7CAFC2^ 󱑆 ^d^%s %s\n" "^c#181818^^b#7CAFC2^$(date '+%a, %I:%M %p')" "$( )"
-
-

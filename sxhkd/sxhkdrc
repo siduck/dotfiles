@@ -1,55 +1,34 @@
+#  ------ programs  -------- # 
 
-super + m
-  bspc desktop -l next
-
-# terminal emulator
 super + Return
-	 xst
-#dmenu
-super + b
-  dmenu_run
+ ~/.local/bin/./st_settings && st
 
-# program launcher
+super + t
+      tabbed -r 2 st -w ''
 
+super + c
+        rofi -show drun
 
-super + a
-	 ~/.config/rofi/scripts/backlight.sh
+super + n
+        bash ~/.local/bin/vi_padding
 
-# make sxhkd reload its configuration files:
+# reload config (bspwmrc and sxhkdrc)  # 
+
 super + shift + r
 	pkill -USR1 -x sxhkd
 
 super + shift + e
-   bspc wm -r
+        bspc wm -r
 
+#  ------ brightness  -------- # 
 
-#telegram desktop
-super + a
-        telegram-desktop
+XF86MonBrightnessUp
+    xbacklight -inc 10
 
-#polybar
-super + x
-     polybar top-panel
+XF86MonBrightnessDown
+    xbacklight -dec 10
 
-#kill polybar
-#super + m
-#     killall -q polybar
-
-#picom
-super + p
-     picom
-
-#kill picom
-super + n
-    killall -q picom
-
-#rofi
-super + c
-     rofi -show drun
-
-#
-# bspwm hotkeys
-#
+#  ------------ bspwm hotkeys ------------ # 
 
 # quit/restart bspwm
 super + alt + {q,r}
@@ -58,25 +37,6 @@ super + alt + {q,r}
 # close and kill
 super + {_,shift + }q
 	bspc node -{c,k}
-
-#fullscreen screenshot save
-
-super + Print
-     maim "/home/$USER/Pictures/$(date)"
-
-#cropped save
-super + shift + x
-      maim --select "/home/$USER/Pictures/$(date)"
-
-#  clipboard fullscreen
-super + u
-     maim | xclip -selection clipboard -t image/png
-
-# clipboard cropped
-super + shift + u
-    maim --select | xclip -selection clipboard -t image/png
-
-
 
 # alternate between the tiled and monocle layout
 super + Tab
@@ -90,9 +50,8 @@ super + y
 super + g
 	bspc node -s biggest
 
-#
+
 # state/flags
-#
 
 # set the window state
 super + {d,shift + d,s,f}
@@ -102,9 +61,7 @@ super + {d,shift + d,s,f}
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
-#
 # focus/swap
-#
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
@@ -136,9 +93,7 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-#
-# preselect
-#
+# preselect ( select the direction you want the window to be opened in )
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
@@ -156,9 +111,7 @@ super + ctrl + space
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-#
 # move/resize
-#
 
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
@@ -173,10 +126,32 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 
-XF86MonBrightnessUp
-    xbacklight -inc 10
-
-XF86MonBrightnessDown
-    xbacklight -dec 10
+super + m
+  bspc desktop -l next  # idk what this does 
 
 
+# -------------- take screenshots ------------- #
+
+#fullscreen screenshot save
+super + Print
+     maim "/home/$USER/Pictures/$(date).png"
+
+#cropped save
+super + shift + x
+      maim --select "/home/$USER/Pictures/$(date).png"
+
+#  clipboard fullscreen
+super + u
+     maim | xclip -selection clipboard -t image/png
+
+# clipboard cropped
+super + shift + u
+    maim --select | xclip -selection clipboard -t image/png
+
+
+
+super + {_,shift + }{a,b,c,d,e,0}
+      bspc {desktop -f,node -d} '^{1-5,5}' --follow 
+
+super  + r
+      tdrop -ma -x '25%' -y '5%' -w '50%' -h '30%' -p 'bspc rule -a St -o state=floating' st -T ranger -e ranger 
