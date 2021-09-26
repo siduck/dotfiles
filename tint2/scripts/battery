@@ -1,0 +1,15 @@
+#!/bin/bash
+
+cap="$(cat /sys/class/power_supply/BAT0/capacity)"
+
+if (($cap > 95)); then
+  printf " "
+elif (($cap > 70)); then
+  printf " "
+elif (($cap > 50)); then
+  printf " "
+elif (($cap > 30)); then
+  printf " "
+else
+  printf " "
+fi
