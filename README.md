@@ -1,7 +1,8 @@
 # DONT SKIP THE README 
-# Screenshots (BSPWM)
 
 <img src= "https://cdn.discordapp.com/attachments/634005620223377418/889729299224076288/unknown.png"> 
+
+(WIP)
 
 # Important Notes For openbox 
 
