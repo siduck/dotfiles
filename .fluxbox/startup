@@ -2,10 +2,9 @@
 #
 # fluxbox startup-script:
 
-xmodmap ~/.xmodmap-sid & 
+xmodmap ~/.xmodmap-sid &  # remove this  
 picom & 
-xrdb merge ~/Public/xresources/ocean/.Xresources & 
+xrdb merge ~/.Xresources & 
 feh --bg-fill ~/Pictures/wall/clean.png &
-cp -r ~/Public/poly/flux/polybar ~/.config &
 sleep 10 && ~/.config/polybar/launch.sh &
 exec fluxbox 
