@@ -1,7 +1,0 @@
-#!/bin/bash
-
-
-case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
-  up) printf "^c#f3f798^ 󰤨 ^d^%s" "Connected";;
-  down) printf "^c#ffcef3^ 󰤨 ^d^%s" " Disconnected";;
-esac
