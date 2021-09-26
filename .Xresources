@@ -1,61 +1,51 @@
+!-- Xft settings -- !
 Xft.antialias:	1
 Xft.hinting:	1
 Xft.autohint:	0
 Xft.hintstyle:	hintslight
 Xft.rgba:	rgb
 Xft.lcdfilter:	lcddefault
+Xft.dpi:   135
 
-! window padding
+st.font:         JetBrainsMono Nerd Font:style:medium:pixelsize=20
+
+! window border inner
 st.borderpx: 20
 
-!-- values between 0.1  - 1.0 --! 
+! special
+*.foreground:   #d8caac
+*.background:   #2B3339
+*.cursorColor:  #d8caac
 
-st.alpha: 1.0 
-st.font:           JetBrainsMono Nerd Font:style:medium:pixelsize=15
+! black
+*.color0:       #868d80
+*.color8:       #868d80
 
-#define base00 #282c34
-#define base01 #353b45
-#define base02 #3e4451
-#define base03 #545862
-#define base04 #565c64
-#define base05 #abb2bf
-#define base06 #b6bdca
-#define base07 #c8ccd4
-#define base08 #e06c75
-#define base09 #d19a66
-#define base0A #e5c07b
-#define base0B #98c379
-#define base0C #56b6c2
-#define base0D #61afef
-#define base0E #c678dd
-#define base0F #be5046
+! red
+*.color1:       #e68183
+*.color9:       #e68183
 
-*foreground:   base07
-*background:   #1e222a
-*cursorColor:  base05
+! green
+*.color2:       #a7c080
+*.color10:      #a7c080
 
-*color0:       base00
-*color1:       base08
-*color2:       base0B
-*color3:       base0A
-*color4:       base0D
-*color5:       base0E
-*color6:       base0C
-*color7:       base05
+! yellow
+*.color3:       #d9bb80
+*.color11:      #d9bb80
 
-*color8:       base03
-*color9:       base08
-*color10:      base0B
-*color11:      base0A
-*color12:      base0D
-*color13:      base0E
-*color14:      base0C
-*color15:      base07
+! blue
+*.color4:       #89beba
+*.color12:      #89beba
 
-! just remove this if you dont use my tabbed
+! magenta
+*.color5:       #d3a0bc
+*.color13:      #d3a0bc
 
-tabbed.selfgcolor:   #d6d8eb
-tabbed.selbgcolor:   #1e222a
+! cyan
+*.color6:       #87c095
+*.color14:      #87c095
 
-tabbed.normfgcolor:  #9294a8
-tabbed.normbgcolor:  #282c34
+! white
+*.color7:       #d8caac
+*.color15:      #d8caac
+
