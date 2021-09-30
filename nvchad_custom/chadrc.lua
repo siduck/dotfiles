@@ -2,7 +2,7 @@ local M = {}
 M.options, M.ui, M.mappings, M.plugins = {}, {}, {}, {}
 
 M.plugins = {
-   plugin_status = {
+   status = {
       neoscroll = true,
       colorizer = true,
       truezen = true,
@@ -13,16 +13,13 @@ M.plugins = {
          enable_git = 1,
       },
       lspconfig = {
-         servers = { "html", "cssls", "tsserver", "bashls", "pyright" },
+         -- setup_lspconf = "custom.plugins.lspconfig",
       },
-   },
-   default_plugin_config_replace = {
-      lspconfig = "custom.plugin_confs.lspconfig",
    },
 }
 
 M.ui = {
-   theme = "gruvchad",
+   theme = "everforest",
 }
 
 return M
