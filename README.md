@@ -29,4 +29,6 @@ I'll keep adding cool stuffs and improve my rice / make it more organise in my f
 
 [config](https://github.com/siduck76/dotfiles/tree/openbox)
 
+Credits : [Stardust-kyun](https://github.com/Stardust-kyun/dotfiles) I used his tint2 config and openbox window theme as a base and modified em!
+
 NOTE : gimmie credits if you're using my rice! no kangg pls :c 
