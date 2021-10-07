@@ -3,11 +3,15 @@ local M = {}
 M.setup_lsp = function(attach, capabilities)
    local lspconfig = require "lspconfig"
 
-   -- lspservers with default config
+   -- lspconfig.tsserver.setup {
+   --    on_attach = function(client)
+   --       client.resolved_capabilities.document_formatting = false
+   --       -- vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
+   --    end,
+   -- }
+   -- -- lspservers with default config
 
-   print("cdfk")
-   
-   local servers = { "html", "cssls", "tsserver" }
+   local servers = { "html", "cssls", "bashls", "clangd" , "tsserver" }
 
    for _, lsp in ipairs(servers) do
       lspconfig[lsp].setup {

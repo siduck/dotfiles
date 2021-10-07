@@ -13,9 +13,10 @@ M.plugins = {
          enable_git = 1,
       },
       lspconfig = {
-         -- setup_lspconf = "custom.plugins.lspconfig",
+        setup_lspconf = "custom.plugins.lspconfig"
       },
    },
+   
 }
 
 M.ui = {

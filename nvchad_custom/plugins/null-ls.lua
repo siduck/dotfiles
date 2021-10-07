@@ -8,13 +8,15 @@ local b = null_ls.builtins
 
 local sources = {
 
-   -- JS html css stuff
+   -- web dev stuff
    b.formatting.prettierd.with {
-      filetypes = { "html", "json", "markdown", "scss", "css", "javascript", "javascriptreact" },
+      filetypes = { "html", "json", "markdown", "scss", "css" },
    },
    b.diagnostics.eslint.with {
       command = "eslint_d",
    },
+
+   b.formatting.deno_fmt,
 
    -- Lua
    b.formatting.stylua,
