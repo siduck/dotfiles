@@ -1,0 +1,95 @@
+# Key bindings
+# ------------
+
+fzf_mksh_abs="$(readlink -f $_)"
+fzf_mksh_dir="$(dirname $fzf_mksh_abs)"
+. "$fzf_mksh_dir/utils.mksh"
+unset fzf_mksh_abs fzf_mksh_dir
+
+if [[ $- = *i* ]]; then
+# >> 
+
+function __fzf_select {
+    local cmd
+    cmd="${FZF_CTRL_T_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) \
+        -prune \
+        -o -type f -print \
+        -o -type d -print \
+        -o -type l -print \
+    2> /dev/null | cut -b3-"}"
+    eval "$cmd" \
+        | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS --reverse --bind=ctrl-z:ignore $FZF_CTRL_T_OPTS -m" $(__fzf_cmd) "$@" \
+        | while read -r item; do
+            print -nr -- "$(__mksh_escape "$item") "
+        done
+}
+
+function __fzf_cd {
+    local cmd dir
+    cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) \
+        -prune \
+        -o -type d -print \
+    2> /dev/null | cut -b3-"}"
+    dir=$(
+        eval "$cmd" \
+            | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS --reverse --bind=ctrl-z:ignore $FZF_ALT_C_OPTS +m" $(__fzf_cmd)
+    ) \
+        && print -nr -- "cd $(__mksh_escape "$dir")"
+}
+
+function __fzf_history {
+    local line cmd
+    line=$(
+        history 1 \
+            | sed '/^[0-9]/ s/^/\x00/; s/^	//' \
+            | tr '\n' $'\x01' \
+            | sed -z 's/\x01$//g; s/\x01/^J\x01/g' \
+            | grep -z -v "^[0-9]*\s*$" \
+            | LC_ALL=C sort -z -k2 -k1,1nr \
+            | uniq -z -f 1 \
+            | LC_ALL=C sort -z -nr \
+            | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort,ctrl-z:ignore $FZF_CTRL_R_OPTS +m --read0" $(__fzf_cmd) \
+    ) \
+        && cmd=$(print -nr -- "$line" | sed 's/^ *\([0-9]*\)	//; s/\^J\x01/\x0A/g') \
+        && print -nr "$cmd"
+}
+
+if [[ ! -o vi ]]; then
+    # CTRL-T - Paste the selected file path into the command line
+    bind -m '^t'=' __fzf_select^e'
+
+    # CTRL-R - Paste the selected command from history into the command line
+    bind -m '^r'='^u__fzf_history^e'
+
+    # ALT-C - cd into the selected directory
+    bind -m 'c'='^u__fzf_cd^e^m'
+else
+    # We'd usually use "\e" to enter vi-movement-mode so we can do our magic,
+    # but this incurs a very noticeable delay of a half second or so,
+    # because many other commands start with "\e".
+    # Instead, we bind an unused key, "\C-x\C-a",
+    # to also enter vi-movement-mode,
+    # and then use that thereafter.
+    # (We imagine that "\C-x\C-a" is relatively unlikely to be in use.)
+    bind '"\C-x\C-a": vi-movement-mode'
+
+    bind '"\C-x\C-e": shell-expand-line'
+    bind '"\C-x\C-r": redraw-current-line'
+    bind '"\C-x^": history-expand-line'
+
+    # CTRL-T - Paste the selected file path into the command line
+    # - FIXME: Selected items are attached to the end regardless of cursor position
+    bind '"\C-t": "\C-x\C-a$a \C-x\C-addi$(__fzf_select__)\C-x\C-e\C-x\C-a0Px$a \C-x\C-r\C-x\C-axa "'
+    bind -m vi-command '"\C-t": "i\C-t"'
+
+    # CTRL-R - Paste the selected command from history into the command line
+    bind '"\C-r": "\C-x\C-addi$(__fzf_history__)\C-x\C-e\C-x^\C-x\C-a$a\C-x\C-r"'
+    bind -m vi-command '"\C-r": "i\C-r"'
+
+    # ALT-C - cd into the selected directory
+    bind '"\ec": "\C-x\C-addi$(__fzf_cd__)\C-x\C-e\C-x\C-r\C-m"'
+    bind -m vi-command '"\ec": "ddi$(__fzf_cd__)\C-x\C-e\C-x\C-r\C-m"'
+fi
+
+# <<
+fi
