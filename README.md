@@ -8,7 +8,7 @@
 
 - Fonts needed : any nerdfont (JetbrainsMono Nerd Font is what I use) and material design icon font
 
-- I use [ST](https://github.com/siduck76/st) terminal.
+- I use [ST](https://github.com/siduck/st) terminal.
 - [neovim config](https://github.com/NvChad/nvchad).
 
 - Edit tin2 config by tint2conf
