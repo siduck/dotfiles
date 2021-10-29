@@ -8,7 +8,7 @@
 - Fonts needed : any nerdfont (JetbrainsMono Nerd Font is what I use) and material design icon font
 
 - My bspwm has workspaces named from 1 to 5 , and the polybar bspwm module uses those workspace names only . So if workspace icons dont show for you then add this    in bspwmrc  bspc monitor -d 1 2 3 4 5  . 
-- I use [ST](https://github.com/siduck76/st)  as terminal with JetbrainsMono Nerd Font medium.
+- I use [ST](https://github.com/siduck/st)  as terminal with JetbrainsMono Nerd Font medium.
 - Music player : ncmpcpp with mpd ( ncmpcpp-ueberzug to show artwork) , configs in cli_tools folder. you need to chmod +x its scripts in ncmcpp-ueberzug and ffmpeg , mpc is needed to show albumn art and check the .bashrc for important aliases. 
 - [neovim config](https://github.com/NvChad/nvchad).
 - gtk theme : my own ,based on onedark (in the gtk folder )
@@ -21,13 +21,13 @@ I'll keep adding cool stuffs and improve my rice / make it more organise in my f
 
 <img src="https://chadpaste.com/f/frjdliwmwr.png">
 
-[config](https://github.com/siduck76/dotfiles/tree/fluxbox)
+[config](https://github.com/siduck/dotfiles/tree/fluxbox)
 
 # Openbox
 
-<img src= "https://cdn.discordapp.com/attachments/634005620223377418/889729299224076288/unknown.png"> 
+<img src= "https://cdn.discordapp.com/attachments/634005620223377418/8897292992240288/unknown.png"> 
 
-[config](https://github.com/siduck76/dotfiles/tree/openbox)
+[config](https://github.com/siduck/dotfiles/tree/openbox)
 
 Credits : [Stardust-kyun](https://github.com/Stardust-kyun/dotfiles) I used his tint2 config and openbox window theme as a base and modified em!
 
