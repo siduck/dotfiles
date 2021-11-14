@@ -8,14 +8,7 @@ local b = null_ls.builtins
 
 local sources = {
 
-   -- web dev stuff
-   b.formatting.prettierd.with {
-      filetypes = { "html", "json", "markdown", "scss", "css" },
-   },
-   b.diagnostics.eslint.with {
-      command = "eslint_d",
-   },
-
+   b.formatting.prettierd.with { filetypes = { "html", "vue", "svelte", "css" } },
    b.formatting.deno_fmt,
 
    -- Lua
@@ -28,11 +21,15 @@ local sources = {
 }
 
 local M = {}
+
 M.setup = function(on_attach)
    null_ls.config {
+      debug = true,
       sources = sources,
    }
+   -- null_ls.register(css_formatter)
    require("lspconfig")["null-ls"].setup { on_attach = on_attach }
+   -- vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
 end
 
 return M

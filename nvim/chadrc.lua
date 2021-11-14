@@ -3,24 +3,22 @@ M.options, M.ui, M.mappings, M.plugins = {}, {}, {}, {}
 
 M.plugins = {
    status = {
-      neoscroll = true,
       colorizer = true,
-      truezen = true,
-      -- dashboard = true,
+      dashboard = false,
+      telescope_media = true, -- media previews within telescope finders
    },
    options = {
       nvimtree = {
-         enable_git = 1,
+         enable_git = 0,
       },
       lspconfig = {
-        setup_lspconf = "custom.plugins.lspconfig"
+         setup_lspconf = "custom.plugins.confs.lspconfig",
       },
    },
-   
 }
 
 M.ui = {
-   theme = "everforest",
+   theme = "gruvchad",
 }
 
 return M

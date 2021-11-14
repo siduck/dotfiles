@@ -3,15 +3,24 @@ local M = {}
 M.setup_lsp = function(attach, capabilities)
    local lspconfig = require "lspconfig"
 
-   -- lspconfig.tsserver.setup {
-   --    on_attach = function(client)
-   --       client.resolved_capabilities.document_formatting = false
-   --       -- vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
-   --    end,
-   -- }
-   -- -- lspservers with default config
+   lspconfig.tsserver.setup {
+      filetypes = { "javascript", "javascriptreact", "javascript.jsx", "htm" },
+      on_attach = function(client, bufnr)
+         client.resolved_capabilities.document_formatting = false
+         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<cr>", {})
+      end,
+   }
 
-   local servers = { "html", "cssls", "bashls", "clangd" , "tsserver" }
+   lspconfig.svelte.setup {
+      on_attach = function(client, bufnr)
+         client.resolved_capabilities.document_formatting = false
+         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<cr>", {})
+      end,
+   }
+
+   -- lspservers with default config
+
+   local servers = { "html", "cssls", "bashls",'mint' }
 
    for _, lsp in ipairs(servers) do
       lspconfig[lsp].setup {
@@ -23,23 +32,6 @@ M.setup_lsp = function(attach, capabilities)
          },
       }
    end
-
-   -- emmet
-
-   local configs = require "lspconfig/configs"
-
-   configs.ls_emmet = {
-      default_config = {
-         cmd = { "ls_emmet", "--stdio" },
-         filetypes = { "html", "css", "scss" },
-         root_dir = function(fname)
-            return vim.loop.cwd()
-         end,
-         settings = {},
-      },
-   }
-
-   lspconfig.ls_emmet.setup { capabilities = capabilities }
 
    --- sumneko_lua lsp
    local sumneko_root_path = vim.fn.getenv "HOME" .. "/test/sumneko_lua"
