@@ -19,13 +19,4 @@ hooks.add("install_plugins", function(use)
    }
 
    use "nathom/filetype.nvim"
-
-   use {
-      "nvim-neorg/neorg",
-      disable = true,
-      config = function()
-         require "custom.plugins.confs.neorg"
-      end,
-      ft = "neorg",
-   }
 end)

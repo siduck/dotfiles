@@ -11,16 +11,9 @@ M.setup_lsp = function(attach, capabilities)
       end,
    }
 
-   lspconfig.svelte.setup {
-      on_attach = function(client, bufnr)
-         client.resolved_capabilities.document_formatting = false
-         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<cr>", {})
-      end,
-   }
-
    -- lspservers with default config
 
-   local servers = { "html", "cssls", "bashls",'mint' }
+   local servers = { "html", "cssls", "bashls" }
 
    for _, lsp in ipairs(servers) do
       lspconfig[lsp].setup {

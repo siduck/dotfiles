@@ -1,10 +1,14 @@
 local M = {}
-M.options, M.ui, M.mappings, M.plugins = {}, {}, {}, {}
+
+M.options = {
+   nvChad = {
+      update_branch = "dev",
+   },
+}
 
 M.plugins = {
    status = {
       colorizer = true,
-      dashboard = false,
       telescope_media = true, -- media previews within telescope finders
    },
    options = {
@@ -15,10 +19,14 @@ M.plugins = {
          setup_lspconf = "custom.plugins.confs.lspconfig",
       },
    },
+
+   default_plugin_config_replace = {
+      nvim_treesitter = "custom.plugins.confs.treesitter",
+   },
 }
 
 M.ui = {
-   theme = "gruvchad",
+   theme = "everforest",
 }
 
 return M
