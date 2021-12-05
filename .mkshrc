@@ -1,0 +1,71 @@
+# Prompt
+PS1=$'\E[32m \E[0m \E[34;1m''${PWD/#"$HOME"/\~}'$'\E[37m '
+
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.node_modules/bin
+export PATH=$PATH:~/.volta/bin
+# export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:~/Public/aseprite/build/bin
+export PATH=$PATH:~/v
+export PATH=$PATH:~/test/eww/target/release/
+
+export PATH=$PATH:~/.fzf/bin
+alias ree='redshift -P -O 3500'
+alias zz='doas zzz'
+alias vi='~/.local/bin/vi_padding && nvim'
+alias doo='doas'
+alias del='doas rm -r'
+alias gl='git clone'
+alias pmem='doo ps_mem.py'
+
+alias cdn="cd ~/.config/nvim && vi"
+alias pmo="cd ~/test/pomoreward && vi"
+alias rea="cd ~/test/learn-react && vi"
+# logo-ls
+alias ls='logo-ls'
+alias la='logo-ls -A'
+alias ll='logo-ls -al'
+alias lsg='logo-ls -D'
+alias lag='logo-ls -AD'
+alias llg='logo-ls -alD'
+
+alias wa='feh --bg-fill'
+alias python=/usr/bin/python2.7
+#xbps commands
+alias xd='xdeb -Sde'
+alias xi='doas xbps-install'
+alias xr='doas xbps-remove -Ro'
+alias xu='doas xbps-install -Su && doas update-grub'
+alias xq='xbps-query'
+alias comp='doas make install'
+
+# sx 
+alias dwm='sx sh ~/.xinitrc dwm'
+alias opp='sx sh ~/.xinitrc opp'
+alias flu='sx sh ~/.xinitrc flu'
+
+
+# mpd aliases to stop / run
+alias kek="killall mpd ncmpcpp ncmpcpp_cover_art.sh"
+alias mpd="mpd && ~/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug"
+alias pmem='doo ps_mem.py'
+
+bind ^[a=beginning-of-line
+bind ^[e=end-of-line
+bind ^L=clear-screen
+
+
+HISTFILE=$HOME/.mksh_history
+HISTSIZE=10104096
+
+export FZF_DEFAULT_OPTS='
+  --color fg:#646a76
+  --color bg+:#7797b7,fg+:#2c2f30,hl:#D8DEE9,hl+:#26292a,gutter:#3a404c
+  --color pointer:#373d49,info:#606672
+  --border
+  --color border:#646a76
+  --height 13'
+
+. ~/.fzf/shell/key-bindings.mksh
+. ~/.fzf/shell/completion.mksh
+# . ~/.config/lf/lf_icons
