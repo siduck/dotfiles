@@ -1,7 +1,7 @@
 configuration{
     modi: "run,drun,window";
     lines: 5;
-    font: "Iosevka 12";
+    font: "Sarasa Nerd Font 14";
     show-icons: true;
     icon-theme: "Oranchelo";
     terminal: "st";
@@ -10,13 +10,13 @@ configuration{
     disable-history: false;
     hide-scrollbar: true;
     display-drun: "   Apps ";
-    display-run: " 省 Run ";
+    display-run: "   Run ";
     display-window: " 﩯  window";
     /* display-Network: " 󰤨  Network"; */
     sidebar-mode: true;
 }
 
-@theme "onedark"
+@theme "forest"
 
 element-text, element-icon , mode-switcher {
     background-color: inherit;
