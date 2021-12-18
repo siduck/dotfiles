@@ -26,7 +26,7 @@ I'll keep adding cool stuffs and improve my rice / make it more organise in my f
 
 # Openbox
 
-<img src= "https://cdn.discordapp.com/attachments/634005620223377418/8897292992240288/unknown.png"> 
+<img src= "https://camo.githubusercontent.com/e38c94c73ca29f449416f390a9a1737f755339ef86745fb4e1de7dd2cb1a2227/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3633343030353632303232333337373431382f3838393732393239393232343037363238382f756e6b6e6f776e2e706e67"> 
 
 [config](https://github.com/siduck/dotfiles/tree/openbox)
 
