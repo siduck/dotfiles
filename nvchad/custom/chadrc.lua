@@ -4,7 +4,6 @@ M.options, M.ui, M.mappings, M.plugins = {}, {}, {}, {}
 M.plugins = {
    status = {
       colorizer = true,
-      telescope_media = true,
       -- dashboard = true,
    },
    options = {
