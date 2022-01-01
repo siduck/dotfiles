@@ -4,10 +4,9 @@ M.setup_lsp = function(attach, capabilities)
    local lspconfig = require "lspconfig"
 
    lspconfig.tsserver.setup {
-      filetypes = { "javascript", "javascriptreact", "javascript.jsx", "htm" },
       on_attach = function(client, bufnr)
          client.resolved_capabilities.document_formatting = false
-         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<cr>", {})
+         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
       end,
    }
 
@@ -26,9 +25,10 @@ M.setup_lsp = function(attach, capabilities)
       }
    end
 
-   --- sumneko_lua lsp
-   local sumneko_root_path = vim.fn.getenv "HOME" .. "/test/sumneko_lua"
-   local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
+   -- lua lsp!
+
+   local sumneko_root_path = "/home/sid/test/sumneko_lua"
+   local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 
    -- Make runtime files discoverable to the server
    local runtime_path = vim.split(package.path, ";")
