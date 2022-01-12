@@ -1,0 +1,22 @@
+; radial progress bar
+(defwidget progressBar [value text class]
+  (circular-progress :class class 
+    :value value 
+    :thickness 5
+    text 
+   )
+)
+
+; slider
+(defwidget metric [class value ?onchange orientation flipped ]
+  (box :class class  :orientation orientation :space-evenly true
+    (scale 
+           :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange
+           :orientation orientation
+           :flipped flipped
+           )
+))

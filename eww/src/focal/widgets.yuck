@@ -1,0 +1,20 @@
+(defwidget time[]
+    (box :class 'time' 
+    '󱑆 ${time} | ${date}')
+ )
+
+(defwidget radialBars[]
+  (box :class "radialBars" 
+    (progressBar
+      :value cpu 
+      :text ''
+      :class 'CPU'
+      )
+   (progressBar
+      :value ram
+      :text '﬙'
+      :class 'RAM'
+      )
+      (button :class 'mute' :onclick 'amixer set Master 0' '' )
+     )
+)

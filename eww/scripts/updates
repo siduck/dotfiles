@@ -1,0 +1,1 @@
+doas xbps-install -Su -y

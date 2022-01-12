@@ -1,0 +1,63 @@
+.radialBars {
+  margin-bottom: -1rem;
+  padding: .5rem;
+}
+
+// progress bars
+.CPU, .RAM , .DISK ,.battery{
+  background-color: $grey;
+  color: $blue;
+  font-size: 2.1rem;
+}
+
+.CPU {
+ font-size: 2.5rem; 
+}
+
+.RAM {
+  color: $green;
+}
+
+.DISK {
+  font-size: 1rem;
+  color: $white;
+}
+
+.time {
+  font-family: 'Iosevka';
+  font-size: 1.2rem;
+  background-color: $blackAlt;
+  margin: 1rem 0.5rem;
+  border-radius:1rem;
+  padding: 0 1rem;
+  color: $white;
+}
+
+.mute {
+  background-color: $blackAlt;
+  border-radius: 1rem;
+  color: $green;
+  font-family: 'JetbrainsMono Nerd Font';
+  font-size: 1.7rem;
+  margin:  0.3rem 0.6rem;
+}
+
+.mute:hover {
+  background-color: $grey;
+  color: $white;
+}
+
+.pkgs{
+ margin: 1.5rem;
+ border-radius: 1rem;
+ font-family: 'JetbrainsMono Nerd Font';
+ color: $green;
+ background-color: $blackAlt;
+ padding: 0 1rem;
+}
+
+.pkgsBox {
+  margin: -1rem;
+  margin-top: 0rem;
+  margin-bottom: -2.5rem;
+}

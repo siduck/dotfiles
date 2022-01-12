@@ -1,0 +1,17 @@
+@import "scss/themes/gruvchad.scss";
+
+// header
+@import "scss/header/fetch.scss";
+
+// focal
+@import "scss/focal/focal.scss";
+@import "scss/focal/audioSlider.scss";
+
+// footer
+@import "scss/footer/btns.scss";
+@import "scss/footer/brightness.scss";
+
+.eww {
+  padding: 1rem;
+  background-color: $black;
+}

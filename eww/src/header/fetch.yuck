@@ -1,0 +1,11 @@
+(defwidget fetchImg[]
+  (box
+    
+ (box :class 'fetchImg')
+ (box :orientation 'v'
+ (label :text 'OS : Void')
+  (label :text 'Kernel : VOID')
+ (label :text 'WM : VOID')
+ (label :text 'OS : VOID')
+)
+))

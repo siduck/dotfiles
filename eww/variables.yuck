@@ -1,0 +1,44 @@
+(defpoll time :interval "1s"
+    "date +'%H:%M'")
+
+(defpoll date :interval "1s"
+    "date +'%a, %d %m %y'")
+
+; sliders
+(defpoll master_vol :interval "1s"
+  "scripts/get_mastervol")
+
+(defpoll head_vol :interval "1s"
+  "scripts/get_headvol")
+
+(defpoll mic_vol :interval "1s"
+  "scripts/get_micvol")
+
+; focal 
+(defpoll cpu :interval "1s"
+    "scripts/cpu")
+
+(defpoll ram :interval "1s"
+    "scripts/ram")
+
+(defpoll disk :interval "1s"
+    "scripts/disk")
+
+(defpoll updates :interval "1s"
+    "scripts/updates")
+
+(defpoll battery :interval "1s"
+    "scripts/battery")
+
+(defpoll pkgs :interval "1s"
+    "scripts/pkgs")
+
+; footer
+
+; wifi iwdgtk btn 
+(defpoll wifi :interval "1s"
+    "scripts/wifi")
+
+; brightness slider
+(defpoll brightness :interval "1s"
+  "scripts/get_brightness")
