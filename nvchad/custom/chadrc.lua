@@ -8,17 +8,22 @@ M.plugins = {
    },
    options = {
       nvimtree = {
-         enable_git = 0,
+         enable_git = 1,
       },
       lspconfig = {
          setup_lspconf = "custom.plugins.lspconfig",
       },
    },
+}
 
+M.mappings = {
+   sidmap = {
+      telescope = "<leader>te",
+   },
 }
 
 M.ui = {
-   theme = "gruvchad",
+   theme = "everforest",
 }
 
 return M

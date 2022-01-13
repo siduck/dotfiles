@@ -1,6 +1,6 @@
-local hooks = require "core.hooks"
+local map = require("core.utils").map
 
-hooks.add("setup_mappings", function(map)
-   map("n", "<leader>fp", ":Telescope media_files <CR>")
-   map("n", "<leader>te", ":Telescope <CR>")
-end)
+map("n", "<leader>fp", ":Telescope media_files <CR>")
+map("n", "<leader>te", ":Telescope <CR>")
+
+-- adding my own table of mappngs in the cheatsheet
