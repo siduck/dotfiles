@@ -3,6 +3,7 @@ local customPlugins = require "core.customPlugins"
 customPlugins.add(function(use)
    use "nathom/filetype.nvim"
 
+   use { "elkowar/yuck.vim", ft = "yuck" }
    use {
       "windwp/nvim-ts-autotag",
       ft = { "html", "javascriptreact" },
@@ -50,6 +51,18 @@ customPlugins.add(function(use)
             auto_session_suppress_dirs = nil,
             pre_save_cmds = { "tabdo NvimTreeClose" },
          }
+      end,
+   }
+
+   use {
+      "Pocco81/TrueZen.nvim",
+      cmd = {
+         "TZAtaraxis",
+         "TZMinimalist",
+         "TZFocus",
+      },
+      config = function()
+         require "custom.plugins.truezen"
       end,
    }
 end)

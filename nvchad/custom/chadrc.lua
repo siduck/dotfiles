@@ -23,7 +23,7 @@ M.mappings = {
 }
 
 M.ui = {
-   theme = "everforest",
+   theme = "gruvchad",
 }
 
 return M
