@@ -11,22 +11,20 @@ M.setup_lsp = function(attach, capabilities)
    }
 
    -- lspservers with default config
-
    local servers = { "html", "cssls", "bashls", "clangd" }
 
    for _, lsp in ipairs(servers) do
       lspconfig[lsp].setup {
          on_attach = attach,
          capabilities = capabilities,
-         -- root_dir = vim.loop.cwd,
          flags = {
             debounce_text_changes = 150,
          },
+         -- root_dir = vim.loop.cwd,
       }
    end
 
    -- lua lsp!
-
    local sumneko_root_path = "/home/sid/test/sumneko_lua"
    local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 

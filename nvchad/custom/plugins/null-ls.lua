@@ -3,7 +3,7 @@ local b = null_ls.builtins
 
 local sources = {
 
-   -- web dev stuff
+   -- webdev stuff
    b.formatting.deno_fmt,
    b.formatting.prettierd.with { filetypes = { "html", "markdown", "css" } },
 
@@ -22,13 +22,6 @@ M.setup = function()
    null_ls.setup {
       debug = true,
       sources = sources,
-
-      -- format on save
-      -- on_attach = function(client)
-      --    if client.resolved_capabilities.document_formatting then
-      --       vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
-      --    end
-      -- end,
    }
 end
 

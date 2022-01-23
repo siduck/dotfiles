@@ -2,8 +2,8 @@ local customPlugins = require "core.customPlugins"
 
 customPlugins.add(function(use)
    use "nathom/filetype.nvim"
+   use { "elkowar/yuck.vim", ft = "yuck", disable = 1 }
 
-   use { "elkowar/yuck.vim", ft = "yuck" }
    use {
       "windwp/nvim-ts-autotag",
       ft = { "html", "javascriptreact" },
@@ -34,23 +34,6 @@ customPlugins.add(function(use)
             },
          }
          require("telescope").load_extension "media_files"
-      end,
-   }
-
-   use {
-      "rmagatti/auto-session",
-      cmd = { "SaveSession", "RestoreSession" },
-      config = function()
-         require("auto-session").setup {
-            log_level = "info",
-            auto_session_enable_last_session = false,
-            auto_session_root_dir = "~/test/", -- change this!
-            auto_session_enabled = false,
-            auto_save_enabled = false,
-            auto_restore_enabled = false,
-            auto_session_suppress_dirs = nil,
-            pre_save_cmds = { "tabdo NvimTreeClose" },
-         }
       end,
    }
 
