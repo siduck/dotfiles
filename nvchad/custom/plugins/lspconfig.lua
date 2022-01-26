@@ -20,7 +20,6 @@ M.setup_lsp = function(attach, capabilities)
          flags = {
             debounce_text_changes = 150,
          },
-         -- root_dir = vim.loop.cwd,
       }
    end
 
@@ -28,26 +27,14 @@ M.setup_lsp = function(attach, capabilities)
    local sumneko_root_path = "/home/sid/test/sumneko_lua"
    local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 
-   -- Make runtime files discoverable to the server
-   local runtime_path = vim.split(package.path, ";")
-   table.insert(runtime_path, "lua/?.lua")
-   table.insert(runtime_path, "lua/?/init.lua")
-
    lspconfig.sumneko_lua.setup {
       cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
       on_attach = attach,
       capabilities = capabilities,
-      flags = {
-         debounce_text_changes = 500,
-      },
       settings = {
          Lua = {
             diagnostics = {
                globals = { "vim" },
-            },
-            runtime = {
-               version = "LuaJIT",
-               path = runtime_path,
             },
             workspace = {
                library = {
@@ -56,10 +43,7 @@ M.setup_lsp = function(attach, capabilities)
                },
                maxPreload = 100000,
                preloadFileSize = 10000,
-            },
-            telemetry = {
-               enable = false,
-            },
+            }
          },
       },
    }
