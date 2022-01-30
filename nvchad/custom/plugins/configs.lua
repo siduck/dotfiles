@@ -1,5 +1,6 @@
 local M = {}
 
+-- overriding default plugin configs!
 M.treesitter = {
    ensure_installed = {
       "lua",
@@ -9,6 +10,7 @@ M.treesitter = {
       "javascript",
       "json",
       "toml",
+      "markdown",
       "c",
    },
 }

@@ -43,7 +43,7 @@ M.setup_lsp = function(attach, capabilities)
                },
                maxPreload = 100000,
                preloadFileSize = 10000,
-            }
+            },
          },
       },
    }
