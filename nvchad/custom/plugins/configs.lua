@@ -12,6 +12,7 @@ M.treesitter = {
       "toml",
       "markdown",
       "c",
+      "bash",
    },
 }
 

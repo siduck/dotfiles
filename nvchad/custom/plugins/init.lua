@@ -1,6 +1,4 @@
 return {
-   { "elkowar/yuck.vim", ft = "yuck", disable = 1 },
-   { "ellisonleao/glow.nvim", cmd = "Glow" },
 
    {
       "windwp/nvim-ts-autotag",
@@ -28,7 +26,7 @@ return {
                media_files = {
                   filetypes = { "png", "webp", "jpg", "jpeg" },
                },
-            -- fd is needed
+               -- fd is needed
             },
          }
          require("telescope").load_extension "media_files"

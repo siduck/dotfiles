@@ -6,7 +6,6 @@ local userPlugins = require "custom.plugins"
 M.plugins = {
    status = {
       colorizer = true,
-      snippets = true,
    },
 
    options = {
@@ -24,7 +23,7 @@ M.plugins = {
 }
 
 M.ui = {
-   theme = "gruvchad",
+   theme = "onedark",
 }
 
 return M

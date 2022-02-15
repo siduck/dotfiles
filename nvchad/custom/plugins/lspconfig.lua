@@ -11,7 +11,7 @@ M.setup_lsp = function(attach, capabilities)
    }
 
    -- lspservers with default config
-   local servers = { "html", "cssls", "bashls", "clangd" }
+   local servers = { "html", "cssls", "bashls", "clangd", "emmet_ls" }
 
    for _, lsp in ipairs(servers) do
       lspconfig[lsp].setup {
