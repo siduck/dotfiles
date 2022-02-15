@@ -1,0 +1,4 @@
+#!/bin/dash
+
+sed -i "s/st.borderpx: 0/st.borderpx: 20/g" ~/.Xresources
+xrdb merge ~/.Xresources
