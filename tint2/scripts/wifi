@@ -1,6 +1,6 @@
 #!/bin/bash
 
-case "$(cat /sys/class/net/wlp3s0/operstate 2>/dev/null)" in
+case "$(cat /sys/class/net/wlan0/operstate 2>/dev/null)" in
 up) printf " 󰤨 " ;;
 down) printf " 󰤭" ;;
 esac

@@ -1,5 +1,0 @@
-xrdb merge ~/.Xresources &
-picom &
-feh --bg-fill ~/Pictures/wall/forest.jpg &
-plank &
-tint2 &
