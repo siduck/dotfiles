@@ -1,0 +1,9 @@
+xinput --disable 17 &
+xset r rate 200 80 &
+doo modprobe snd_aloop &
+xbacklight -set 10 & 
+xrdb merge ~/.Xresources &
+picom &
+feh --bg-fill ~/Pictures/wall/chad.png &
+plank &
+tint2 &
