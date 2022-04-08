@@ -11,8 +11,12 @@
 - I use [ST](https://github.com/siduck/st) terminal.
 - [neovim config](https://github.com/NvChad/nvchad).
 
-- Edit tin2 config by tint2conf
+- Edit tint2 config by tint2conf and you should change some values in the tint2 script files accordingly to your wifi/battery adapter name.
 - the gtk theme has the openbox theme , if  you use a different gtk theme then just move the openbox-3 dir from the forest gtk theme to your gtk theme!u
-- Edit themerc of the openbox-3 to change the window decorations colors
+
 
 NOTE : gimmie credits if you're using my rice! no kangg pls :c 
+
+# CREDITS
+
+- Stardust-kyun's vertical bar as an inspiration and he got me into openbox!
