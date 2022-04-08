@@ -1,6 +1,6 @@
 # DONT SKIP THE README 
 
-<img src= "https://cdn.discordapp.com/attachments/634005620223377418/889729299224076288/unknown.png"> 
+<img src= "https://i.redd.it/tj81ojn503k81.png"> 
 
 (WIP)
 
