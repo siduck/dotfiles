@@ -3,7 +3,6 @@ local M = {}
 -- overriding default plugin configs!
 M.treesitter = {
    ensure_installed = {
-      "lua",
       "vim",
       "html",
       "css",
@@ -13,6 +12,7 @@ M.treesitter = {
       "markdown",
       "c",
       "bash",
+      "lua",
    },
 }
 

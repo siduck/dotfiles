@@ -1,7 +1,9 @@
 return {
+   -- ["goolord/alpha-nvim"] = {
+   --    disable = false,
+   -- },
 
-   {
-      "windwp/nvim-ts-autotag",
+   ["windwp/nvim-ts-autotag"] = {
       ft = { "html", "javascriptreact" },
       after = "nvim-treesitter",
       config = function()
@@ -9,16 +11,14 @@ return {
       end,
    },
 
-   {
-      "jose-elias-alvarez/null-ls.nvim",
+   ["jose-elias-alvarez/null-ls.nvim"] = {
       after = "nvim-lspconfig",
       config = function()
          require("custom.plugins.null-ls").setup()
       end,
    },
 
-   {
-      "nvim-telescope/telescope-media-files.nvim",
+   ["nvim-telescope/telescope-media-files.nvim"] = {
       after = "telescope.nvim",
       config = function()
          require("telescope").setup {
@@ -33,8 +33,7 @@ return {
       end,
    },
 
-   {
-      "Pocco81/TrueZen.nvim",
+   ["Pocco81/TrueZen.nvim"] = {
       cmd = {
          "TZAtaraxis",
          "TZMinimalist",
