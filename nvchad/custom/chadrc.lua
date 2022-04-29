@@ -9,9 +9,6 @@ M.plugins = {
       lspconfig = {
          setup_lspconf = "custom.plugins.lspconfig",
       },
-      statusline = {
-         --    style = "slant"
-      },
    },
 
    override = {

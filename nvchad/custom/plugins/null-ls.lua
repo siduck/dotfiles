@@ -15,6 +15,7 @@ local sources = {
    b.formatting.shfmt,
    b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 
+   -- cpp
    b.formatting.clang_format,
 }
 

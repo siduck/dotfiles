@@ -1,8 +1,4 @@
 return {
-   -- ["goolord/alpha-nvim"] = {
-   --    disable = false,
-   -- },
-
    ["windwp/nvim-ts-autotag"] = {
       ft = { "html", "javascriptreact" },
       after = "nvim-treesitter",
