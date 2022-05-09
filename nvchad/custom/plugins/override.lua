@@ -14,6 +14,7 @@ M.treesitter = {
       "c",
       "bash",
       "lua",
+      "norg",
    },
 }
 
@@ -25,7 +26,7 @@ M.nvimtree = {
 
 M.telescope = {
    extensions = {
-     -- fd is needed
+      -- fd is needed
       media_files = {
          filetypes = { "png", "webp", "jpg", "jpeg" },
       },

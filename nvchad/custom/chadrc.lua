@@ -1,6 +1,6 @@
 local M = {}
 
-local plugin_conf = require "custom.plugins.configs"
+local override = require "custom.plugins.override"
 local userPlugins = require "custom.plugins"
 
 M.plugins = {
@@ -16,16 +16,16 @@ M.plugins = {
    },
 
    override = {
-      ["kyazdani42/nvim-tree.lua"] = plugin_conf.nvimtree,
-      ["nvim-treesitter/nvim-treesitter"] = plugin_conf.treesitter,
-      ["nvim-telescope/telescope.nvim"] = plugin_conf.telescope,
+      ["kyazdani42/nvim-tree.lua"] = override.nvimtree,
+      ["nvim-treesitter/nvim-treesitter"] = override.treesitter,
+      ["nvim-telescope/telescope.nvim"] = override.telescope,
    },
 
    user = userPlugins,
 }
 
 M.ui = {
-   theme = "onedark",
+   theme = "gruvchad",
 }
 
 return M
