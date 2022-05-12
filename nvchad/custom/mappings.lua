@@ -1,11 +1,17 @@
-local map = require("core.utils").map
+local M = {}
 
--- telescope
-map("n", "<leader>fp", ":Telescope media_files <CR>")
+M.truzen = {
+   n = {
+      ["<leader>ta"] = { "<cmd> TZAtaraxis <CR>", "   truzen ataraxis" },
+      ["<leader>tm"] = { "<cmd> TZMinimalist <CR>", "   truzen minimal" },
+      ["<leader>tf"] = { "<cmd> TZFocus <CR>", "   truzen focus" },
+   },
+}
 
-map("n", "<leader>te", ":Telescope <CR>")
+M.telescope = {
+   n = {
+      ["<leader>fp"] = { "<cmd> Telescope media_files <CR>", "  find media" },
+   },
+}
 
--- truezen
-map("n", "<leader>ta", ":TZAtaraxis <CR>")
-map("n", "<leader>tm", ":TZMinimalist <CR>")
-map("n", "<leader>tf", ":TZFocus <CR>")
+return M
