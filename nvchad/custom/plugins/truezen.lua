@@ -1,10 +1,16 @@
-require("true-zen").setup {
+local present, truzen = pcall(require, "true-zen")
+
+if not present then
+   return
+end
+
+local options = {
    ui = {
       top = {
          showtabline = 0,
       },
       left = {
-         number = true,
+         number = false,
       },
    },
    modes = {
@@ -17,3 +23,5 @@ require("true-zen").setup {
       },
    },
 }
+
+truzen.setup(options)

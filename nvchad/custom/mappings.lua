@@ -8,9 +8,9 @@ M.truzen = {
    },
 }
 
-M.telescope = {
+M.treesitter = {
    n = {
-      ["<leader>fp"] = { "<cmd> Telescope media_files <CR>", "  find media" },
+      ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", "  find media" },
    },
 }
 

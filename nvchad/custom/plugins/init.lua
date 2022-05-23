@@ -1,23 +1,21 @@
 return {
+
    ["windwp/nvim-ts-autotag"] = {
       ft = { "html", "javascriptreact" },
       after = "nvim-treesitter",
       config = function()
-         require("nvim-ts-autotag").setup()
+         local present, autotag = pcall(require, "nvim-ts-autotag")
+
+         if present then
+            autotag.setup()
+         end
       end,
    },
 
    ["jose-elias-alvarez/null-ls.nvim"] = {
       after = "nvim-lspconfig",
       config = function()
-         require("custom.plugins.null-ls").setup()
-      end,
-   },
-
-   ["nvim-telescope/telescope-media-files.nvim"] = {
-      after = "telescope.nvim",
-      config = function()
-         require("telescope").load_extension "media_files"
+         require "custom.plugins.null-ls"
       end,
    },
 
@@ -29,6 +27,21 @@ return {
       },
       config = function()
          require "custom.plugins.truezen"
+      end,
+   },
+
+   ["nvim-neorg/neorg"] = {
+      ft = "norg",
+      after = "nvim-treesitter",
+      config = function()
+         require "custom.plugins.neorg"
+      end,
+   },
+
+   ["nvim-treesitter/playground"] = {
+      cmd = "TSCaptureUnderCursor",
+      config = function()
+         require("nvim-treesitter.configs").setup()
       end,
    },
 }
