@@ -8,10 +8,6 @@ M.plugins = {
       lspconfig = {
          setup_lspconf = "custom.plugins.lspconfig",
       },
-
-      statusline = {
-         separator_style = "round",
-      },
    },
 
    override = {
@@ -21,15 +17,12 @@ M.plugins = {
    },
 
    user = require "custom.plugins",
-
-   remove = {
-      "folke/which-key.nvim",
-   },
 }
 
 M.ui = {
    theme = "gruvchad",
-   hl_override = require "custom.highlights",
+   hl_add = require "custom.highlights",
+   theme_toggle = { "gruvchad", "gruvbox_light" },
 }
 
 M.mappings = require "custom.mappings"

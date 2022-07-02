@@ -1,3 +1,4 @@
+-- neorg icons
 local M = {}
 
 M.todo = {

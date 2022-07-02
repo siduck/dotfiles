@@ -1,10 +1,5 @@
 local M = {}
 
---
--- M.disabled = {
---    "<C-n>",
--- }
-
 M.truzen = {
    n = {
       ["<leader>ta"] = { "<cmd> TZAtaraxis <CR>", "   truzen ataraxis" },
