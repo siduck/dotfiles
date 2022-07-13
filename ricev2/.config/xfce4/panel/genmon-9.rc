@@ -1,0 +1,6 @@
+Command=genmon_script ram
+UseLabel=0
+Text=(genmon)
+UpdatePeriod=1000
+Font=Roboto 11
+

@@ -1,0 +1,44 @@
+.xfce4-panel .genmon_value, .genmon_valuebutton {
+	padding: 0px 6px;
+        margin: 5px;
+        font-family: Sarasa Mono SC Nerd;
+        border-radius: 0.8rem;
+        background: #2d3139;
+}
+
+.xfce4-panel #genmon-6 .genmon_value, .genmon_valuebutton {
+  color: #61afef;
+  background: #1e222a;
+}
+
+.xfce4-panel #genmon-9 .genmon_value, .genmon_valuebutton {
+ color: #e98d96;
+}
+
+.xfce4-panel #genmon-10 .genmon_value, .genmon_valuebutton {
+  color: #98C379;
+}
+
+.xfce4-panel #genmon-11 .genmon_value, .genmon_valuebutton {
+  color: #EBCB8B;
+}
+
+#docklike-plugin .group {
+	transition: 0.2s;
+	border-radius: 0.3rem;
+	margin: 5 0;
+}
+
+  /* Taller or wider buttons */
+  #docklike-plugin button {
+    padding: 0 .4rem;
+  }
+  
+  /* Brightly colored buttons */
+  #docklike-plugin .open_group { background: #31353d }
+  #docklike-plugin .active_group { background: #31353d ;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; }
+  #docklike-plugin .hover_group { padding: 0 .8rem; background: #2d3139;}
+  
+  /* number of open windows label */
+  #docklike-plugin .window_count { color: red; }
+  #docklike-plugin .open_group .window_count { color: white; }

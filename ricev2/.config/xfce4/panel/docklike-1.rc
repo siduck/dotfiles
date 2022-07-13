@@ -1,0 +1,5 @@
+[user]
+forceIconSize=true
+iconSize=25
+pinned=/usr/share/applications/firefox.desktop;/usr/share/applications/org.telegram.desktop.desktop.desktop;/usr/local/share/applications/st.desktop;/usr/share/applications/simplescreenrecorder.desktop;/usr/share/applications/lxappearance.desktop;/usr/share/applications/gpick.desktop;/usr/share/applications/libreoffice-writer.desktop;/usr/share/applications/mate-calc.desktop;/usr/share/applications/ungoogled-chromium.desktop;
+indicatorStyle=3

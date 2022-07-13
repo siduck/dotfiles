@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Exec=rofi -show drun
+Icon=/usr/share/icons/Papirus-Dark/128x128/apps/distributor-logo-void.svg
+Name=App launcher
+X-XFCE-Source=file:///home/sid/.local/share/applications/rofi.desktop
+Comment=
+Path=
+Terminal=false
+StartupNotify=false

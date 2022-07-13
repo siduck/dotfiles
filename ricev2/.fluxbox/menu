@@ -1,0 +1,95 @@
+#
+## Menu generated with fbmenugen v0.85
+#
+
+[begin] (Fluxbox)
+[encoding] {UTF-8}
+  [exec] (File Manager) {xdg-open .} </home/sid/.config/fbmenugen/icons/5cbe5f254eee2c64bac5214c18b76de4.png>
+  [exec] (Terminal) {st} </home/sid/.config/fbmenugen/icons/aba62a46f39978d6f3888b2231653c01.png>
+  [exec] (Web Browser) {xdg-open http://} </home/sid/.config/fbmenugen/icons/1000bc804ee6d4007c0e02c6607aba93.png>
+  [exec] (Run command) {fbrun} </home/sid/.config/fbmenugen/icons/ee4333551b7f5402435e5b9477499a6f.png>
+[separator]
+[submenu] (Accessories) </home/sid/.config/fbmenugen/icons/6b53a9a61ba097f4bc7f7bc99435522e.png>
+  [exec] (About Xfce) {xfce4-about} </home/sid/.config/fbmenugen/icons/267d4287674a9e645e39f2042a7e8a79.png>
+  [exec] (Android File Transfer (MTP\)) {android-file-transfer} </home/sid/.config/fbmenugen/icons/29b57a907311c588478e386fb395951a.png>
+  [exec] (File Manager PCManFM) {pcmanfm} </home/sid/.config/fbmenugen/icons/5cbe5f254eee2c64bac5214c18b76de4.png>
+  [exec] (MATE Calculator) {mate-calc} </home/sid/.config/fbmenugen/icons/8a7d727f24b309bfe2052ba0ef072d78.png>
+  [exec] (Neovim) {st -e 'nvim'} </home/sid/.config/fbmenugen/icons/5aef54b93aa690f6300fd153f7c56bf2.png>
+  [exec] (picom) {picom} </home/sid/.config/fbmenugen/icons/8573d769ee89eab48ca0357a15112ff6.png>
+  [exec] (Task Manager) {xfce4-taskmanager} </home/sid/.config/fbmenugen/icons/a6ea45faed76703dad5b1eb94859bcfa.png>
+[end]
+[submenu] (Graphics) </home/sid/.config/fbmenugen/icons/8cdbfa5735b9025deec5a6b6e5029126.png>
+  [exec] (Flameshot) {/usr/bin/flameshot} </home/sid/.config/fbmenugen/icons/3bf3c21763a8c64318542810d6582ccb.png>
+  [exec] (Gpick) {gpick} </home/sid/.config/fbmenugen/icons/62e71f2d272dbf435bf05d941b05b518.png>
+  [exec] (Inkscape) {inkscape} </home/sid/.config/fbmenugen/icons/a97530560cc601799849e2185136ccf3.png>
+[end]
+[submenu] (Multimedia) </home/sid/.config/fbmenugen/icons/8e88830bd95384148296c6ddf63b45ec.png>
+  [exec] (mpv Media Player) {mpv --player-operation-mode=pseudo-gui --} </home/sid/.config/fbmenugen/icons/7a053b1df7cf41ed515fd64f9de9a0f9.png>
+  [exec] (QMPlay2) {QMPlay2} </home/sid/.config/fbmenugen/icons/894658ab0e287cc2d401214f6bbe3634.png>
+  [exec] (SimpleScreenRecorder) {simplescreenrecorder --logfile} </home/sid/.config/fbmenugen/icons/8ba815719d7d04e880ddde09c2256fd8.png>
+[end]
+[submenu] (Network) </home/sid/.config/fbmenugen/icons/67bbfc023fc4f57d27bc6e230997778a.png>
+  [exec] (Firefox Web Browser) {firefox} </home/sid/.config/fbmenugen/icons/8fb341c97a06ac33c4f238ef8effc495.png>
+  [exec] (Telegram Desktop) {telegram-desktop --} </home/sid/.config/fbmenugen/icons/5527607bad5f63bcb4bd6f61263a72e4.png>
+  [exec] (Ungoogled Chromium) {ungoogled-chromium} </home/sid/.config/fbmenugen/icons/9309cdf22b049ce6b582fa2bf78396f0.png>
+[end]
+[submenu] (Office) </home/sid/.config/fbmenugen/icons/8411dba5020a71eab054bfc841ea886c.png>
+  [exec] (LibreOffice Writer) {libreoffice --writer} </home/sid/.config/fbmenugen/icons/837bb77da12fc024adde64fba82e927e.png>
+  [exec] (LibreOffice) {libreoffice} </home/sid/.config/fbmenugen/icons/b31033c970d385ae66e566c71bcd5e85.png>
+  [exec] (Zathura) {zathura} </home/sid/.config/fbmenugen/icons/302071bf2bd4301f257e7c79292e7439.png>
+[end]
+[submenu] (Settings) </home/sid/.config/fbmenugen/icons/d35ef8df5a97d3113a18d5379b82b232.png>
+  [exec] (Customize Look and Feel) {lxappearance} </home/sid/.config/fbmenugen/icons/5b0bed16d12c95beffe9cf9bc9482210.png>
+  [exec] (Desktop Preferences) {pcmanfm --desktop-pref} </home/sid/.config/fbmenugen/icons/910667a7eba3c4a0495b5235055e12fc.png>
+  [exec] (Openbox Configuration Manager) {obconf} </home/sid/.config/fbmenugen/icons/5b0bed16d12c95beffe9cf9bc9482210.png>
+  [exec] (Panel) {xfce4-panel --preferences} </home/sid/.config/fbmenugen/icons/ce4340cbf7bc61d7c0e69cc5332aaafc.png>
+  [exec] (Preferred Applications) {libfm-pref-apps} </home/sid/.config/fbmenugen/icons/b6d39e8d7349a0e53d5fcc9572c4106c.png>
+  [exec] (Qt5 Settings) {qt5ct} </home/sid/.config/fbmenugen/icons/5b0bed16d12c95beffe9cf9bc9482210.png>
+[end]
+[submenu] (System) </home/sid/.config/fbmenugen/icons/b6d39e8d7349a0e53d5fcc9572c4106c.png>
+  [exec] (Alacritty) {alacritty} </home/sid/.config/fbmenugen/icons/aac134829a54cb8bc56929e17754528a.png>
+  [exec] (Android File Transfer (MTP\)) {android-file-transfer} </home/sid/.config/fbmenugen/icons/29b57a907311c588478e386fb395951a.png>
+  [exec] (File Manager PCManFM) {pcmanfm} </home/sid/.config/fbmenugen/icons/5cbe5f254eee2c64bac5214c18b76de4.png>
+  [exec] (st) {st} </home/sid/.config/fbmenugen/icons/69a26ef6280a0623238271b989045a3a.png>
+  [exec] (Task Manager) {xfce4-taskmanager} </home/sid/.config/fbmenugen/icons/a6ea45faed76703dad5b1eb94859bcfa.png>
+[end]
+[separator]
+[submenu] (Advanced Settings) </home/sid/.config/fbmenugen/icons/50467f69fdf6bc148100d82b602db152.png>
+[submenu] (Fbmenugen) </home/sid/.config/fbmenugen/icons/2304411794fe457743462cd370d263b3.png>
+  [exec] (Menu Schema) {geany ~/.config/fbmenugen/schema.pl} </home/sid/.config/fbmenugen/icons/4e5ab6562d65bc1dc2ff848e2973b80d.png>
+  [exec] (Menu Config) {geany ~/.config/fbmenugen/config.pl} </home/sid/.config/fbmenugen/icons/4e5ab6562d65bc1dc2ff848e2973b80d.png>
+[separator]
+  [exec] (Generate a menu with icons) {fbmenugen -i} </home/sid/.config/fbmenugen/icons/2304411794fe457743462cd370d263b3.png>
+  [exec] (Generate a menu without icons) {fbmenugen -g} </home/sid/.config/fbmenugen/icons/2304411794fe457743462cd370d263b3.png>
+[separator]
+  [exec] (Refresh cache) {fbmenugen -d} </home/sid/.config/fbmenugen/icons/70f8de3868838ddc2733649ddf7d455e.png>
+[end]
+[submenu] (Fluxbox) </home/sid/.config/fbmenugen/icons/b6d39e8d7349a0e53d5fcc9572c4106c.png>
+[config] (Configure)
+[submenu] (System Styles) {Choose a style...}
+  [stylesdir] (/usr/share/fluxbox/styles)
+[end]
+[submenu] (User Styles) {Choose a style...}
+  [stylesdir] (~/.fluxbox/styles)
+[end]
+[workspaces] (Workspace List)
+[submenu] (Tools)
+  [exec] (Screenshot - JPG) {import screenshot.jpg && display -resize 50% screenshot.jpg}
+  [exec] (Screenshot - PNG) {import screenshot.png && display -resize 50% screenshot.png}
+  [exec] (Run) {fbrun}
+  [exec] (Regen Menu) {fluxbox-generate_menu}
+[end]
+[commanddialog] (Fluxbox Command)
+  [reconfig] (Reload config)
+  [restart] (Restart)
+  [exec] (About) {(fluxbox -v; fluxbox -info | sed 1d) | xmessage -file - -center}
+  [separator]
+  [exit] (Exit)
+[end]
+[end]
+[separator]
+  [exec] (Refresh) {/usr/bin/perl \/usr\/bin\/fbmenugen -i -S \/home\/sid\/\.config\/fbmenugen\/schema\.pl -C \/home\/sid\/\.config\/fbmenugen\/config\.pl -o \/home\/sid\/\.fluxbox\/menu} </home/sid/.config/fbmenugen/icons/70f8de3868838ddc2733649ddf7d455e.png>
+[exit] (Exit) </home/sid/.config/fbmenugen/icons/fb72a440ffad47bcb617a29e5f663623.png>
+
+[endencoding]
+[end]

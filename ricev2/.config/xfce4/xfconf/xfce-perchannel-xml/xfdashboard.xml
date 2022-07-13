@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfdashboard" version="1.0">
+  <property name="components" type="empty">
+    <property name="applications-search-provider" type="empty">
+      <property name="sort-mode" type="uint" value="0"/>
+    </property>
+  </property>
+</channel>

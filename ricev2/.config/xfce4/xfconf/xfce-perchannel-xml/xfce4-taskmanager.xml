@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-taskmanager" version="1.0">
+  <property name="interface" type="empty">
+    <property name="show-filter" type="bool" value="true"/>
+  </property>
+  <property name="window-width" type="int" value="1896"/>
+  <property name="window-height" type="int" value="972"/>
+</channel>

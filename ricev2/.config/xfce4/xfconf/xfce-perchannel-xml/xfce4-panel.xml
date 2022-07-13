@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-panel" version="1.0">
+  <property name="configver" type="int" value="2"/>
+  <property name="panels" type="array">
+    <value type="int" value="1"/>
+    <property name="panel-1" type="empty">
+      <property name="position" type="string" value="p=8;x=960;y=1056"/>
+      <property name="length" type="uint" value="100"/>
+      <property name="position-locked" type="bool" value="true"/>
+      <property name="icon-size" type="uint" value="32"/>
+      <property name="size" type="uint" value="42"/>
+      <property name="plugin-ids" type="array">
+        <value type="int" value="17"/>
+        <value type="int" value="4"/>
+        <value type="int" value="2"/>
+        <value type="int" value="1"/>
+        <value type="int" value="8"/>
+        <value type="int" value="14"/>
+        <value type="int" value="6"/>
+        <value type="int" value="9"/>
+        <value type="int" value="10"/>
+        <value type="int" value="11"/>
+        <value type="int" value="13"/>
+        <value type="int" value="12"/>
+      </property>
+      <property name="nrows" type="uint" value="1"/>
+      <property name="disable-struts" type="bool" value="true"/>
+      <property name="length-adjust" type="bool" value="true"/>
+      <property name="enter-opacity" type="uint" value="100"/>
+      <property name="background-style" type="uint" value="1"/>
+      <property name="background-rgba" type="array">
+        <value type="double" value="0.117647"/>
+        <value type="double" value="0.133333"/>
+        <value type="double" value="0.164706"/>
+        <value type="double" value="1.000000"/>
+      </property>
+      <property name="mode" type="uint" value="0"/>
+    </property>
+  </property>
+  <property name="plugins" type="empty">
+    <property name="plugin-2" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-4" type="string" value="separator">
+      <property name="style" type="uint" value="2"/>
+    </property>
+    <property name="plugin-6" type="string" value="genmon"/>
+    <property name="plugin-8" type="string" value="separator">
+      <property name="expand" type="bool" value="true"/>
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-9" type="string" value="genmon"/>
+    <property name="plugin-10" type="string" value="genmon"/>
+    <property name="plugin-11" type="string" value="genmon"/>
+    <property name="plugin-12" type="string" value="systray">
+      <property name="known-legacy-items" type="array">
+        <value type="string" value="gtk-recordmydesktop"/>
+        <value type="string" value="gpick"/>
+        <value type="string" value="mechvibes"/>
+        <value type="string" value="fluxgui"/>
+      </property>
+      <property name="known-items" type="array">
+        <value type="string" value="QMPlay2"/>
+        <value type="string" value="flameshot"/>
+        <value type="string" value="SimpleScreenRecorder"/>
+        <value type="string" value="TelegramDesktop"/>
+        <value type="string" value="org.twosheds.iwgtk"/>
+        <value type="string" value="fluxgui-indicator"/>
+      </property>
+      <property name="icon-size" type="int" value="26"/>
+      <property name="menu-is-primary" type="bool" value="false"/>
+      <property name="symbolic-icons" type="bool" value="false"/>
+      <property name="square-icons" type="bool" value="false"/>
+      <property name="single-row" type="bool" value="true"/>
+      <property name="hide-new-items" type="bool" value="false"/>
+    </property>
+    <property name="plugin-13" type="string" value="genmon"/>
+    <property name="plugin-14" type="string" value="genmon"/>
+    <property name="plugin-17" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="16571591311.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-1" type="string" value="docklike"/>
+  </property>
+</channel>

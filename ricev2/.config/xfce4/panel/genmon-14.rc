@@ -1,0 +1,6 @@
+Command=genmon_script pkgUpdates
+UseLabel=0
+Text=(genmon)
+UpdatePeriod=300000
+Font=Roboto 11
+

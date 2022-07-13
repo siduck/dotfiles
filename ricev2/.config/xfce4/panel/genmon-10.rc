@@ -1,0 +1,6 @@
+Command=genmon_script battery
+UseLabel=0
+Text=(genmon)
+UpdatePeriod=4000
+Font=Roboto 11
+

@@ -1,0 +1,51 @@
+# Prompt
+PS1=$'\E[42m\E[30m   \E[39m\E[40m'' ${PWD/#"$HOME"/\~} '$'\E[0m '
+
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.volta/bin
+
+alias ree='redshift -P -O 3500'
+alias zz='doas zzz'
+alias vi='~/.local/bin/vi_padding && nvim'
+alias doo='doas'
+alias del='doas rm -r'
+alias gl='git clone'
+alias pmem='doo ps_mem.py'
+
+alias cdn="cd ~/.config/nvim && vi"
+
+# logo-ls
+alias ls='exa --icons'
+
+alias wa='feh --bg-fill'
+
+#xbps commands
+alias xd='xdeb -Sde'
+alias xi='doas xbps-install'
+alias xr='doas xbps-remove -Ro'
+alias xu='doas xbps-install -Su && doas update-grub'
+alias xq='xbps-query'
+alias comp='doas make install'
+
+# sx 
+alias dwm='sx sh ~/.config/chadwm/scripts/run.sh'
+alias op='sx sh /bin/openbox-session'
+alias flu='sx sh ~/.fluxbox/startup'
+
+bind ^[a=beginning-of-line
+bind ^[e=end-of-line
+bind ^L=clear-screen
+
+HISTFILE=$HOME/.mksh_history
+HISTSIZE=10104096
+
+export FZF_DEFAULT_OPTS='
+  --color fg:#646a76,bg:#171b23
+  --color bg+:#E06C75,fg+:#2c2f30,hl:#D8DEE9,hl+:#26292a,gutter:#3a404c
+  --color pointer:#373d49,prompt:#61afef,info:#606672,spinner:#98C379
+  --border --color border:#171b23,preview-bg:#1e222a,preview-fg:#abb2bf
+  --height 15'
+
+
+. ~/.mksh/key-bindings.mksh
+. ~/.mksh/completion.mksh
