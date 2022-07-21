@@ -5,7 +5,7 @@
   <property name="panels" type="array">
     <value type="int" value="1"/>
     <property name="panel-1" type="empty">
-      <property name="position" type="string" value="p=8;x=960;y=1056"/>
+      <property name="position" type="string" value="p=8;x=960;y=1058"/>
       <property name="length" type="uint" value="100"/>
       <property name="position-locked" type="bool" value="true"/>
       <property name="icon-size" type="uint" value="32"/>
@@ -26,7 +26,7 @@
       </property>
       <property name="nrows" type="uint" value="1"/>
       <property name="disable-struts" type="bool" value="true"/>
-      <property name="length-adjust" type="bool" value="true"/>
+      <property name="length-adjust" type="bool" value="false"/>
       <property name="enter-opacity" type="uint" value="100"/>
       <property name="background-style" type="uint" value="1"/>
       <property name="background-rgba" type="array">
@@ -61,6 +61,9 @@
         <value type="string" value="fluxgui"/>
       </property>
       <property name="known-items" type="array">
+        <value type="string" value="Clementine"/>
+        <value type="string" value="quaternion"/>
+        <value type="string" value="moment"/>
         <value type="string" value="QMPlay2"/>
         <value type="string" value="flameshot"/>
         <value type="string" value="SimpleScreenRecorder"/>

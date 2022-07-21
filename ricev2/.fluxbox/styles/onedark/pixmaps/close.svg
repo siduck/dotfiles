@@ -4,7 +4,7 @@
 <svg
    width="25"
    height="25"
-   viewBox="-25 -50 62.5 150"
+   viewBox="-25 -50 148.48972 148.48972"
    version="1.1"
    id="svg8"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
@@ -27,16 +27,17 @@
      inkscape:pageshadow="2"
      inkscape:zoom="11.313709"
      inkscape:cx="9.8553003"
-     inkscape:cy="23.422911"
+     inkscape:cy="23.378717"
      inkscape:document-units="mm"
      inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:window-width="1920"
-     inkscape:window-height="998"
+     inkscape:window-height="999"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:pagecheckerboard="0" />
+     inkscape:pagecheckerboard="0"
+     scale-x="22.44884" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -54,10 +55,10 @@
      inkscape:label="Layer 2"
      style="display:inline">
     <ellipse
-       style="opacity:1;fill:#81a1c1;fill-opacity:1;stroke:#87cdde;stroke-width:0;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:189.06;stroke-opacity:1"
+       style="opacity:1;fill:#db75af;fill-opacity:1;stroke:#87cdde;stroke-width:0;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:189.06;stroke-opacity:1"
        id="path4816"
-       cx="6.25"
-       cy="-25"
+       cx="49.244862"
+       cy="-24.244862"
        rx="52.65638"
        ry="52.650002"
        transform="scale(1,-1)" />

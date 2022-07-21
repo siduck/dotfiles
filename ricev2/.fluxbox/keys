@@ -39,8 +39,8 @@ OnTitlebar Mouse2 :Lower
 OnTitlebar Mouse3 :WindowMenu
 
 # alt-tab
-Mod1 Tab :NextWindow {groups} (workspace=[current])
-Mod1 Shift Tab :PrevWindow {groups} (workspace=[current])
+ # Mod1 Tab :NextWindow {groups} (workspace=[current]) 
+ Mod1 Shift Tab :PrevWindow {groups} (workspace=[current])
 
 # cycle through tabs in the current window
 Mod4 Tab :NextTab
@@ -63,6 +63,7 @@ XF86MonBrightnessUp : Exec xbacklight -inc 10
 XF86MonBrightnessDown : Exec xbacklight -dec 10
 
 # open the window menu
+Mod4 A :Exec skippy-xd 
 Mod4 C :Exec rofi -show drun 
 Mod4 l :Exec maim -m 1 | xclip -selection clipboard -t image/png
 Mod4 U :Exec  maim -m 1 --select | xclip -selection clipboard -t image/png

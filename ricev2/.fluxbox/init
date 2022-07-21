@@ -8,7 +8,7 @@ session.screen0.toolbar.onhead:	1
 session.screen0.toolbar.autoHide:	false
 session.screen0.toolbar.tools:	prevworkspace, workspacename, nextworkspace, iconbar,  systemtray , clock
 session.screen0.toolbar.maxOver:	false
-session.screen0.toolbar.alpha:	252
+session.screen0.toolbar.alpha:	0
 session.screen0.toolbar.visible:	true
 session.screen0.tabs.usePixmap:	true
 session.screen0.tabs.maxOver:	false

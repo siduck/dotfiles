@@ -1,9 +1,8 @@
 #!/bin/sh
 
+xfce4-panel &
 xset r rate 200 80 &
 xbacklight -set 20 & 
 picom & 
-xrdb merge ~/.Xresources & 
-feh --bg-fill ~/Pictures/wall/desert.jpg &
-xfce4-panel &
+feh --bg-fill ~/Pictures/wall/buildings.jpg &
 exec fluxbox 
