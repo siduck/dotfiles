@@ -1,5 +1,4 @@
 local M = {}
-
 local override = require "custom.override"
 
 M.plugins = {
@@ -9,6 +8,7 @@ M.plugins = {
     ["nvim-treesitter/nvim-treesitter"] = override.treesitter,
     ["lukas-reineke/indent-blankline.nvim"] = override.blankline,
     ["goolord/alpha-nvim"] = override.alpha,
+    ["williamboman/mason"] = override.mason,
   },
 
   user = require "custom.plugins",
