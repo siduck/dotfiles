@@ -1,10 +1,51 @@
+local overrides = require "custom.plugins.overrides"
+
 return {
-  -- autoclose tags in html, jsx etc
+
+  ----------------------------------------- default plugins ------------------------------------------
+
+  ["goolord/alpha-nvim"] = {
+    disable = false,
+    cmd = "Alpha",
+    override_options = overrides.alpha,
+  },
+
+  ["neovim/nvim-lspconfig"] = {
+    config = function()
+      require "plugins.configs.lspconfig"
+      require "custom.plugins.lspconfig"
+    end,
+  },
+
+  -- override default configs
+  ["kyazdani42/nvim-tree.lua"] = {
+    override_options = overrides.nvimtree,
+  },
+
+  ["nvim-treesitter/nvim-treesitter"] = {
+    override_options = overrides.treesitter,
+  },
+
+  ["lukas-reineke/indent-blankline.nvim"] = {
+    override_options = overrides.blankline,
+  },
+
+  ["williamboman/mason.nvim"] = {
+    override_options = overrides.mason,
+  },
+
+  --------------------------------------------- custom plugins ----------------------------------------------
+
+  -- autoclose tags in html, jsx only
   ["windwp/nvim-ts-autotag"] = {
     ft = { "html", "javascriptreact" },
     after = "nvim-treesitter",
     config = function()
-      require("custom.plugins.smolconfigs").autotag()
+      local present, autotag = pcall(require, "nvim-ts-autotag")
+
+      if present then
+        autotag.setup()
+      end
     end,
   },
 
@@ -16,7 +57,7 @@ return {
     end,
   },
 
-  -- minimal modes
+  -- distraction free modes
   ["Pocco81/TrueZen.nvim"] = {
     cmd = {
       "TZAtaraxis",
@@ -36,39 +77,42 @@ return {
     end,
   },
 
+  -- I rarely use shade.nvim/autosave.nvim so made commands to enable them
+
   -- dim inactive windows
   ["andreadev-it/shade.nvim"] = {
     module = "shade",
     config = function()
-      require("custom.plugins.smolconfigs").shade()
+      require "custom.plugins.shade"
     end,
   },
 
+  -- autosave
   ["Pocco81/AutoSave.nvim"] = {
     module = "autosave",
     config = function()
-      require("custom.plugins.smolconfigs").autosave()
+      require("autosave").setup()
     end,
   },
 
-  -- notes stuff
+  -- notes & todo stuff
   ["nvim-neorg/neorg"] = {
+    tag = "0.0.12",
     ft = "norg",
     after = "nvim-treesitter",
+    setup = function()
+      require("custom.plugins.neorg").autocmd()
+    end,
     config = function()
-      require "custom.plugins.neorg"
+      require("custom.plugins.neorg").setup()
     end,
   },
 
-  ["goolord/alpha-nvim"] = {
-    disable = false,
-    cmd = "Alpha",
-  },
-
-  ["neovim/nvim-lspconfig"] = {
+  -- basic diagrams for flow charts etc
+  ["jbyuki/venn.nvim"] = {
+    module = "venn.nvim",
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.plugins.lspconfig"
+      require("custom.plugins.venn").setup()
     end,
   },
 }
