@@ -15,10 +15,17 @@ M.treesitter = {
     "bash",
     "lua",
     "norg",
+    "tsx",
+    "typescript",
   },
 }
 
 M.nvimtree = {
+  filters = {
+    dotfiles = true,
+    custom = { "node_modules" },
+  },
+
   git = {
     enable = true,
   },
@@ -76,8 +83,9 @@ M.mason = {
     "html-lsp",
     "typescript-language-server",
     "deno",
-    "emmet-ls",
+    -- "emmet-ls",
     "json-lsp",
+    "tailwindcss-language-server",
 
     -- shell
     "shfmt",

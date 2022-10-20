@@ -10,17 +10,6 @@ M.general = {
   },
 }
 
-M.venn = {
-  n = {
-    ["vn"] = {
-      function()
-        require("custom.plugins.venn").toggle_maps()
-      end,
-      "toggle venn mappings",
-    },
-  },
-}
-
 M.truzen = {
   n = {
     ["<leader>ta"] = { "<cmd> TZAtaraxis <CR>", "truzen ataraxis" },
@@ -47,12 +36,16 @@ M.shade = {
   },
 }
 
-
-M.navigation = {
+M.nvterm = {
   n = {
-    ["H"] = { "^", "beginning of line" },
-    ["L"] = { "$", "end of line" },
-  }
+    ["<leader>cc"] = {
+      function()
+        require("nvterm.terminal").send("clear && g++ -o out " .. vim.fn.expand "%" .. " && ./out", "vertical")
+      end,
+
+      "compile & run a cpp file",
+    },
+  },
 }
 
 return M
