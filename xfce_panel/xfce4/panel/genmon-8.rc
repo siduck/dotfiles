@@ -1,0 +1,6 @@
+Command=genmon ramIcon
+UseLabel=0
+Text=(genmon)
+UpdatePeriod=86400000
+Font=Noto Sans,  10
+

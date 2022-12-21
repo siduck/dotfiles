@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-taskmanager" version="1.0">
+  <property name="window-width" type="int" value="945"/>
+  <property name="window-height" type="int" value="1016"/>
+  <property name="interface" type="empty">
+    <property name="show-filter" type="bool" value="true"/>
+  </property>
+  <property name="columns" type="empty">
+    <property name="sort-type" type="uint" value="1"/>
+    <property name="sort-id" type="uint" value="0"/>
+  </property>
+</channel>

@@ -1,0 +1,5 @@
+[user]
+forceIconSize=true
+iconSize=30
+pinned=/usr/share/applications/firefox-esr.desktop;/usr/local/share/applications/st.desktop;/usr/share/applications/gpick.desktop;
+showPreviews=true

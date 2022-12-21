@@ -1,0 +1,6 @@
+Command=genmon wifi
+UseLabel=0
+Text=(genmon)
+UpdatePeriod=250
+Font=Noto Sans,  10
+

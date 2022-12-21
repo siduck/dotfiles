@@ -1,0 +1,6 @@
+Command=genmon wifi
+UseLabel=0
+Text=(genmon)
+UpdatePeriod=500
+Font=JetBrainsMono Nerd Font Mono 14
+

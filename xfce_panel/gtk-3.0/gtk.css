@@ -1,0 +1,80 @@
+#clock-button {
+  font: Iosevka;
+  font-size: 1.2rem;
+  padding: 1rem 0;
+  margin: 0.3rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid gray;
+}
+
+.genmon_valuebutton,
+.genmon_value {
+  background-color: #2d3139;
+  border-radius: 50%;
+  margin: 0.4rem 0.3rem;
+  font-size: 30;
+}
+
+.genmon_valuebutton label {
+  font-size: 30;
+}
+
+#genmon-15 .genmon_valuebutton,
+#genmon-16 .genmon_valuebutton,
+#genmon-17 .genmon_valuebutton {
+  margin: 0 0.3rem;
+  background-color: #1e222a;
+}
+
+/* dock css */
+#docklike-plugin button {
+  border-radius: 1rem;
+}
+
+#docklike-plugin .open_group {
+  padding: 0.4rem;
+  background-color: #2d3139;
+  margin: 0 0.3rem;
+}
+
+#docklike-plugin .active_group {
+  padding: 0.3rem;
+  background-color: #2d3139;
+  border: 2px solid #484f5c;
+  margin: 0 0.3rem;
+}
+
+#docklike-plugin .hover_group {
+  padding: 0.5rem;
+  background-color: #3e454e;
+  margin: 0 0.3rem;
+}
+
+#genmon-18 .genmon_value {
+  color: #98c379;
+}
+
+#genmon-8 .genmon_value {
+  border-radius: 1rem 1rem 0 0;
+  margin: 0 0.3rem;
+  background-color: #3e454e;
+}
+
+#genmon-12 .genmon_value {
+  margin: 0 0.3rem;
+  margin-bottom: 0.5rem;
+  font-size: 17;
+  border-radius: 0 0 1rem 1rem;
+  padding: 1rem 0.5rem;
+  font-family: Iosevka;
+  color: #848b98;
+}
+
+#genmon-9 .genmon_value {
+  background-color: #e06c75;
+  color: #1e222a;
+}
+
+#genmon-2 .genmon_valuebutton {
+  color: #e06c75;
+}

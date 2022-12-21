@@ -1,0 +1,71 @@
+#!/bin/bash
+
+eww() {
+	echo "<txt></txt>"
+	echo "<txtclick>eww open eww</txtclick>"
+}
+
+pkgUpdates() {
+	updates=$(doas xbps-install -un | wc -l) # void
+
+	if [ -z "$updates" ]; then
+		echo "Fully Updated"
+	else
+		echo "  $updates"" updates"
+	fi
+}
+
+battery() {
+	cap="$(cat /sys/class/power_supply/BAT1/capacity)"
+
+	if (($cap > 95)); then
+		printf ""
+	elif (($cap > 70)); then
+		printf ""
+	elif (($cap > 50)); then
+		printf ""
+	elif (($cap > 30)); then
+		printf ""
+	elif (($cap > 1)); then
+		printf ""
+	else
+		printf "ﮊ"
+	fi
+}
+
+cpu() {
+	printf " CPU $(grep -o "^[^ ]*" /proc/loadavg)"
+}
+
+ramIcon() {
+	echo ""
+}
+
+ram() {
+	ramused=$(free | grep Mem | awk '{print $3/$2 * 100.0}')
+	res=${ramused%.*}
+	echo $res'%'
+}
+
+wifi() {
+	case "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" in
+	up) printf "" ;;
+	down) printf "睊" ;;
+	esac
+}
+
+ws() {
+	icon=''
+	fg='#484f5c'
+
+	if [[ $(xdotool get_desktop) == $1 ]]; then
+		icon="" fg='#61afef'
+  # elif [[	$(xdotool search --desktop $1 "") ]]; then
+		# icon=""
+	fi
+
+	echo "<txt><span fgcolor='$fg'>$icon</span></txt>"
+	echo "<txtclick> xdotool set_desktop $1 </txtclick>"
+}
+
+"$@"
