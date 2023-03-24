@@ -5,9 +5,8 @@ end
 
 -- reloads xresources for current focused window onl
 local function liveReload_xresources()
-  vim.cmd(
-    string.format "silent !xrdb merge ~/.Xresources && kill -USR1 $(xprop -id $(xdotool getwindowfocus) | grep '_NET_WM_PID' | grep -oE '[[:digit:]]*$')"
-  )
+  vim.cmd "silent !xrdb -merge ~/.Xresources"
+  vim.cmd "silent !kill -USR1 $(xprop -id $(xdotool getwindowfocus) | grep '_NET_WM_PID' | grep -oE '[[:digit:]]*$')"
 end
 
 local autocmd = vim.api.nvim_create_autocmd
@@ -16,16 +15,16 @@ local autocmd = vim.api.nvim_create_autocmd
 autocmd({ "BufNewFile", "BufRead" }, {
   callback = function(ctx)
     -- remove terminal padding
-    -- exclude when nvim has norg ft & more than 2 buffers
+    -- keep padding when nvim has only 1 buffer 
 
-    if vim.bo.ft == "norg" or #vim.fn.getbufinfo { buflisted = 1 } > 1 then
+    if #vim.fn.getbufinfo { buflisted = 1 } > 1 then
       sed("st.borderpx: 20", "st.borderpx: 0", "~/.Xresources")
       liveReload_xresources()
 
       -- revert xresources change but dont reload it
       sed("st.borderpx: 0", "st.borderpx: 20", "~/.Xresources")
 
-      vim.cmd(string.format "silent !xrdb merge ~/.Xresources")
+      vim.cmd "silent !xrdb -merge ~/.Xresources"
       vim.api.nvim_del_autocmd(ctx.id)
     end
   end,
@@ -38,3 +37,8 @@ autocmd("VimLeavePre", {
     liveReload_xresources()
   end,
 })
+
+ autocmd("VimResized", {
+   pattern = "*",
+   command = "tabdo wincmd =",
+ })

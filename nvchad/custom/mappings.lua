@@ -18,11 +18,11 @@ M.truzen = {
   },
 }
 
-M.treesitter = {
-  n = {
-    ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", "find media" },
-  },
-}
+-- M.treesitter = {
+--   n = {
+--     ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", "find media" },
+--   },
+-- }
 
 M.shade = {
   n = {
@@ -38,7 +38,7 @@ M.shade = {
 
 M.nvterm = {
   n = {
-    ["<leader>cc"] = {
+    ["<leader>gc"] = {
       function()
         require("nvterm.terminal").send("clear && g++ -o out " .. vim.fn.expand "%" .. " && ./out", "vertical")
       end,
