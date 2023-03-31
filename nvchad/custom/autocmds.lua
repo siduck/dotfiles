@@ -15,7 +15,7 @@ local autocmd = vim.api.nvim_create_autocmd
 autocmd({ "BufNewFile", "BufRead" }, {
   callback = function(ctx)
     -- remove terminal padding
-    -- keep padding when nvim has only 1 buffer 
+    -- keep padding when nvim has only 1 buffer
 
     if #vim.fn.getbufinfo { buflisted = 1 } > 1 then
       sed("st.borderpx: 20", "st.borderpx: 0", "~/.Xresources")
@@ -38,7 +38,7 @@ autocmd("VimLeavePre", {
   end,
 })
 
- autocmd("VimResized", {
-   pattern = "*",
-   command = "tabdo wincmd =",
- })
+autocmd("VimResized", {
+  pattern = "*",
+  command = "tabdo wincmd =",
+})

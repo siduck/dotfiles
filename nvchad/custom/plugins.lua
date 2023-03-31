@@ -3,11 +3,11 @@ local overrides = require "custom.configs.overrides"
 return {
 
   ----------------------------------------- default plugins ------------------------------------------
-
   {
     "hrsh7th/nvim-cmp",
     opts = {
       sources = {
+        -- trigger_characters is for unocss lsp
         { name = "nvim_lsp", trigger_characters = { "-" } },
         { name = "luasnip" },
         { name = "buffer" },
@@ -15,14 +15,6 @@ return {
         { name = "path" },
       },
     },
-  },
-
-  {
-    "folke/trouble.nvim",
-    cmd = "Trouble",
-    config = function()
-      require("trouble").setup()
-    end,
   },
 
   {
@@ -79,21 +71,19 @@ return {
   -- dim inactive windows
   {
     "andreadev-it/shade.nvim",
+    keys = "<Bslash>",
     config = function()
       require("shade").setup {
-        overlay_opacity = 50,
-        opacity_step = 1,
         exclude_filetypes = { "NvimTree" },
       }
     end,
   },
 
-  -- I rarely use shade.nvim/autosave.nvim so made commands to enable them
   {
-    "Pocco81/auto-save.nvim",
-    cmd = { "ASToggle" },
+    "folke/trouble.nvim",
+    cmd = "Trouble",
     config = function()
-      require("auto-save").setup()
+      require("trouble").setup()
     end,
   },
 
@@ -101,6 +91,15 @@ return {
     "elkowar/yuck.vim",
     config = function()
       vim.opt.ft = "yuck"
+    end,
+  },
+
+  -- Lua
+  {
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    config = function()
+      require "custom.configs.zenmode"
     end,
   },
 }

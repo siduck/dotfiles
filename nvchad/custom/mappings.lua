@@ -6,27 +6,19 @@ M.general = {
   },
 
   i = {
-    ["jk"] = { "<ESC>", "escape vim" },
+    ["jk"] = { "<ESC>", "escape insert mode" },
   },
 }
 
-M.truzen = {
+M.treesitter = {
   n = {
-    ["<leader>ta"] = { "<cmd> TZAtaraxis <CR>", "truzen ataraxis" },
-    ["<leader>tm"] = { "<cmd> TZMinimalist <CR>", "truzen minimal" },
-    ["<leader>tf"] = { "<cmd> TZFocus <CR>", "truzen focus" },
+    ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", "find media" },
   },
 }
-
--- M.treesitter = {
---   n = {
---     ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", "find media" },
---   },
--- }
 
 M.shade = {
   n = {
-    ["<leader>s"] = {
+    ["<Bslash>"] = {
       function()
         require("shade").toggle()
       end,
