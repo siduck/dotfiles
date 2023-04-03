@@ -1,8 +1,8 @@
 # DONT SKIP THE README 
 # Screenshots (BSPWM)
 
-<img src= "https://i.redd.it/fdpnwmh4e7571.png"> 
-
+![cro](https://user-images.githubusercontent.com/59060246/229421291-5ebf398e-9fb2-4507-a317-b391b0a62a50.png)
+ 
 # Important Notes For BSPWM 
 
 - Fonts needed : any nerdfont (JetbrainsMono Nerd Font is what I use) and material design icon font
