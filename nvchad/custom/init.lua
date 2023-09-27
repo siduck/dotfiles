@@ -1,28 +1,17 @@
-
 require "custom.commands"
+
 require "custom.autocmds"
 
-vim.opt.title = true
+local opt = vim.opt
+opt.title = true
 
--- vim.opt.guifont = { "JetBrainsMono Nerd Font", ":h9" }
--- vim.opt.guifont = { "Sarasa Mono SC Nerd", ":h8" }
+if vim.g.neovide then
+  vim.o.guifont = "JetbrainsMono Nerd Font:h10"
 
--- vim.filetype.add {
---   filename = {
---     [".mkshrc"] = "sh",
---   },
--- }
---
--- vim.api.nvim_create_autocmd({ "BufAdd", "BufEnter", "tabnew" }, {
---   callback = function()
---     vim.t.bufs = vim.tbl_filter(function(bufnr)
---       return vim.api.nvim_buf_get_option(bufnr, "modified")
---     end, vim.t.bufs)
---   end,
--- })
+  vim.g.neovide_refresh_rate = 75
 
--- for i = 1, 9, 1 do
---   vim.keymap.set("n", string.format("<A-%s>", i), function()
---     vim.api.nvim_set_current_buf(vim.t.bufs[i])
---   end)
--- end
+  vim.g.neovide_cursor_vfx_mode = "railgun"
+
+  vim.keymap.set("i", "<c-s-v>", "<c-r>+")
+  vim.keymap.set("i", "<c-r>", "<c-s-v>")
+end

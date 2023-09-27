@@ -1,16 +1,15 @@
 ---@type ChadrcConfig
 local M = {}
 
-M.plugins = "custom.plugins" -- path for lazy.nvim
-
 M.ui = {
-theme='everforest',
-  -- transparency = true,
+  theme = "bearded-arc",
 
-  -- tabufline = {
-  --   show_numbers = true
-  -- }
+  tabufline = {
+    lazyload = false,
+  },
 }
+
+M.plugins = "custom.plugins"
 
 M.mappings = require "custom.mappings"
 

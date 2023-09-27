@@ -24,11 +24,10 @@ M.nvimtree = {
     dotfiles = true,
     custom = { "node_modules" },
   },
-
   git = {
     enable = true,
+    ignore = true,
   },
-
   renderer = {
     highlight_git = true,
     icons = {
@@ -48,20 +47,36 @@ M.mason = {
     -- web dev
     "css-lsp",
     "html-lsp",
-    "typescript-language-server",
+    -- "typescript-language-server",
     "deno",
     "prettier",
-    -- "emmet-ls",
+    "emmet-ls",
     "json-lsp",
-    "tailwindcss-language-server",
+    -- "tailwindcss-language-server",
+    "unocss-language-server",
 
     -- shell
     "shfmt",
     "shellcheck",
     "bash-language-server",
 
-    "clangd",
-    "clang-format",
+    -- "clangd",
+    -- "clang-format",
+  },
+}
+
+M.cmp = {
+  sources = {
+    -- trigger_characters is for unocss lsp
+    { name = "nvim_lsp", trigger_characters = { "-" } },
+    { name = "path" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "codeium" },
+    { name = "nvim_lua" },
+  },
+  experimental = {
+    ghost_text = true,
   },
 }
 

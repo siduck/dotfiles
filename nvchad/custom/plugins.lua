@@ -2,17 +2,49 @@ local overrides = require "custom.configs.overrides"
 
 return {
 
-  ----------------------------------------- default plugins ------------------------------------------
+  ----------------------------------------- default plugins -----------------------------------------
+
+  {
+    "gpanders/nvim-parinfer",
+    event = "InsertEnter",
+  },
+
+  {
+    "NvChad/ui",
+    dir = "~/projects/ui/",
+  },
+
+  -- {
+  --   'ein-shved/NvChad-ui',
+  --   name='abc',
+  --   lazy = false,
+  -- },
+
   {
     "hrsh7th/nvim-cmp",
-    opts = {
-      sources = {
-        -- trigger_characters is for unocss lsp
-        { name = "nvim_lsp", trigger_characters = { "-" } },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "nvim_lua" },
-        { name = "path" },
+    opts = overrides.cmp,
+
+    dependencies = {
+      {
+        -- snippet plugin
+        "L3MON4D3/LuaSnip",
+        config = function(_, opts)
+          -- load default luasnip config
+          require("plugins.configs.others").luasnip(opts)
+
+          local luasnip = require "luasnip"
+          luasnip.filetype_extend("javascriptreact", { "html" })
+          luasnip.filetype_extend("typescriptreact", { "html" })
+          require("luasnip/loaders/from_vscode").lazy_load()
+        end,
+      },
+
+      -- ai based completion
+      {
+        "jcdickinson/codeium.nvim",
+        config = function()
+          require("codeium").setup {}
+        end,
       },
     },
   },
@@ -20,13 +52,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      {
-        -- format & linting
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-          require "custom.configs.null-ls"
-        end,
-      },
+      "pmizio/typescript-tools.nvim",
     },
 
     config = function()
@@ -35,18 +61,30 @@ return {
     end,
   },
 
+  {
+    "stevearc/conform.nvim",
+    config = function()
+      require "custom.configs.conform"
+    end,
+  },
+
   -- override default configs
   { "nvim-tree/nvim-tree.lua", opts = overrides.nvimtree },
-  { "nvim-treesitter/nvim-treesitter", opts = overrides.treesitter },
-  { "williamboman/mason.nvim", opts = overrides.mason },
-
-  --------------------------------------------- custom plugins ----------------------------------------------
 
   {
-    "karb94/neoscroll.nvim",
-    keys = { "<C-d>", "<C-u>" },
-    config = function()
-      require("neoscroll").setup()
+    "nvim-treesitter/nvim-treesitter",
+    opts = overrides.treesitter,
+
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "syntax")
+      require("nvim-treesitter.configs").setup(opts)
+
+      -- register mdx ft
+      vim.filetype.add {
+        extension = { mdx = "mdx" },
+      }
+
+      vim.treesitter.language.register("markdown", "mdx")
     end,
   },
 
@@ -59,19 +97,31 @@ return {
     end,
   },
 
-  -- get highlight group under cursor
   {
-    "nvim-treesitter/playground",
-    cmd = "TSCaptureUnderCursor",
+    "numToStr/Comment.nvim",
+    dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
     config = function()
-      require("nvim-treesitter.configs").setup()
+      require("Comment").setup {
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      }
+    end,
+  },
+
+  { "williamboman/mason.nvim", opts = overrides.mason },
+
+  --------------------------------------------- custom plugins ----------------------------------------------
+  -- smooth scroll
+  {
+    "karb94/neoscroll.nvim",
+    keys = { "<C-d>", "<C-u>" },
+    config = function()
+      require("neoscroll").setup()
     end,
   },
 
   -- dim inactive windows
   {
     "andreadev-it/shade.nvim",
-    keys = "<Bslash>",
     config = function()
       require("shade").setup {
         exclude_filetypes = { "NvimTree" },
@@ -79,6 +129,7 @@ return {
     end,
   },
 
+  -- pretty diagnostics panel
   {
     "folke/trouble.nvim",
     cmd = "Trouble",
@@ -87,19 +138,23 @@ return {
     end,
   },
 
+  -- syntax support fgor yuck lang
   {
     "elkowar/yuck.vim",
-    config = function()
-      vim.opt.ft = "yuck"
-    end,
+    ft = "yuck",
   },
 
-  -- Lua
+  -- distraction free mode
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
     config = function()
       require "custom.configs.zenmode"
     end,
+  },
+
+  {
+    "mbbill/undotree",
+    cmd = "UndotreeToggle",
   },
 }
