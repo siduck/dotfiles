@@ -11,6 +11,10 @@ return {
     },
   },
 
+  dev = {
+    path = "~/projects",
+  },
+
   performance = {
     rtp = {
       disabled_plugins = {
@@ -20,7 +24,7 @@ return {
         "getscriptPlugin",
         "gzip",
         "logipat",
-        "netrw",
+        -- "netrw",
         "netrwPlugin",
         "netrwSettings",
         "netrwFileHandlers",

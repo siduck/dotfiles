@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
     if vim.g.autosave and #vim.api.nvim_buf_get_name(0) ~= 0 and vim.bo.buflisted then
       vim.cmd "silent w"
 
-      echo { { "󰄳", "LazyProgressDone" }, { " file autosaved at " .. os.date "%I:%M %p" } }
+      echo { { "󰄳", "String" }, { " saved at " .. os.date "%I:%M %p" } }
 
       clear_cmdarea()
     end
@@ -26,8 +26,8 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 create_cmd("AsToggle", function()
   vim.g.autosave = not vim.g.autosave
 
-  local enabledTxt = { { "󰆓 ", "LazyProgressDone" }, { "autosave enabled!" } }
-  local disabledTxt = { { "  ", "LazyNoCond" }, { "autosave disabled" } }
+  local enabledTxt = { { "󰆓 autosave enabled", "String" } }
+  local disabledTxt = { { "  autosave disabled", "NvimInternalError" } }
 
   echo(vim.g.autosave and enabledTxt or disabledTxt)
 

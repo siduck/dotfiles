@@ -1,17 +1,5 @@
-local prettier_svelte =
-  "/home/siduck/.local/share/nvim/mason/packages/prettier/node_modules/prettier-plugin-svelte/plugin.js"
-
 local options = {
-  -- custom formatter
-  formatters = {
-    svelte_fmt = {
-      command = "prettier",
-      args = { "--plugin", prettier_svelte, "$FILENAME" },
-    },
-  },
-
   formatters_by_ft = {
-    svelte = { "svelte_fmt" }, -- custom
     lua = { "stylua" },
 
     -- webdev
@@ -24,7 +12,7 @@ local options = {
     html = { "biome" },
     json = { "biome" },
     jsonc = { "biome" },
-
+    svelte = { "deno_fmt" },
     sh = { "shfmt" },
     yaml = { "yamlfmt" },
   },
